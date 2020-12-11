@@ -3,8 +3,8 @@
 }
 
 .navbar {
-    box-shadow: 2px 2px 5px #000;
-    opacity: 0.8;
+    background-color: rgba(10, 61, 98,1.0);
+    box-shadow:  rgba(10, 61, 98,0.7);
 }
 
 .navbar .nav-item .nav-link {
