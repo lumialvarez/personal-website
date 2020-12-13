@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
   scrolling=(s)=>{
     let pxScroll = s.target.scrollingElement.scrollTop;
     let alturaPantalla = window.innerHeight
-    let alturaEsperada = alturaPantalla * 0.8;
+    let alturaEsperada = alturaPantalla * 0.7;
     let estilo = "";
     if (pxScroll == 0) {
       estilo = "background-color: transparent !important;";
