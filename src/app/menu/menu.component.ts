@@ -27,4 +27,23 @@ export class MenuComponent implements OnInit {
       }
     }, 20);
   }
+
+  ejecutarMenu(){
+    console.log("click");
+    let elemento = document.getElementsByClassName("navbar-collapse");
+    let estilo = "";
+    if(elemento){
+      if(elemento[0].classList.contains("show")){
+        console.log("cerrado");
+        estilo = "background-color: transparent !important;";
+        window.scroll(window.pageXOffset, window.pageYOffset + 1);
+        window.scroll(window.pageXOffset, window.pageYOffset - 1);
+      } else {
+        console.log("abierto");
+        estilo = "background-color: rgba(12, 36, 97,1.0) !important;";
+      }
+      document.getElementById('navbarElement').setAttribute("style", estilo);
+    }
+    
+  }
 }

@@ -1,23 +1,35 @@
-<nav id="navbarElement" class="navbar navbar-expand-lg fixed-top">
+<nav id="navbarElement" class="navbar navbar-expand-lg fixed-top bg-lignt">
   <div class="container">
     <a class="navbar-brand" routerLink="/" href="#">
-      <img src="assets\img\logo.png" alt="Logo">
+      <!--<img src="assets\img\logo.png" alt="Logo">-->
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="ejecutarMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/" (click)="moveToTag('top')" href="#">Home</a>
+          <a class="nav-link" routerLink="/" (click)="moveToTag('top')" href="#">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" (click)="moveToTag('contenido')">Producto</a>
+          <a class="nav-link" routerLink="/" (click)="moveToTag('sobremi')">Sobre mí</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login" href="#">Login</a>
+          <a class="nav-link" routerLink="/" (click)="moveToTag('formacion')">Formación</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" (click)="moveToTag('conocimientos')">Conocimientos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" (click)="moveToTag('proyectos')">Proyectos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" (click)="moveToTag('contacto')">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-dark" routerLink="/login" href="#">Ingreso</a>
         </li>
       </ul>
     </div>
