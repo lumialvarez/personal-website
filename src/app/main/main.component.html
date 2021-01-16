@@ -46,11 +46,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12 col-12">
                 <div class="col-full p-3">
-                <img src="assets\img\foto.jpg"
-                class="img-fluid img-thumbnail d-none d-sm-block align-self-center">
-            </div>
+                    <img src="assets\img\foto.jpg" class="img-fluid img-thumbnail d-block align-self-center">
+                </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="row">
@@ -107,18 +106,84 @@
             </div>
         </div>
         <div class="row">
-            <div class="m-5">
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, quidem aspernatur? Officia
-                    eligendi est odit iure nesciunt, nam, ducimus voluptas provident atque ullam laudantium. Commodi qui
-                    sequi nemo magnam?
-                </p>
+            <div class="col-full">
+                <p>Trabajar en diferentes áreas del desarrollo me a permitido interactuar con diferentes lenguajes y
+                    tecnologias</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-full">
+                        <h5 class="text-uppercase text-center">Lenguajes</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-full text-left pl-5 pr-5 pb-5">
+                        <div class="row"  *ngFor="let item of lenguajes; let i = index">
+                            <div class="col-full">
+                                <div class="row">{{ item.nombre }}</div>
+                                <div class="row">
+                                    <div class="col-full">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-full">
+                        <h5 class="text-uppercase text-center">Frameworks</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-full text-left pl-5 pr-5 pb-5">
+                        <div class="row"  *ngFor="let item of frameworks; let i = index">
+                            <div class="col-full">
+                                <div class="row">{{ item.nombre }}</div>
+                                <div class="row">
+                                    <div class="col-full">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-full">
+                        <h5 class="text-uppercase text-center">Herramientas</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-full text-left pl-5 pr-5 pb-5">
+                        <div class="row"  *ngFor="let item of herramientas; let i = index">
+                            <div class="col-full">
+                                <div class="row">{{ item.nombre }}</div>
+                                <div class="row">
+                                    <div class="col-full">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
-
 
 
 <!-- PROYECTOS -->
@@ -252,7 +317,7 @@
     <div class="container">
         <div class="row">
             <div class="col-full">
-                <h3>Conocimientos</h3>
+                <h3>Contacto</h3>
             </div>
         </div>
         <div class="row">

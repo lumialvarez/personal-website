@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-main',
@@ -6,12 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  public lenguajes: any[] = [];
+  public frameworks: any[] = [];
+  public herramientas: any[] = [];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.actualizarEstilosContenido, true)
     window.addEventListener('resize', this.actualizarEstilosContenido, true)
+
+    this.procesarConocimientos()
   }
 
   actualizarEstilosContenido = (s) => {
@@ -37,5 +43,21 @@ export class MainComponent implements OnInit {
     let espacioTop = Math.round((alturaPantalla - (alturaElemento*1.2)) / 2)
 
     document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
+  }
+
+  procesarConocimientos() {
+    console.log("Procesando conocimientos")
+    this.httpClient.get("assets/misc/conocimientos.json").subscribe((data:any) =>{
+      console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        if(data[i].tipo == "Lenguaje"){
+          this.lenguajes.push(data[i])
+        } else if(data[i].tipo == "Framework"){
+          this.frameworks.push(data[i])
+        } else if(data[i].tipo == "Herramienta"){
+          this.herramientas.push(data[i])
+        }
+      }
+    })
   }
 }

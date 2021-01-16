@@ -59,3 +59,12 @@ section .row .col-full h3 {
 section .row .col-full .line {
     margin-bottom: 15px;
 } 
+
+.col-full .progress {
+    background-color:rgba(206, 214, 224,1.0);
+}
+
+.col-full .progress-bar {
+    background-color: rgba(12, 36, 97,1.0);
+}
+

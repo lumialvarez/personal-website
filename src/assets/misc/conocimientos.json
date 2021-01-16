@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "Java",
+    "tipo": "Lenguaje",
+    "nivel": 90,
+    "experiencia": 62,
+    "relacionados": []
+  },
+  {
+    "nombre": "Javascript",
+    "tipo": "Lenguaje",
+    "nivel": 50,
+    "experiencia": 62,
+    "relacionados": []
+  },
+  {
+    "nombre": "Java Server Faces (JSF)",
+    "tipo": "Framework",
+    "nivel": 80,
+    "experiencia": 26,
+    "relacionados": [
+      "Java"
+    ]
+  },
+  {
+    "nombre": "Git",
+    "tipo": "Herramienta",
+    "nivel": 80,
+    "experiencia": 26,
+    "relacionados": []
+  }
+]
