@@ -1,3 +1,14 @@
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1.0;
+    }
+}
+
 .main-header {
     position: relative;
     background: url(../../assets/img/background.jpg);
@@ -20,6 +31,7 @@
 }
 
 #main-name-container {
+    animation: 2s ease-out 0s 1 slideInFromTop;
     position: relative;
     text-align: center;
     text-transform: uppercase;
@@ -30,7 +42,7 @@
 }
 
 #main-name-container h1 {
-    font-size: 3.750em;
+    font-size: 3.650em;
     font-weight: 300;
     letter-spacing: 0.1em;
     line-height: 1em;
