@@ -3,6 +3,12 @@
         transform: translateY(-100%);
         opacity: 0;
     }
+    50% {
+        opacity: 0.4;
+    }
+    95% {
+        opacity: 0.9;
+    }
     100% {
         transform: translateY(0);
         opacity: 1.0;

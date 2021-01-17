@@ -108,7 +108,7 @@
         <div class="row">
             <div class="col-full">
                 <p>Trabajar en diferentes áreas del desarrollo me a permitido interactuar con diferentes lenguajes y
-                    tecnologias</p>
+                    tecnologias, a contiuacion muestro los mas destacables</p>
             </div>
         </div>
         <div class="row">
@@ -202,105 +202,23 @@
         <div class="row">
             <div class="m-5">
                 <p>
-                    Adipisicing unde eum odio aliquam dolor ad voluptas expedita consequuntur aperiam inventore eaque.
-                    Dolorum
-                    facilis aut eum a delectus. Fugit velit quas harum quisquam amet provident inventore. Repudiandae
-                    repudiandae delectus.
+                    A continuación resumo los proyectos los cuales de una u otra manera me han llamado la atención, ya sea por el reto que fueron o por los resultados obtenidos
                 </p>
             </div>
         </div>
-        <div class="row">
-            <!-- USER TEAM -->
-            <div class="col-lg-3">
+        <div class="row" >
+            <!-- LISTA -->
+            <div class="col-lg-3 d-flex mb-3 align-items-stretch" *ngFor="let item of resumenProyectos; let i = index">
                 <div class="card">
                     <div class="card-body">
-                        <img src="assets\img\person.png" class="img-fluid rounded-circle w-50">
-                        <h3>John Carter</h3>
+                        <img src={{item.img}} class="img-fluid rounded-circle w-50">
+                        <h4>{{item.nombre}}</h4>
                         <p>
-                            Dolor modi repudiandae quia beatae consectetur? Nam ullafugit ullam, accusamus! Totam
-                            mollitia eveniet!
+                            {{item.descripcion}}
                         </p>
-                        <div class="d-flex flex-row justify-content-center">
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </div>
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="assets\img\person.png" class="img-fluid rounded-circle w-50">
-                        <h3>John Carter</h3>
-                        <p>
-                            Dolor modi repudiandae quia beatae consectetur? Nam ullafugit ullam, accusamus! Totam
-                            mollitia eveniet!
-                        </p>
-                        <div class="d-flex flex-row justify-content-center">
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </div>
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="assets\img\person.png" class="img-fluid rounded-circle w-50">
-                        <h3>John Carter</h3>
-                        <p>
-                            Dolor modi repudiandae quia beatae consectetur? Nam ullafugit ullam, accusamus! Totam
-                            mollitia eveniet!
-                        </p>
-                        <div class="d-flex flex-row justify-content-center">
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </div>
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="assets\img\person.png" class="img-fluid rounded-circle w-50">
-                        <h3>John Carter</h3>
-                        <p>
-                            Dolor modi repudiandae quia beatae consectetur? Nam ullafugit ullam, accusamus! Totam
-                            mollitia eveniet!
-                        </p>
-                        <div class="d-flex flex-row justify-content-center">
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </div>
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                            <div class="p-4">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+                        <div *ngIf="item.existeDetalle" class="d-flex flex-row justify-content-center">
+                            <div class="p-1">
+                                <a href="#"><i class="fas fa-plus"></i></a>
                             </div>
                         </div>
                     </div>
@@ -326,30 +244,26 @@
             </div>
         </div>
         <div class="row">
-            <div class="m-5">
+            <div class="col-full m-2">
                 <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, quidem aspernatur? Officia
-                    eligendi est odit iure nesciunt, nam, ducimus voluptas provident atque ullam laudantium. Commodi qui
-                    sequi nemo magnam? Aut?
+                    Si tienes alguna pregunta, sugerencia o revisar nuevas posibilidades no dudes en dejarme un mensaje por mi red social Linkedin
                 </p>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="p-12">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <div class="p-12 pb-5">
+                <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank"><i class="fab fa-linkedin fa-w-14 fa-3x"></i></a>
             </div>
         </div>
     </div>
 </section>
-
-
 
 <footer>
     <div class="container">
         <div class="row text-center text-white  p-3">
             <div class="col ml-auto">
                 <p>
-                    Copyright &copy; 2020
+                    Copyright &copy; 2021
                 </p>
             </div>
         </div>

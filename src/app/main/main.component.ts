@@ -10,6 +10,7 @@ export class MainComponent implements OnInit {
   public lenguajes: any[] = [];
   public frameworks: any[] = [];
   public herramientas: any[] = [];
+  public resumenProyectos: any[] = [];
 
   constructor(private httpClient: HttpClient) {}
 
@@ -47,17 +48,26 @@ export class MainComponent implements OnInit {
 
   procesarConocimientos() {
     console.log("Procesando conocimientos")
-    this.httpClient.get("assets/misc/conocimientos.json").subscribe((data:any) =>{
-      console.log(data);
-      for (let i = 0; i < data.length; i++) {
-        if(data[i].tipo == "Lenguaje"){
-          this.lenguajes.push(data[i])
-        } else if(data[i].tipo == "Framework"){
-          this.frameworks.push(data[i])
-        } else if(data[i].tipo == "Herramienta"){
-          this.herramientas.push(data[i])
+    this.httpClient.get("assets/misc/datosBackendTmp.json").subscribe((data:any) =>{
+      let conocimientos = data.conocimientos
+      console.log(conocimientos);
+      for (let i = 0; i < conocimientos.length; i++) {
+        if(conocimientos[i].tipo == "Lenguaje"){
+          this.lenguajes.push(conocimientos[i])
+        } else if(conocimientos[i].tipo == "Framework"){
+          this.frameworks.push(conocimientos[i])
+        } else if(conocimientos[i].tipo == "Herramienta"){
+          this.herramientas.push(conocimientos[i])
         }
       }
+
+      this.lenguajes.sort(function(a,b){return -(a.nivel - b.nivel)})
+      this.frameworks.sort(function(a,b){return -(a.nivel - b.nivel)})
+      this.herramientas.sort(function(a,b){return -(a.nivel - b.nivel)})
+
+      this.resumenProyectos = data.poyectos
     })
   }
+
+
 }
