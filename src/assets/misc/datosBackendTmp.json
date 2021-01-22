@@ -5,49 +5,49 @@
       "nombre": "Pagina WEB Personal",
       "descripcion": "Proyecto personal para crear una pagina node puedo demostrar mis habilidades",
       "img": "assets\\img\\sample_image.jpg",
-      "existeDetalle" : false
+      "existeDetalle": false
     },
     {
       "codigo": 2,
       "nombre": "Modelo de optimización basado en confiablidad",
       "descripcion": "Proyecto llevado a cabo con un Grupo de Investigacion para la GREG (Comisión de Regulación de Energía y Gas)",
       "img": "assets\\img\\sample_image.jpg",
-      "existeDetalle" : false
+      "existeDetalle": false
     },
     {
       "codigo": 3,
       "nombre": "Administración de Desabastecidos",
       "descripcion": "Proyecto para la administracion y seguimiento de los productos desabastecidos o descontinuados para mejorar la respuesta de la logistica ante dicha situacion",
       "img": "assets\\img\\sample_image.jpg",
-      "existeDetalle" : false
+      "existeDetalle": false
     },
     {
       "codigo": 4,
       "nombre": "Sábila",
       "descripcion": "Proyecto para sistematizar la administracion de bibliotecas de Licenciamiento Abierto",
       "img": "assets\\img\\sample_image.jpg",
-      "existeDetalle" : false
+      "existeDetalle": false
     },
     {
       "codigo": 5,
       "nombre": "Automatización de fuerza de ventas",
       "descripcion": "Proyecto para dotar a fuerzas de ventas con una herramienta para gestionar clientes, rutas y productos",
       "img": "assets\\img\\sample_image.jpg",
-      "existeDetalle" : false
+      "existeDetalle": false
     },
     {
       "codigo": 6,
       "nombre": "Facturación Electrónica",
       "descripcion": "Proyecto crear un sistema de facturacion electronico independiente de los sistemas de informacion",
       "img": "assets\\img\\sample_image.jpg",
-      "existeDetalle" : false
+      "existeDetalle": false
     },
     {
       "codigo": 7,
       "nombre": "Gestor de Seguros",
       "descripcion": "Proyecto crear un sistema que permitia la consulta y cotizacion unificada de varias aseguradoras de forma paralela",
       "img": "assets\\img\\sample_image.jpg",
-      "existeDetalle" : false
+      "existeDetalle": false
     }
   ],
   "conocimientos": [
@@ -55,47 +55,500 @@
       "nombre": "Java",
       "tipo": "Lenguaje",
       "nivel": 90,
-      "experiencia": 62,
-      "relacionados": []
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Backend",
+        "Integracion"
+      ]
     },
     {
       "nombre": "Javascript",
       "tipo": "Lenguaje",
-      "nivel": 70,
-      "experiencia": 62,
-      "relacionados": []
-    },
-    {
-      "nombre": "SQL",
-      "tipo": "Lenguaje",
       "nivel": 80,
-      "experiencia": 62,
-      "relacionados": []
-    },
-    {
-      "nombre": "Spring",
-      "tipo": "Framework",
-      "nivel": 40,
-      "experiencia": 26,
-      "relacionados": [
-        "Java"
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Backend",
+        "Frontend"
       ]
     },
     {
       "nombre": "Java Server Faces (JSF)",
       "tipo": "Framework",
       "nivel": 80,
-      "experiencia": 26,
-      "relacionados": [
-        "Java"
+      "experiencia": 0,
+      "descripcion": "JavaServer Faces (JSF) es un framework Java EE para crear interfaces (UI) orientada por componentes",
+      "categorias": [
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "PHP",
+      "tipo": "Lenguaje",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "Angular",
+      "tipo": "Framework",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Frontend"
+      ]
+    },
+    {
+      "nombre": "AngularJS",
+      "tipo": "Framework",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Frontend"
+      ]
+    },
+    {
+      "nombre": "Bootstrap",
+      "tipo": "Framework",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Frontend"
+      ]
+    },
+    {
+      "nombre": "Jquery",
+      "tipo": "Framework",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Frontend"
+      ]
+    },
+    {
+      "nombre": "Tomcat",
+      "tipo": "Herramienta",
+      "nivel": 80,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Infraestructura"
+      ]
+    },
+    {
+      "nombre": "Jboss Application Server",
+      "tipo": "Herramienta",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Infraestructura"
+      ]
+    },
+    {
+      "nombre": "PL/SQL",
+      "tipo": "Lenguaje",
+      "nivel": 80,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "Apache",
+      "tipo": "Herramienta",
+      "nivel": 80,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Infraestructura"
+      ]
+    },
+    {
+      "nombre": "PostgreSQL",
+      "tipo": "Herramienta",
+      "nivel": 90,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Base de datos"
+      ]
+    },
+    {
+      "nombre": "MySQL",
+      "tipo": "Herramienta",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Base de datos"
+      ]
+    },
+    {
+      "nombre": "IBM Integration Bus",
+      "tipo": "Herramienta",
+      "nivel": 90,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Integracion"
+      ]
+    },
+    {
+      "nombre": "IBM API Connect",
+      "tipo": "Herramienta",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Integracion"
+      ]
+    },
+    {
+      "nombre": "IBM Datapower",
+      "tipo": "Herramienta",
+      "nivel": 40,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Integracion"
+      ]
+    },
+    {
+      "nombre": "Google Web Toolkit (GWT)",
+      "tipo": "Framework",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "GlassFish",
+      "tipo": "Herramienta",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Infraestructura"
+      ]
+    },
+    {
+      "nombre": "Azure Devops",
+      "tipo": "Herramienta",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Devops"
+      ]
+    },
+    {
+      "nombre": "Jenkins",
+      "tipo": "Herramienta",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Devops"
+      ]
+    },
+    {
+      "nombre": "Spring",
+      "tipo": "Framework",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Spring Boot",
+      "tipo": "Herramienta",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "Quarkus",
+      "tipo": "Herramienta",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "C++",
+      "tipo": "Lenguaje",
+      "nivel": 80,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "SOA",
+      "tipo": "Otros",
+      "nivel": 90,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Integracion",
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "Devops",
+      "tipo": "Otros",
+      "nivel": 80,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Devops"
       ]
     },
     {
       "nombre": "Git",
       "tipo": "Herramienta",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Backend",
+        "Frontend"
+      ]
+    },
+    {
+      "nombre": "Visual Basic",
+      "tipo": "Lenguaje",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "C#",
+      "tipo": "Lenguaje",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Asp.net",
+      "tipo": "Herramienta",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Hibernate",
+      "tipo": "Herramienta",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "EcpliseLink",
+      "tipo": "Herramienta",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack",
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "Spark",
+      "tipo": "Framework",
       "nivel": 80,
-      "experiencia": 26,
-      "relacionados": []
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "Pascal",
+      "tipo": "Lenguaje",
+      "nivel": 40,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Delphi",
+      "tipo": "Herramienta",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Servicios SOAP",
+      "tipo": "Otros",
+      "nivel": 90,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Integracion",
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Servicios REST",
+      "tipo": "Otros",
+      "nivel": 90,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Integracion",
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Python",
+      "tipo": "Lenguaje",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Certificados Digitales",
+      "tipo": "Otros",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "HTML",
+      "tipo": "Otros",
+      "nivel": 80,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Frontend"
+      ]
+    },
+    {
+      "nombre": "CSS",
+      "tipo": "Otros",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Frontend"
+      ]
+    },
+    {
+      "nombre": "IBM App Connect",
+      "tipo": "Herramienta",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Integracion"
+      ]
+    },
+    {
+      "nombre": "JBPM",
+      "tipo": "Herramienta",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack"
+      ]
+    },
+    {
+      "nombre": "Typescript",
+      "tipo": "Lenguaje",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Frontend"
+      ]
+    },
+    {
+      "nombre": "Oracle",
+      "tipo": "Herramienta",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Base de datos"
+      ]
+    },
+    {
+      "nombre": "Java Server Pages (JSP)",
+      "tipo": "Herramienta",
+      "nivel": 70,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Fullstack"
+      ]
     }
   ]
 }

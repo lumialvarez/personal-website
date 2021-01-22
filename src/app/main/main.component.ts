@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
+declare var $: any;
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  private conocimientos: any[] = [];
   public lenguajes: any[] = [];
   public frameworks: any[] = [];
   public herramientas: any[] = [];
+  public otros: any[] = [];
   public resumenProyectos: any[] = [];
+  public categorias: any[] = [];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    $('[data-toggle="tooltip"]').tooltip();
     window.addEventListener('scroll', this.actualizarEstilosContenido, true)
     window.addEventListener('resize', this.actualizarEstilosContenido, true)
 
-    this.procesarConocimientos()
+    this.obtenerConocimientos()
   }
 
   actualizarEstilosContenido = (s) => {
@@ -26,7 +32,7 @@ export class MainComponent implements OnInit {
     let alturaPantalla = window.innerHeight
     if (s && s.target && s.target.scrollingElement) {
       let pxScroll = s.target.scrollingElement.scrollTop;
-      
+
       let alturaEsperada = alturaPantalla * 0.7;
       let estilo = "";
       if (pxScroll == 0) {
@@ -41,32 +47,57 @@ export class MainComponent implements OnInit {
 
     //Altura del nombre principal
     let alturaElemento = document.getElementById('main-name-container').clientHeight
-    let espacioTop = Math.round((alturaPantalla - (alturaElemento*1.2)) / 2)
+    let espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2)
 
     document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
   }
 
-  procesarConocimientos() {
+  obtenerConocimientos() {
     console.log("Procesando conocimientos")
-    this.httpClient.get("assets/misc/datosBackendTmp.json").subscribe((data:any) =>{
-      let conocimientos = data.conocimientos
-      console.log(conocimientos);
-      for (let i = 0; i < conocimientos.length; i++) {
-        if(conocimientos[i].tipo == "Lenguaje"){
-          this.lenguajes.push(conocimientos[i])
-        } else if(conocimientos[i].tipo == "Framework"){
-          this.frameworks.push(conocimientos[i])
-        } else if(conocimientos[i].tipo == "Herramienta"){
-          this.herramientas.push(conocimientos[i])
+    this.httpClient.get("assets/misc/datosBackendTmp.json").subscribe((data: any) => {
+      this.conocimientos = data.conocimientos
+
+      for (let i = 0; i < this.conocimientos.length; i++) {
+        for (let j = 0; j < this.conocimientos[i].categorias.length; j++) {
+          let cat = this.conocimientos[i].categorias[j]
+          if (!this.categorias.includes(cat)) {
+            this.categorias.push(cat)
+          }
         }
       }
 
-      this.lenguajes.sort(function(a,b){return -(a.nivel - b.nivel)})
-      this.frameworks.sort(function(a,b){return -(a.nivel - b.nivel)})
-      this.herramientas.sort(function(a,b){return -(a.nivel - b.nivel)})
-
       this.resumenProyectos = data.poyectos
+
+      this.procesarConocimientos()
     })
+  }
+
+
+  procesarConocimientos() {
+    console.log("Procesando conocimientos")
+    this.lenguajes = [];
+    this.frameworks = [];
+    this.herramientas = [];
+    this.otros = [];
+    
+    for (let i = 0; i < this.conocimientos.length; i++) {
+      if (this.conocimientos[i].tipo == "Lenguaje") {
+        this.lenguajes.push(this.conocimientos[i])
+      } else if (this.conocimientos[i].tipo == "Framework") {
+        this.frameworks.push(this.conocimientos[i])
+      } else if (this.conocimientos[i].tipo == "Herramienta") {
+        this.herramientas.push(this.conocimientos[i])
+      } else if (this.conocimientos[i].tipo == "Otros") {
+        this.otros.push(this.conocimientos[i])
+      }
+    }
+
+    this.lenguajes.sort(function (a, b) { return -(a.nivel - b.nivel) })
+    this.frameworks.sort(function (a, b) { return -(a.nivel - b.nivel) })
+    this.herramientas.sort(function (a, b) { return -(a.nivel - b.nivel) })
+    this.otros.sort(function (a, b) { return -(a.nivel - b.nivel) })
+
+
   }
 
 
