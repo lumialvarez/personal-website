@@ -112,6 +112,22 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-full">
+                <div ngbDropdown>
+                    <button class="btn" id="dropdownBasic1" ngbDropdownToggle>{{ categoriaSeleccionada || "Selecciona un tema" }}</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem id="option"
+                            on-click="categoriaSeleccionada=null; procesarConocimientos()">Todos
+                        </button>
+                        <div *ngFor="let cat of categorias;">
+                            <button ngbDropdownItem id="option" on-click="categoriaSeleccionada=cat; procesarConocimientos()">{{cat}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-full">
@@ -120,13 +136,16 @@
                 </div>
                 <div class="row">
                     <div class="col-full text-left pl-5 pr-5 pb-5">
-                        <div class="row"  *ngFor="let item of lenguajes; let i = index" data-toggle="tooltip" [title]=item.descripcion>
+                        <div class="row" *ngFor="let item of lenguajes; let i = index" data-toggle="tooltip"
+                            [title]=item.descripcion>
                             <div class="col-full">
                                 <div class="row">{{ item.nombre }}</div>
                                 <div class="row">
                                     <div class="col-full">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -143,13 +162,16 @@
                 </div>
                 <div class="row">
                     <div class="col-full text-left pl-5 pr-5 pb-5">
-                        <div class="row"  *ngFor="let item of frameworks; let i = index" data-toggle="tooltip" [title]=item.descripcion>
+                        <div class="row" *ngFor="let item of frameworks; let i = index" data-toggle="tooltip"
+                            [title]=item.descripcion>
                             <div class="col-full">
                                 <div class="row">{{ item.nombre }}</div>
                                 <div class="row">
                                     <div class="col-full">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -166,13 +188,16 @@
                 </div>
                 <div class="row">
                     <div class="col-full text-left pl-5 pr-5 pb-5">
-                        <div class="row"  *ngFor="let item of herramientas; let i = index" data-toggle="tooltip" [title]=item.descripcion>
+                        <div class="row" *ngFor="let item of herramientas; let i = index" data-toggle="tooltip"
+                            [title]=item.descripcion>
                             <div class="col-full">
                                 <div class="row">{{ item.nombre }}</div>
                                 <div class="row">
                                     <div class="col-full">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -189,13 +214,16 @@
                 </div>
                 <div class="row">
                     <div class="col-full text-left pl-5 pr-5 pb-5">
-                        <div class="row"  *ngFor="let item of otros; let i = index" data-toggle="tooltip" [title]=item.descripcion>
+                        <div class="row" *ngFor="let item of otros; let i = index" data-toggle="tooltip"
+                            [title]=item.descripcion>
                             <div class="col-full">
                                 <div class="row">{{ item.nombre }}</div>
                                 <div class="row">
                                     <div class="col-full">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -225,11 +253,12 @@
         <div class="row">
             <div class="m-5">
                 <p>
-                    A continuación resumo los proyectos los cuales de una u otra manera me han llamado la atención, ya sea por el reto que fueron o por los resultados obtenidos
+                    A continuación resumo los proyectos los cuales de una u otra manera me han llamado la atención, ya
+                    sea por el reto que fueron o por los resultados obtenidos
                 </p>
             </div>
         </div>
-        <div class="row" >
+        <div class="row">
             <!-- LISTA -->
             <div class="col-lg-3 d-flex mb-3 align-items-stretch" *ngFor="let item of resumenProyectos; let i = index">
                 <div class="card">
@@ -269,13 +298,15 @@
         <div class="row">
             <div class="col-full m-2">
                 <p>
-                    Si tienes alguna pregunta, sugerencia o revisar nuevas posibilidades no dudes en dejarme un mensaje por mi red social Linkedin
+                    Si tienes alguna pregunta, sugerencia o revisar nuevas posibilidades no dudes en dejarme un mensaje
+                    por mi red social Linkedin
                 </p>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="p-12 pb-5">
-                <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank"><i class="fab fa-linkedin fa-w-14 fa-3x"></i></a>
+                <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank"><i
+                        class="fab fa-linkedin fa-w-14 fa-3x"></i></a>
             </div>
         </div>
     </div>

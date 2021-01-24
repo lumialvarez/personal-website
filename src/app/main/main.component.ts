@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
   public otros: any[] = [];
   public resumenProyectos: any[] = [];
   public categorias: any[] = [];
+  public categoriaSeleccionada: string = null;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -81,6 +82,10 @@ export class MainComponent implements OnInit {
     this.otros = [];
     
     for (let i = 0; i < this.conocimientos.length; i++) {
+      if (!this.categoriaSeleccionada || this.conocimientos[i].categorias.includes(this.categoriaSeleccionada)) {
+        
+      
+
       if (this.conocimientos[i].tipo == "Lenguaje") {
         this.lenguajes.push(this.conocimientos[i])
       } else if (this.conocimientos[i].tipo == "Framework") {
@@ -90,6 +95,7 @@ export class MainComponent implements OnInit {
       } else if (this.conocimientos[i].tipo == "Otros") {
         this.otros.push(this.conocimientos[i])
       }
+    }
     }
 
     this.lenguajes.sort(function (a, b) { return -(a.nivel - b.nivel) })
