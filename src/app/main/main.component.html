@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="text-left  p-3">
+                    <div class="text-left  pt-3 pl-3 pr-3">
                         <p>Soy un Desarrollador de software que vive actualmente en Medellín (Colombia) graduado como
                             Ingeniero de Sistemas y Computación en la <a class="text-dark"
                                 href="https://www.utp.edu.co/">Universidad Tecnológica de Pereira</a></p>
@@ -68,6 +68,16 @@
                             Colombia
                         </p>
                         <p>Gran parte de mi tiempo es ocupado investigando, diseñando y desarrollando</p>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-6">
+                        <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank">
+                            <i class="fab fa-linkedin fa-w-14 fa-1x"></i> Linkedin</a>
+                    </div>
+                    <div class="col-6">
+                        <a href="https://github.com/lumialvarez" target="_blank">
+                            <i class="fab fa-github fa-w-14 fa-1x"></i> Github</a>
                     </div>
                 </div>
             </div>
@@ -114,13 +124,15 @@
         <div class="row">
             <div class="col-full">
                 <div ngbDropdown>
-                    <button class="btn" id="dropdownBasic1" ngbDropdownToggle>{{ categoriaSeleccionada || "Selecciona un tema" }}</button>
+                    <button class="btn" id="dropdownBasic1" ngbDropdownToggle>{{ categoriaSeleccionada || "Selecciona un
+                        tema" }}</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                         <button ngbDropdownItem id="option"
                             on-click="categoriaSeleccionada=null; procesarConocimientos()">Todos
                         </button>
                         <div *ngFor="let cat of categorias;">
-                            <button ngbDropdownItem id="option" on-click="categoriaSeleccionada=cat; procesarConocimientos()">{{cat}}
+                            <button ngbDropdownItem id="option"
+                                on-click="categoriaSeleccionada=cat; procesarConocimientos()">{{cat}}
                             </button>
                         </div>
                     </div>
@@ -314,11 +326,14 @@
 
 <footer>
     <div class="container">
-        <div class="row text-center text-white  p-3">
+        <div class="row text-center text-white  pt-3">
             <div class="col ml-auto">
-                <p>
-                    Copyright &copy; 2021
-                </p>
+                Copyright &copy; 2021
+            </div>
+        </div>
+        <div class="row text-center text-white  pb-3">
+            <div id="app-version" class="col ml-auto">
+                Versión {{version}}
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { version } from '../../../package.json';
+
 
 declare var $: any;
 
@@ -9,6 +11,7 @@ declare var $: any;
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  public version;
   private conocimientos: any[] = [];
   public lenguajes: any[] = [];
   public frameworks: any[] = [];
@@ -18,7 +21,12 @@ export class MainComponent implements OnInit {
   public categorias: any[] = [];
   public categoriaSeleccionada: string = null;
 
-  constructor(private httpClient: HttpClient) { }
+  
+
+  constructor(private httpClient: HttpClient) {
+    this.version = version
+  }
+  
 
   ngOnInit(): void {
     $('[data-toggle="tooltip"]').tooltip();
@@ -80,22 +88,19 @@ export class MainComponent implements OnInit {
     this.frameworks = [];
     this.herramientas = [];
     this.otros = [];
-    
+
     for (let i = 0; i < this.conocimientos.length; i++) {
       if (!this.categoriaSeleccionada || this.conocimientos[i].categorias.includes(this.categoriaSeleccionada)) {
-        
-      
-
-      if (this.conocimientos[i].tipo == "Lenguaje") {
-        this.lenguajes.push(this.conocimientos[i])
-      } else if (this.conocimientos[i].tipo == "Framework") {
-        this.frameworks.push(this.conocimientos[i])
-      } else if (this.conocimientos[i].tipo == "Herramienta") {
-        this.herramientas.push(this.conocimientos[i])
-      } else if (this.conocimientos[i].tipo == "Otros") {
-        this.otros.push(this.conocimientos[i])
+        if (this.conocimientos[i].tipo == "Lenguaje") {
+          this.lenguajes.push(this.conocimientos[i])
+        } else if (this.conocimientos[i].tipo == "Framework") {
+          this.frameworks.push(this.conocimientos[i])
+        } else if (this.conocimientos[i].tipo == "Herramienta") {
+          this.herramientas.push(this.conocimientos[i])
+        } else if (this.conocimientos[i].tipo == "Otros") {
+          this.otros.push(this.conocimientos[i])
+        }
       }
-    }
     }
 
     this.lenguajes.sort(function (a, b) { return -(a.nivel - b.nivel) })

@@ -33,7 +33,7 @@
 }
 
 .team, footer {
-    background:rgba(30, 55, 153,1.0);
+    background:rgba(12, 36, 97,1.0);
 }
 
 #main-name-container {
@@ -114,5 +114,9 @@ section .row .col-full .line {
 
 .col-full .progress-bar {
     background-color: rgba(12, 36, 97,1.0);
+}
+
+#app-version {
+    font-size: 0.6em;
 }
 
