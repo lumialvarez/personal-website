@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title text-center" id="modal-basic-title">{{datos.nombre || proyecto.nombre}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="text-center">
+    <img src={{proyecto.img}} class="img-fluid w-25">
+  </div>
+
+  <div *ngIf="datos" [innerHTML]="datos.descripcion || 'Descripción pendiente...'"></div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+</div>

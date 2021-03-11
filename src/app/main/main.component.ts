@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { version } from '../../../package.json';
+import { DetalleProyectoComponent } from './detalle-proyecto/detalle-proyecto.component';
 
 
 declare var $: any;
@@ -21,48 +23,45 @@ export class MainComponent implements OnInit {
   public categorias: any[] = [];
   public categoriaSeleccionada: string = null;
 
-  
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private modalService: NgbModal, private httpClient: HttpClient) {
     this.version = version
   }
-  
 
   ngOnInit(): void {
     $('[data-toggle="tooltip"]').tooltip();
     window.addEventListener('scroll', this.actualizarEstilosContenido, true)
     window.addEventListener('resize', this.actualizarEstilosContenido, true)
 
-    this.obtenerConocimientos()
+    this.obtenerDatosBackend()
   }
 
   actualizarEstilosContenido = (s) => {
-    // Color del menu
-    let alturaPantalla = window.innerHeight
-    if (s && s.target && s.target.scrollingElement) {
-      let pxScroll = s.target.scrollingElement.scrollTop;
+      // Color del menu
+      let alturaPantalla = window.innerHeight
+      if (s && s.target && s.target.scrollingElement) {
+        let pxScroll = s.target.scrollingElement.scrollTop;
 
-      let alturaEsperada = alturaPantalla * 0.7;
-      let estilo = "";
-      if (pxScroll == 0) {
-        estilo = "background-color: transparent !important;";
-      } else if (pxScroll > 0 && pxScroll <= alturaEsperada) {
-        estilo = "background-color: rgba(12, 36, 97," + pxScroll / alturaEsperada + ") !important;";
-      } else {
-        estilo = "background-color: rgba(12, 36, 97,1.0) !important;";
+        let alturaEsperada = alturaPantalla * 0.7;
+        let estilo = "";
+        if (pxScroll == 0) {
+          estilo = "background-color: transparent !important;";
+        } else if (pxScroll > 0 && pxScroll <= alturaEsperada) {
+          estilo = "background-color: rgba(12, 36, 97," + pxScroll / alturaEsperada + ") !important;";
+        } else {
+          estilo = "background-color: rgba(12, 36, 97,1.0) !important;";
+        }
+        document.getElementById('navbarElement').setAttribute("style", estilo);
       }
-      document.getElementById('navbarElement').setAttribute("style", estilo);
-    }
 
-    //Altura del nombre principal
-    let alturaElemento = document.getElementById('main-name-container').clientHeight
-    let espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2)
+      //Altura del nombre principal
+      let alturaElemento = document.getElementById('main-name-container').clientHeight
+      let espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2)
 
-    document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
+      document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
+    
   }
 
-  obtenerConocimientos() {
-    console.log("Procesando conocimientos")
+  obtenerDatosBackend() {
     this.httpClient.get("assets/misc/datosBackendTmp.json").subscribe((data: any) => {
       this.conocimientos = data.conocimientos
 
@@ -83,7 +82,6 @@ export class MainComponent implements OnInit {
 
 
   procesarConocimientos() {
-    console.log("Procesando conocimientos")
     this.lenguajes = [];
     this.frameworks = [];
     this.herramientas = [];
@@ -107,9 +105,10 @@ export class MainComponent implements OnInit {
     this.frameworks.sort(function (a, b) { return -(a.nivel - b.nivel) })
     this.herramientas.sort(function (a, b) { return -(a.nivel - b.nivel) })
     this.otros.sort(function (a, b) { return -(a.nivel - b.nivel) })
-
-
   }
 
-
+  openModalDetalleProyecto(proyecto: any) {
+    const modalRef = this.modalService.open(DetalleProyectoComponent, { size: 'lg' });
+    modalRef.componentInstance.proyecto =  proyecto;
+  }
 }
