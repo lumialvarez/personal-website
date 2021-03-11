@@ -72,7 +72,8 @@
       "categorias": [
         "Fullstack",
         "Backend",
-        "Frontend"
+        "Frontend",
+        "Integracion"
       ]
     },
     {
@@ -161,13 +162,25 @@
       ]
     },
     {
-      "nombre": "PL/SQL",
+      "nombre": "PL/pgSQL",
       "tipo": "Lenguaje",
       "nivel": 80,
       "experiencia": 0,
       "descripcion": "",
       "categorias": [
-        "Backend"
+        "Backend",
+        "Base de datos"
+      ]
+    },
+    {
+      "nombre": "PL/SQL",
+      "tipo": "Lenguaje",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Backend",
+        "Base de datos"
       ]
     },
     {
@@ -183,7 +196,7 @@
     },
     {
       "nombre": "PostgreSQL",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 90,
       "experiencia": 0,
       "descripcion": "",
@@ -194,7 +207,7 @@
     },
     {
       "nombre": "MySQL",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 70,
       "experiencia": 0,
       "descripcion": "",
@@ -205,7 +218,7 @@
     },
     {
       "nombre": "IBM Integration Bus",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 90,
       "experiencia": 0,
       "descripcion": "",
@@ -215,7 +228,7 @@
     },
     {
       "nombre": "IBM API Connect",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 60,
       "experiencia": 0,
       "descripcion": "",
@@ -225,7 +238,7 @@
     },
     {
       "nombre": "IBM Datapower",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 40,
       "experiencia": 0,
       "descripcion": "",
@@ -288,7 +301,7 @@
     },
     {
       "nombre": "Spring Boot",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 70,
       "experiencia": 0,
       "descripcion": "",
@@ -299,7 +312,7 @@
     },
     {
       "nombre": "Quarkus",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 50,
       "experiencia": 0,
       "descripcion": "",
@@ -373,17 +386,18 @@
     },
     {
       "nombre": "Asp.net",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 60,
       "experiencia": 0,
       "descripcion": "",
       "categorias": [
-        "Fullstack"
+        "Fullstack",
+        "Backend"
       ]
     },
     {
       "nombre": "Hibernate",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 70,
       "experiencia": 0,
       "descripcion": "",
@@ -394,7 +408,7 @@
     },
     {
       "nombre": "EcpliseLink",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 50,
       "experiencia": 0,
       "descripcion": "",
@@ -425,7 +439,7 @@
     },
     {
       "nombre": "Delphi",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 50,
       "experiencia": 0,
       "descripcion": "",
@@ -501,7 +515,7 @@
     },
     {
       "nombre": "IBM App Connect",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 60,
       "experiencia": 0,
       "descripcion": "",
@@ -511,7 +525,7 @@
     },
     {
       "nombre": "JBPM",
-      "tipo": "Herramienta",
+      "tipo": "Framework",
       "nivel": 60,
       "experiencia": 0,
       "descripcion": "",
@@ -530,8 +544,8 @@
       ]
     },
     {
-      "nombre": "Oracle",
-      "tipo": "Herramienta",
+      "nombre": "Oracle Database",
+      "tipo": "Framework",
       "nivel": 70,
       "experiencia": 0,
       "descripcion": "",
@@ -548,6 +562,40 @@
       "descripcion": "",
       "categorias": [
         "Fullstack"
+      ]
+    },
+    {
+      "nombre": "ESQL",
+      "tipo": "Lenguaje",
+      "nivel": 80,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Integracion"
+      ]
+    },
+    {
+      "nombre": "Gherkin",
+      "tipo": "Lenguaje",
+      "nivel": 60,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Devops",
+        "Fullstack",
+        "Integracion",
+        "Backend"
+      ]
+    },
+    {
+      "nombre": "SQL",
+      "tipo": "Lenguaje",
+      "nivel": 85,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Base de datos",
+        "Backend"
       ]
     }
   ]

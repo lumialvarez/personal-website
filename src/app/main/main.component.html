@@ -117,15 +117,13 @@
         </div>
         <div class="row">
             <div class="col-full">
-                <p>Trabajar en diferentes áreas del desarrollo me a permitido interactuar con diferentes lenguajes y
-                    tecnologias, a contiuacion muestro los mas destacables</p>
+                <p>Trabajar en diferentes áreas del desarrollo me ha permitido interactuar con diferentes lenguajes y tecnologías, a continuación muestro los más destacables</p>
             </div>
         </div>
         <div class="row">
             <div class="col-full">
                 <div ngbDropdown>
-                    <button class="btn" id="dropdownBasic1" ngbDropdownToggle>{{ categoriaSeleccionada || "Selecciona un
-                        tema" }}</button>
+                    <button class="btn" id="dropdownBasic1" ngbDropdownToggle>{{ categoriaSeleccionada || "Selecciona un tema" }}</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                         <button ngbDropdownItem id="option"
                             on-click="categoriaSeleccionada=null; procesarConocimientos()">Todos
@@ -143,7 +141,7 @@
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-full">
-                        <h5 class="text-uppercase text-center">Lenguajes</h5>
+                        <h6 class="text-uppercase text-center">Lenguajes</h6>
                     </div>
                 </div>
                 <div class="row">
@@ -169,7 +167,7 @@
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-full">
-                        <h5 class="text-uppercase text-center">Frameworks</h5>
+                        <h6 class="text-uppercase text-center">Framework/Tecnología</h6>
                     </div>
                 </div>
                 <div class="row">
@@ -195,7 +193,7 @@
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-full">
-                        <h5 class="text-uppercase text-center">Herramientas</h5>
+                        <h6 class="text-uppercase text-center">Herramientas</h6>
                     </div>
                 </div>
                 <div class="row">
@@ -221,7 +219,7 @@
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-full">
-                        <h5 class="text-uppercase text-center">Otros</h5>
+                        <h6 class="text-uppercase text-center">Otros</h6>
                     </div>
                 </div>
                 <div class="row">
@@ -265,8 +263,7 @@
         <div class="row">
             <div class="m-5">
                 <p>
-                    A continuación resumo los proyectos los cuales de una u otra manera han significaron algo mí, ya
-                    sea por el reto que fueron o por los resultados obtenidos
+                    A continuación resumo los proyectos los cuales de una u otra manera han significaron algo para mí, ya sea por el reto que fueron o por los resultados obtenidos
                 </p>
             </div>
         </div>
@@ -280,11 +277,6 @@
                         <p>
                             {{item.descripcion}}
                         </p>
-                        <div *ngIf="item.existeDetalle" class="d-flex flex-row justify-content-center">
-                            <div class="p-1">
-                                <a href="#"><i class="fas fa-plus" ></i></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
