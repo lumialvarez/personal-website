@@ -403,7 +403,8 @@
       "descripcion": "",
       "categorias": [
         "Fullstack",
-        "Backend"
+        "Backend",
+        "Base de datos"
       ]
     },
     {
@@ -414,7 +415,8 @@
       "descripcion": "",
       "categorias": [
         "Fullstack",
-        "Backend"
+        "Backend",
+        "Base de datos"
       ]
     },
     {
@@ -596,6 +598,19 @@
       "categorias": [
         "Base de datos",
         "Backend"
+      ]
+    },
+    {
+      "nombre": "AWS",
+      "tipo": "Otros",
+      "nivel": 50,
+      "experiencia": 0,
+      "descripcion": "",
+      "categorias": [
+        "Infraestructura",
+        "Backend",
+        "Integracion",
+        "Fullstack"
       ]
     }
   ]
