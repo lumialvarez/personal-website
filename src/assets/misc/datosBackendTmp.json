@@ -4,50 +4,43 @@
       "codigo": 1,
       "nombre": "Pagina WEB Personal",
       "descripcion": "Proyecto personal para crear una página donde puedo demostrar mis habilidades",
-      "img": "assets\\img\\proyectos\\personal_webpage\\principal.jpg",
-      "existeDetalle": true
+      "img": "assets\\img\\proyectos\\personal_webpage\\principal.jpg"
     },
     {
       "codigo": 2,
       "nombre": "Modelo de optimización basado en confiablidad",
       "descripcion": "Proyecto llevado a cabo con un Grupo de Investigación para la GREG (Comisión de Regulación de Energía y Gas)",
-      "img": "assets\\img\\proyectos\\modelo_optimizacion\\principal.jpg",
-      "existeDetalle": false
+      "img": "assets\\img\\proyectos\\modelo_optimizacion\\principal.jpg"
     },
     {
       "codigo": 3,
       "nombre": "Administración de Desabastecidos",
       "descripcion": "Proyecto para la administración y seguimiento de los productos desabastecidos o descontinuados para mejorar la respuesta de la logística ante dicha situación",
-      "img": "assets\\img\\proyectos\\generic.jpg",
-      "existeDetalle": false
+      "img": "assets\\img\\proyectos\\generic.jpg"
     },
     {
       "codigo": 4,
       "nombre": "Sábila",
       "descripcion": "Proyecto para sistematizar la administración de bibliotecas de Licenciamiento Abierto",
-      "img": "assets\\img\\proyectos\\generic.jpg",
-      "existeDetalle": false
+      "img": "assets\\img\\proyectos\\generic.jpg"
     },
     {
       "codigo": 5,
       "nombre": "Automatización de fuerza de ventas",
       "descripcion": "Proyecto para dotar a fuerzas de ventas con una herramienta para gestionar clientes, rutas y productos",
-      "img": "assets\\img\\proyectos\\generic.jpg",
-      "existeDetalle": false
+      "img": "assets\\img\\proyectos\\generic.jpg"
     },
     {
       "codigo": 6,
       "nombre": "Facturación Electrónica",
       "descripcion": "Proyecto crear un sistema de facturación electrónico independiente de los sistemas de información",
-      "img": "assets\\img\\proyectos\\generic.jpg",
-      "existeDetalle": false
+      "img": "assets\\img\\proyectos\\generic.jpg"
     },
     {
       "codigo": 7,
       "nombre": "Gestor de Seguros",
       "descripcion": "Proyecto crear un sistema que permitía la consulta y cotización unificada de varias aseguradoras de forma simultanea",
-      "img": "assets\\img\\proyectos\\generic.jpg",
-      "existeDetalle": false
+      "img": "assets\\img\\proyectos\\generic.jpg"
     }
   ],
   "conocimientos": [
