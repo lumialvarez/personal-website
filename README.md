@@ -1,8 +1,7 @@
 # PersonalWebsite 
 
-![Pantallazo](https://github.com/lumialvarez/personal-website.git/blob/main/external_resources/Pantallazo.jpg?raw=true)
-
-[Pagina web personal](https://lmalvarez.com/), donde se puede ver mis conocimientos y experiencia.
+![Pantallazo](https://github.com/lumialvarez/personal-website/blob/main/external_resources/Pantallazo.jpg?raw=true)
+Pagina web personal ([lmalvarez.com](https://lmalvarez.com/)), donde se puede ver mis conocimientos y experiencia. Ademas sirve como plataforma para practicas y autoestudio.
 
 Proyecto en constante desarrollo...
 
