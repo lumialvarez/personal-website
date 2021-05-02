@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { GlobalConstants } from './../common/global-constants';
+import { Router } from '@angular/router';
+import { LoginUsuario } from 'app/models/login-usuario';
+import { LoginService } from 'app/services/login.service';
+import { TokenService } from 'app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -8,32 +10,43 @@ import { GlobalConstants } from './../common/global-constants';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user = {
-    nombreUsuario: null,
-    password: null
-  };
-  public nombreUsuario: string = null;
-  public password: string = null;
+  errMsj = [];
 
-  private apiLogin: string = null;
-  constructor(private httpClient: HttpClient) {
-    this.apiLogin = GlobalConstants.apiBasePath + GlobalConstants.loginPath;
-    console.log(this.apiLogin);
+  nombreUsuario: string;
+  passwordUsuario: string;
+  isLoginfail = false;
+
+  public loginUsuario: LoginUsuario;
+
+  constructor(
+    private tokenService: TokenService,
+    private loginService: LoginService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
+    if(this.tokenService.getToken()){
+      this.router.navigate(['portal']);
+    }
   }
 
   inicioSesion() {
-    console.log(this.user.nombreUsuario);
-    console.log(this.user.password);
-
-    this.httpClient.post(this.apiLogin, this.user).subscribe(
+    console.log(this.nombreUsuario);
+    console.log(this.passwordUsuario);
+    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.passwordUsuario);
+    this.loginService.login(this.loginUsuario).subscribe(
       data => {
-        console.log(data);
-      }, error => {
-        console.log(error);
-      });
+        this.tokenService.setToken(data.token);
+        this.tokenService.setUsername(data.nombreUsuario);
+        this.tokenService.setAuthorities(data.authorities);
+        this.router.navigate(['portal']);
+      },
+      err => {
+        this.isLoginfail = true;
+        this.errMsj = err.details;
+      }
+    );
   }
 
 }

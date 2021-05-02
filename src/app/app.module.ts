@@ -10,6 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { DetalleProyectoComponent } from './main/detalle-proyecto/detalle-proyecto.component';
+import { PortalComponent } from './portal/portal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DetalleProyectoComponent } from './main/detalle-proyecto/detalle-proyec
     MenuComponent,
     MainComponent,
     LoginComponent,
-    DetalleProyectoComponent
+    DetalleProyectoComponent,
+    PortalComponent
   ],
   imports: [
     BrowserModule,
