@@ -49,4 +49,9 @@ export class TokenService {
   public logOut(): void {
     window.sessionStorage.clear();
   }
+
+  public isAuthenticated(): boolean {    
+    const token = this.getToken();
+    return token? true: false//!this.jwtHelper.isTokenExpired(token);
+  }
 }
