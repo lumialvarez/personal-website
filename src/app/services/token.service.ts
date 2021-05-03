@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const TOKEN_KEY = "AuthToken";
 const USERNAME_KEY = "AuthUsername";
@@ -8,6 +9,7 @@ const AUTHORITIES_KEY = "AuthAuthorities";
   providedIn: 'root'
 })
 export class TokenService {
+  public jwtHelper: JwtHelperService = new JwtHelperService();
 
   roles: Array<string> = [];
 
@@ -52,6 +54,6 @@ export class TokenService {
 
   public isAuthenticated(): boolean {    
     const token = this.getToken();
-    return token? true: false//!this.jwtHelper.isTokenExpired(token);
+    return !this.jwtHelper.isTokenExpired(token);
   }
 }
