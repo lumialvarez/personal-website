@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portal.component.css']
 })
 export class PortalComponent implements OnInit {
+  toggleSidebar: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleSidebarEvent() {
+    this.toggleSidebar = !this.toggleSidebar;
   }
 
 }
