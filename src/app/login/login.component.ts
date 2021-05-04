@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginUsuario } from 'app/models/login-usuario';
-import { LoginService } from 'app/services/login.service';
-import { TokenService } from 'app/services/token.service';
+import { LoginUsuario } from 'app/_models/login-usuario';
+import { LoginService } from 'app/_services/login.service';
+import { TokenService } from 'app/_services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -26,21 +26,27 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.tokenService.getToken()){
+    if (this.tokenService.getToken()) {
       this.router.navigate(['portal']);
     }
   }
 
   inicioSesion() {
-    console.log(this.nombreUsuario);
-    console.log(this.passwordUsuario);
     this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.passwordUsuario);
     this.loginService.login(this.loginUsuario).subscribe(
-      data => {
-        this.tokenService.setToken(data.token);
-        this.tokenService.setUsername(data.nombreUsuario);
-        this.tokenService.setAuthorities(data.authorities);
-        this.router.navigate(['portal']);
+      dataLogin => {
+        this.loginService.getUserByUsername(dataLogin.nombreUsuario, dataLogin.token).subscribe(
+          dataUser => {
+            this.tokenService.setToken(dataLogin.token);
+            this.tokenService.setUser(dataUser);
+            this.tokenService.setAuthorities(dataLogin.authorities);
+            this.router.navigate(['portal']);
+          },
+          err => {
+            this.isLoginfail = true;
+            this.errMsj = err.details;
+          }
+        )
       },
       err => {
         this.isLoginfail = true;
