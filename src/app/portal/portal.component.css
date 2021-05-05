@@ -6,23 +6,39 @@
   min-height: 100vh;
   margin-left: -15rem;
   transition: margin 0.25s ease-out;
+  border-right: none !important;
+  background-color: rgba(12, 36, 97) !important;
 }
 
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
+  color: #f1f2f6;
 }
 
 #sidebar-wrapper .list-group {
   width: 15rem;
 }
 
+#sidebar-wrapper .list-group .list-group-item {
+  background-color: rgba(12, 36, 97) !important;
+  color: #afb0b4;
+}
+
 #page-content-wrapper {
   min-width: 100vw;
 }
 
+#page-content-wrapper nav {
+  background-color: rgba(12, 36, 97) !important;
+}
+
 #wrapper.toggled #sidebar-wrapper {
   margin-left: 0;
+}
+
+#menu-toggle {
+  color: #afb0b4;
 }
 
 @media (min-width: 768px) {

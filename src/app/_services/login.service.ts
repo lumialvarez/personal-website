@@ -29,6 +29,6 @@ export class LoginService {
         'Authorization': 'Bearer ' + token
       })
     };
-    return this.httpClient.get<User>(this.apiUserUrl + "/" + username,httpOptions);
+    return this.httpClient.get<User>(this.apiUserUrl + "/" + username, httpOptions);
   }
 }

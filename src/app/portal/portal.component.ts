@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'app/_models/user';
+import { TokenService } from 'app/_services/token.service';
 
 @Component({
   selector: 'app-portal',
@@ -7,14 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortalComponent implements OnInit {
   toggleSidebar: boolean = false;
+  usuario: User;
 
-  constructor() { }
+  constructor(private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
+    this.usuario = this.tokenService.getUser();
   }
 
   toggleSidebarEvent() {
     this.toggleSidebar = !this.toggleSidebar;
   }
+
+  cerrarSesion() {
+    this.tokenService.logOut();
+    this.router.navigate(['login']);
+  }
+
 
 }

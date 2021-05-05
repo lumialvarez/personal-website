@@ -30,7 +30,7 @@ export class TokenService {
     window.sessionStorage.setItem(USERNAME_KEY, JSON.stringify(user));
   }
 
-  public getUser(): string{
+  public getUser(): User{
     return JSON.parse(window.sessionStorage.getItem(USERNAME_KEY));
   }
 
