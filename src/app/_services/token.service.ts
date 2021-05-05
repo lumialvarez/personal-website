@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from 'app/_models/user';
 
 const TOKEN_KEY = "AuthToken";
-const USERNAME_KEY = "AuthUsername";
+const USERNAME_KEY = "AuthUser";
 const AUTHORITIES_KEY = "AuthAuthorities";
 
 @Injectable({
@@ -24,13 +25,13 @@ export class TokenService {
     return window.sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public setUsername(username: string): void{
+  public setUser(user: User): void{
     window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, username);
+    window.sessionStorage.setItem(USERNAME_KEY, JSON.stringify(user));
   }
 
-  public getUsername(): string{
-    return window.sessionStorage.getItem(USERNAME_KEY);
+  public getUser(): User{
+    return JSON.parse(window.sessionStorage.getItem(USERNAME_KEY));
   }
 
   public setAuthorities(authorities: string[]): void{

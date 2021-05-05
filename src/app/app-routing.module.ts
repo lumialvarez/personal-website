@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { AdminUsuariosComponent } from './portal/admin-usuarios/admin-usuarios.component';
 import { PortalComponent } from './portal/portal.component';
-import { AuthGuardGuard } from './services/auth-guard.guard';
+import { AuthGuardGuard } from './_helpers/auth-guard.guard';
 import { DashboardComponent } from './portal/dashboard/dashboard.component';
 
 const routes: Routes = [
