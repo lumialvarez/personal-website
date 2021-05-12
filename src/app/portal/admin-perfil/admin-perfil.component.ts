@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Perfil } from 'app/_models/main/perfil';
 import { PerfilService } from 'app/_services/perfil.service';
 
 @Component({
@@ -8,14 +9,16 @@ import { PerfilService } from 'app/_services/perfil.service';
   styleUrls: ['./admin-perfil.component.css']
 })
 export class AdminPerfilComponent implements OnInit {
-  public data: any;
+  public lstPerfiles: Perfil[];
+  public perfilSeleccionado: Perfil = null;
+  public idiomaSeleccionado: string = null;
 
   constructor(private perfilService: PerfilService) { }
 
   ngOnInit(): void {
     this.perfilService.getPerfiles().subscribe(
-      dataUser => {
-        console.log(dataUser);
+      data => {
+        this.lstPerfiles = data;
       },
       err => {
         console.log(err)
@@ -23,7 +26,20 @@ export class AdminPerfilComponent implements OnInit {
     )
   }
 
-  htmlContent = '';
+  procesarSeleccionPerfil() {
+    this.idiomaSeleccionado = this.perfilSeleccionado.idioma.nombre;
+  }
+
+  guardarCambiosPerfil() {
+    this.perfilService.updatePerfil(this.perfilSeleccionado).subscribe(
+      data => {
+        console.log(data)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
 
   config: AngularEditorConfig = {
     editable: true,
