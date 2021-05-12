@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { PortalComponent } from './portal/portal.component';
 import { AdminUsuariosComponent } from './portal/admin-usuarios/admin-usuarios.component';
 import { AdminPerfilComponent } from './portal/admin-perfil/admin-perfil.component';
 import { DashboardComponent } from './portal/dashboard/dashboard.component';
+import { BasicAuthInterceptor } from './_helpers/basic-auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,16 @@ import { DashboardComponent } from './portal/dashboard/dashboard.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    AngularEditorModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BasicAuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
