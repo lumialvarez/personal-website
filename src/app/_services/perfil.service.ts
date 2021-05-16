@@ -11,7 +11,7 @@ export class PerfilService {
   private apiPerfilUrl: string = null;
 
   constructor(private httpClient: HttpClient) { 
-    this.apiPerfilUrl = GlobalConstants.apiBasePath + GlobalConstants.perfilPath;
+    this.apiPerfilUrl = GlobalConstants.apiIntBasePath + GlobalConstants.perfilPath;
   }
 
   public getPerfiles(): Observable<Perfil[]> {
