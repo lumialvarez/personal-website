@@ -4,6 +4,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +40,9 @@ import { ToastsContainer } from './toasts-container.component';
     FormsModule,
     AppRoutingModule,
     NgbModule,
-    AngularEditorModule
+    AngularEditorModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
   providers: [
     {
