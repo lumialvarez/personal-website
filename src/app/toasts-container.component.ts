@@ -8,9 +8,11 @@ import { ToastService } from './_services/toast.service';
     <ngb-toast
       *ngFor="let toast of toastService.toasts"
       [class]="toast.classname"
+      [animation]="true"
       [autohide]="true"
       [delay]="toast.delay || 5000"
       (hidden)="toastService.remove(toast)"
+      [header]="toast.title" 
     >
       <ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
         <ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>

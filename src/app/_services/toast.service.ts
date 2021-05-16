@@ -10,12 +10,16 @@ export class ToastService {
     this.toasts.push({ textOrTpl, ...options });
   }
 
+  showInfo(textOrTpl: string | TemplateRef<any>) {
+    this.show(textOrTpl, { classname: 'bg-info text-light', delay: 3000, title: "" });
+  }
+
   showSuccess(textOrTpl: string | TemplateRef<any>) {
-    this.show(textOrTpl, { classname: 'bg-success text-light', delay: 5000 });
+    this.show(textOrTpl, { classname: 'bg-success text-light', delay: 3000, title: "Exito!" });
   }
   
   showDanger(textOrTpl: string | TemplateRef<any>) {
-    this.show(textOrTpl, { classname: 'bg-danger text-light', delay: 5000 });
+    this.show(textOrTpl, { classname: 'bg-danger text-light', delay: 3000, title: "Error" });
   }
   remove(toast) {
     this.toasts = this.toasts.filter(t => t !== toast);
