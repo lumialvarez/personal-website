@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUsuario } from 'app/_models/login-usuario';
 import { LoginService } from 'app/_services/login.service';
+import { ToastService } from 'app/_services/toast.service';
 import { TokenService } from 'app/_services/token.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { TokenService } from 'app/_services/token.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  errMsj = [];
+  errMsj:string[] = [];
 
   nombreUsuario: string;
   passwordUsuario: string;
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    public toastService: ToastService
   ) {
   }
 
@@ -44,13 +46,20 @@ export class LoginComponent implements OnInit {
           },
           err => {
             this.isLoginfail = true;
-            this.errMsj = err.details;
+            this.errMsj = err.error.details;
+            this.errMsj.forEach(detail => {
+              this.toastService.showDanger(detail);
+            });
           }
         )
       },
       err => {
+        console.log(err);
         this.isLoginfail = true;
-        this.errMsj = err.details;
+        this.errMsj = err.error.details;
+        this.errMsj.forEach(detail => {
+          this.toastService.showDanger(detail);
+        });
       }
     );
   }

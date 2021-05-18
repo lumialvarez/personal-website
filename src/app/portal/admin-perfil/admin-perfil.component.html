@@ -1,1 +1,83 @@
-<p>admin-perfil works!</p>
+<div class="container">
+    <div class="form-group">
+        <label for="selectorIdioma">Idioma</label>
+        <div ngbDropdown id="selectorIdioma">
+            <button class="btn" id="dropdownBasic" ngbDropdownToggle>{{ idiomaSeleccionado || "Selecciona el idioma"
+                }}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+                <div *ngFor="let perfil of lstPerfiles;">
+                    <button ngbDropdownItem id="option"
+                        on-click="perfilSeleccionado=perfil; procesarSeleccionPerfil();">{{perfil.idioma.nombre}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="perfilSeleccionado">
+
+        <div class="form-group">
+            <label for="perfilNombre">Nombre</label>
+            <input type="text" class="form-control" id="perfilNombre" placeholder="Nombre"
+                [(ngModel)]="perfilSeleccionado.nombre">
+        </div>
+
+        <div class="form-group">
+            <label for="perfilProfesion">Profesion</label>
+            <input type="text" class="form-control" id="perfilProfesion" placeholder="Profesion"
+                [(ngModel)]="perfilSeleccionado.profesion">
+        </div>
+
+        <div class="form-group">
+            <label for="perfilPerfilProfesional">Perfil Profesional</label>
+            <angular-editor id="perfilPerfilProfesional" [(ngModel)]="perfilSeleccionado.perfilProfesional"
+                [config]="config"></angular-editor>
+        </div>
+
+        <div class="form-group">
+            <label for="perfilPerfilPersonal">Perfil Personal</label>
+            <angular-editor id="perfilPerfilPersonal" [(ngModel)]="perfilSeleccionado.perfilPersonal" [config]="config">
+            </angular-editor>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-2" *ngFor="let conocimiento of perfilSeleccionado.conocimientos; let i = index">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <small>{{conocimiento.nombre}} ({{conocimiento.nivel}})</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-12" *ngFor="let proyecto of perfilSeleccionado.proyectos; let i = index">
+                    <div class="card">
+                        <h5 class="card-header">{{proyecto.nombre}}</h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <small>{{proyecto.descripcion}})</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="perfilEstado" [(ngModel)]="perfilSeleccionado.estado">
+            <label class="form-check-label" for="perfilEstado">Estado</label>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <button type="button" class="btn btn-primary" (click)="guardarCambiosPerfil()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

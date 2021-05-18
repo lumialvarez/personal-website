@@ -14,8 +14,8 @@ export class LoginService {
   private apiUserUrl: string = null;
 
   constructor(private httpClient: HttpClient) {
-    this.apiLoginUrl = GlobalConstants.apiBasePath + GlobalConstants.loginPath;
-    this.apiUserUrl = GlobalConstants.apiBasePath + GlobalConstants.userPath;
+    this.apiLoginUrl = GlobalConstants.apiExtBasePath + GlobalConstants.loginPath;
+    this.apiUserUrl = GlobalConstants.apiIntBasePath + GlobalConstants.userPath;
   }
 
   public login(loginUsuario: LoginUsuario): Observable<JwtDTO> {
