@@ -5,4 +5,5 @@ export class GlobalConstants {
     public static loginPath: string = "v1/auth/login";
     public static userPath: string = "v1/auth/user";
     public static perfilPath: string = "v1/perfil";
+    public static conocimientoPath: string = "v1/conocimiento";
 }

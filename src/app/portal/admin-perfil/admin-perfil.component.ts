@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Conocimiento } from 'app/_models/main/conocimiento';
 import { Perfil } from 'app/_models/main/perfil';
+import { ConocimientoService } from 'app/_services/conocimiento.service';
 import { PerfilService } from 'app/_services/perfil.service';
 import { ToastService } from 'app/_services/toast.service';
 
@@ -14,21 +16,30 @@ export class AdminPerfilComponent implements OnInit {
   public perfilSeleccionado: Perfil = null;
   public idiomaSeleccionado: string = null;
 
-  constructor(private perfilService: PerfilService, private toastService: ToastService) { }
+  constructor(private perfilService: PerfilService, private conocimientoService: ConocimientoService, private toastService: ToastService) { }
 
   ngOnInit(): void {
+    this.cargarDatosPerfil();
+  }
+
+  cargarDatosPerfil() {
     this.perfilService.getPerfiles().subscribe(
       data => {
         this.lstPerfiles = data;
+        if(this.lstPerfiles.length == 1){
+          this.perfilSeleccionado = this.lstPerfiles[0];
+          this.procesarSeleccionPerfil();
+        }
       },
       err => {
         console.log(err)
       }
-    )
+    );
   }
 
   procesarSeleccionPerfil() {
     this.idiomaSeleccionado = this.perfilSeleccionado.idioma.nombre;
+    this.perfilSeleccionado.conocimientos.sort(function (a, b) { return -( a.nivel - b.nivel) })
   }
 
   guardarCambiosPerfil() {

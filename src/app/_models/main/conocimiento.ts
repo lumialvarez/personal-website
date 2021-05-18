@@ -2,10 +2,10 @@ import { CategoriaConocimiento } from "./categoria-conocimiento";
 import { TipoConocimiento } from "./tipo-conocimiento";
 
 export class Conocimiento {
-    id: Int32Array;
+    id: number;
     nombre: string;
     tipo: TipoConocimiento;
-    nivel: Int32Array;
+    nivel: number;
     descripcion: string;
     categorias: CategoriaConocimiento[];
 }
