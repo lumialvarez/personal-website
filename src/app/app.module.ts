@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +43,8 @@ import { ToastsContainer } from './toasts-container.component';
     NgbModule,
     AngularEditorModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxGoogleAnalyticsModule.forRoot('{GOOGLE_ID_TRACKING}')
   ],
   providers: [
     {

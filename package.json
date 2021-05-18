@@ -26,6 +26,7 @@
     "@popperjs/core": "^2.5.4",
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
+    "ngx-google-analytics": "^11.2.1",
     "ngx-page-scroll-core": "^7.0.3",
     "ngx-spinner": "^11.0.1",
     "rxjs": "~6.6.0",
