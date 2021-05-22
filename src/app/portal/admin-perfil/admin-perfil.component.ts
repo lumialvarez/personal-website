@@ -28,7 +28,7 @@ export class AdminPerfilComponent implements OnInit {
     this.perfilService.getPerfiles().subscribe(
       data => {
         this.lstPerfiles = data;
-        if(this.lstPerfiles.length == 1){
+        if (this.lstPerfiles.length == 1) {
           this.perfilSeleccionado = this.lstPerfiles[0];
           this.procesarSeleccionPerfil();
         }
@@ -41,10 +41,11 @@ export class AdminPerfilComponent implements OnInit {
 
   procesarSeleccionPerfil() {
     this.idiomaSeleccionado = this.perfilSeleccionado.idioma.nombre;
-    this.perfilSeleccionado.conocimientos.sort(function (a, b) { return -( a.nivel - b.nivel) })
+    this.perfilSeleccionado.conocimientos.sort(function (a, b) { return -(a.nivel - b.nivel) })
   }
 
   guardarCambiosPerfil() {
+    console.log(this.perfilSeleccionado);
     this.perfilService.updatePerfil(this.perfilSeleccionado).subscribe(
       data => {
         this.toastService.showSuccess("Perfil Actualizado");
@@ -60,7 +61,12 @@ export class AdminPerfilComponent implements OnInit {
 
   openModalModificarConocimiento(conocimiento: Conocimiento) {
     const modalRef = this.modalService.open(AdminConocimientoComponent, { size: 'lg' });
-    modalRef.componentInstance.conocimiento =  Object.create(conocimiento);
+    modalRef.componentInstance.conocimiento = conocimiento
+    modalRef.dismissed.subscribe(
+      data => {
+        //cuando se cierre el modal actualizar lista
+      }
+    )
   }
 
   config: AngularEditorConfig = {

@@ -20,8 +20,20 @@ export class ConocimientoService {
     this.apiConocimientoTipoUrl = GlobalConstants.apiIntBasePath + GlobalConstants.conocimientoTipoPath;
   }
 
+  public getConocimiento(id: Int32Array): Observable<Conocimiento> {
+    return this.httpClient.get<Conocimiento>(this.apiConocimientoUrl + "/" + id);
+  }
+
   public getConocimientos(): Observable<Conocimiento[]> {
     return this.httpClient.get<Conocimiento[]>(this.apiConocimientoUrl);
+  }
+
+  public saveConocimiento(conocimiento: Conocimiento): Observable<Conocimiento> {
+    return this.httpClient.post<Conocimiento>(this.apiConocimientoUrl, conocimiento);
+  }
+
+  public updateConocimiento(conocimiento: Conocimiento): Observable<Conocimiento> {
+    return this.httpClient.put<Conocimiento>(this.apiConocimientoUrl, conocimiento);
   }
 
   public getCategoriasConocimiento(): Observable<CategoriaConocimiento[]> {

@@ -24,7 +24,7 @@
             [(ngModel)]="conocimiento.descripcion">
     </div>
 
-    <div class="input-group">
+    <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="conocimientoTipo">Tipo</label>
         </div>
@@ -33,4 +33,20 @@
             <option *ngFor="let tipo of tiposConocimiento" [value]="tipo">{{tipo.nombre}}</option>
         </select>
     </div>
+
+    <div>
+        <div class="form-check" *ngFor="let categoria of categoriasConocimiento">
+            <input class="form-check-input" type="checkbox" [value]="categoria" id="defaultCheck{{categoria.id}}"
+                (change)="onChangeCategoria(categoria, $event.target.checked)" [(ngModel)]="categoria.isChecked">
+            <label class="form-check-label" for="defaultCheck{{categoria.id}}">
+                {{categoria.nombre}}
+            </label>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close')">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="guardarConocimiento()">Guardar</button>
 </div>
