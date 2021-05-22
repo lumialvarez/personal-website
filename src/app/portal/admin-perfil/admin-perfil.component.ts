@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Conocimiento } from 'app/_models/main/conocimiento';
 import { Perfil } from 'app/_models/main/perfil';
 import { ConocimientoService } from 'app/_services/conocimiento.service';
 import { PerfilService } from 'app/_services/perfil.service';
 import { ToastService } from 'app/_services/toast.service';
+import { AdminConocimientoComponent } from './admin-conocimiento/admin-conocimiento.component';
 
 @Component({
   selector: 'app-admin-perfil',
@@ -16,7 +18,7 @@ export class AdminPerfilComponent implements OnInit {
   public perfilSeleccionado: Perfil = null;
   public idiomaSeleccionado: string = null;
 
-  constructor(private perfilService: PerfilService, private conocimientoService: ConocimientoService, private toastService: ToastService) { }
+  constructor(private modalService: NgbModal, private perfilService: PerfilService, private conocimientoService: ConocimientoService, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.cargarDatosPerfil();
@@ -54,6 +56,11 @@ export class AdminPerfilComponent implements OnInit {
         });
       }
     )
+  }
+
+  openModalModificarConocimiento(conocimiento: Conocimiento) {
+    const modalRef = this.modalService.open(AdminConocimientoComponent, { size: 'lg' });
+    modalRef.componentInstance.conocimiento =  Object.create(conocimiento);
   }
 
   config: AngularEditorConfig = {

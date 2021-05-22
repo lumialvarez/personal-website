@@ -21,6 +21,7 @@ import { AdminPerfilComponent } from './portal/admin-perfil/admin-perfil.compone
 import { DashboardComponent } from './portal/dashboard/dashboard.component';
 import { BasicAuthInterceptor } from './_helpers/basic-auth-interceptor';
 import { ToastsContainer } from './toasts-container.component';
+import { AdminConocimientoComponent } from './portal/admin-perfil/admin-conocimiento/admin-conocimiento.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ToastsContainer } from './toasts-container.component';
     AdminPerfilComponent,
     AdminUsuariosComponent,
     DashboardComponent,
-    ToastsContainer
+    ToastsContainer,
+    AdminConocimientoComponent
   ],
   imports: [
     BrowserModule,

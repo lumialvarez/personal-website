@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-basic-title">Administrar conocimiento</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="form-group">
+        <label for="conocimientoNombre">Nombre</label>
+        <input type="text" class="form-control" id="conocimientoNombre" placeholder="Nombre"
+            [(ngModel)]="conocimiento.nombre">
+    </div>
+
+    <div class="form-group">
+        <label for="conocimientoNivel">Nivel</label>
+        <input type="number" min="0" max="100" class="form-control" id="conocimientoNivel" placeholder="Nivel"
+            [(ngModel)]="conocimiento.nivel">
+    </div>
+
+    <div class="form-group">
+        <label for="conocimientoDescripcion">Descripcion</label>
+        <input type="text" class="form-control" id="conocimientoDescripcion" placeholder="Descripcion"
+            [(ngModel)]="conocimiento.descripcion">
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="conocimientoTipo">Tipo</label>
+        </div>
+        <select class="custom-select" id="conocimientoTipo" [(ngModel)]="conocimiento.tipo">
+            <option disabled selected>Seleccionar...</option>
+            <option *ngFor="let tipo of tiposConocimiento" [value]="tipo">{{tipo.nombre}}</option>
+        </select>
+    </div>
+</div>

@@ -42,12 +42,38 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-2" *ngFor="let conocimiento of perfilSeleccionado.conocimientos; let i = index">
-                    <div class="card">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3"
+                    *ngFor="let conocimiento of perfilSeleccionado.conocimientos; let i = index">
+                    <div class="card card-hover" (click)="openModalModificarConocimiento(conocimiento)">
                         <div class="card-body">
-                            <p class="card-text">
-                                <small>{{conocimiento.nombre}} ({{conocimiento.nivel}})</small>
-                            </p>
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <small><strong>Nombre:</strong></small>
+                                </div>
+                                <div class="col-7">
+                                    <small>{{conocimiento.nombre}}</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <small><strong>Nivel:</strong></small>
+                                </div>
+                                <div class="col-7">
+                                    <small>{{conocimiento.nivel}}</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <small><strong>Tipo:</strong></small>
+                                </div>
+                                <div class="col-7">
+                                    <small>{{conocimiento.tipo.nombre}}</small>
+                                </div>
+                            </div>
+                            <span *ngFor="let categoria of conocimiento.categorias"
+                                class="badge badge-small badge-pill badge-info">{{categoria.nombre}}</span>
+
                         </div>
                     </div>
                 </div>
@@ -61,7 +87,7 @@
                         <h5 class="card-header">{{proyecto.nombre}}</h5>
                         <div class="card-body">
                             <p class="card-text">
-                                <small>{{proyecto.descripcion}})</small>
+                                <small>{{proyecto.descripcion}}</small>
                             </p>
                         </div>
                     </div>

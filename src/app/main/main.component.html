@@ -270,7 +270,7 @@
         <div class="row">
             <!-- LISTA -->
             <div class="col-lg-3 d-flex mb-3 align-items-stretch" *ngFor="let item of resumenProyectos; let i = index">
-                <div class="card" (click)="openModalDetalleProyecto(item)">
+                <div class="card card-hover" (click)="openModalDetalleProyecto(item)">
                     <div class="card-body">
                         <img src={{item.img}} class="img-fluid rounded-circle w-50">
                         <h4>{{item.nombre}}</h4>
