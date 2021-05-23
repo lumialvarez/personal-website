@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Conocimiento } from 'app/_models/main/conocimiento';
 import { Perfil } from 'app/_models/main/perfil';
+import { Proyecto } from 'app/_models/main/proyecto';
 import { ConocimientoService } from 'app/_services/conocimiento.service';
 import { PerfilService } from 'app/_services/perfil.service';
 import { ToastService } from 'app/_services/toast.service';
+import { AdminConocimientoComponent } from './admin-conocimiento/admin-conocimiento.component';
+import { AdminProyectoComponent } from './admin-proyecto/admin-proyecto.component';
 
 @Component({
   selector: 'app-admin-perfil',
@@ -16,7 +20,9 @@ export class AdminPerfilComponent implements OnInit {
   public perfilSeleccionado: Perfil = null;
   public idiomaSeleccionado: string = null;
 
-  constructor(private perfilService: PerfilService, private conocimientoService: ConocimientoService, private toastService: ToastService) { }
+  ordenPorNombreIsChecked: boolean = false;
+
+  constructor(private modalService: NgbModal, private perfilService: PerfilService, private conocimientoService: ConocimientoService, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.cargarDatosPerfil();
@@ -26,7 +32,7 @@ export class AdminPerfilComponent implements OnInit {
     this.perfilService.getPerfiles().subscribe(
       data => {
         this.lstPerfiles = data;
-        if(this.lstPerfiles.length == 1){
+        if (this.lstPerfiles.length == 1) {
           this.perfilSeleccionado = this.lstPerfiles[0];
           this.procesarSeleccionPerfil();
         }
@@ -39,10 +45,11 @@ export class AdminPerfilComponent implements OnInit {
 
   procesarSeleccionPerfil() {
     this.idiomaSeleccionado = this.perfilSeleccionado.idioma.nombre;
-    this.perfilSeleccionado.conocimientos.sort(function (a, b) { return -( a.nivel - b.nivel) })
+    this.perfilSeleccionado.conocimientos.sort(function (a, b) { return -(a.nivel - b.nivel) })
   }
 
   guardarCambiosPerfil() {
+    console.log(this.perfilSeleccionado);
     this.perfilService.updatePerfil(this.perfilSeleccionado).subscribe(
       data => {
         this.toastService.showSuccess("Perfil Actualizado");
@@ -52,6 +59,36 @@ export class AdminPerfilComponent implements OnInit {
         err.error.details.forEach(detail => {
           this.toastService.showDanger(detail);
         });
+      }
+    )
+  }
+
+  ordenar(filtro: string) {
+    if (filtro === "nombre") {
+      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => a.nombre.localeCompare(b.nombre))
+    } else if (filtro === "nivel") {
+      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => -(a.nivel - b.nivel))
+    }else if (filtro === "tipoNivel") {
+      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => (a.tipo.nombre === b.tipo.nombre) ? -(a.nivel - b.nivel) : a.tipo.nombre.localeCompare(b.tipo.nombre))
+    }
+  }
+
+  openModalModificarConocimiento(conocimiento: Conocimiento) {
+    const modalRef = this.modalService.open(AdminConocimientoComponent, { size: 'lg' });
+    modalRef.componentInstance.conocimiento = conocimiento
+    modalRef.dismissed.subscribe(
+      data => {
+        //cuando se cierre el modal actualizar lista
+      }
+    )
+  }
+  
+  openModalModificarProyecto(proyecto: Proyecto) {
+    const modalRef = this.modalService.open(AdminProyectoComponent, { size: 'lg' });
+    modalRef.componentInstance.proyecto = proyecto
+    modalRef.dismissed.subscribe(
+      data => {
+        //cuando se cierre el modal actualizar lista
       }
     )
   }

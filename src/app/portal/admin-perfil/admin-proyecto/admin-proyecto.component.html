@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-basic-title">Administrar Proyecto</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="form-group">
+        <label for="proyectoNombre">Nombre</label>
+        <input type="text" class="form-control" id="proyectoNombre" placeholder="Nombre"
+            [(ngModel)]="proyecto.nombre">
+    </div>
+
+    <div class="form-group">
+        <label for="proyectoDescripcion">Descripcion</label>
+        <input type="text" class="form-control" id="proyectoDescripcion" placeholder="Descripcion"
+            [(ngModel)]="proyecto.descripcion">
+    </div>
+
+    <div class="form-group">
+        <label for="proyectoDetalle">Detalle</label>
+        <angular-editor id="proyectoDetalle" [(ngModel)]="proyecto.detalle"
+            [config]="config"></angular-editor>
+    </div>
+
+    <div class="form-group">
+        <label for="proyectoDescripcion">Imagen</label>
+        <input type="text" class="form-control" id="proyectoImg" placeholder="Imagen (assets\\img\\...)"
+            [(ngModel)]="proyecto.img">
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close')">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="guardarProyecto()">Guardar</button>
+</div>

@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { version } from '../../../package.json';
 import { DetalleProyectoComponent } from './detalle-proyecto/detalle-proyecto.component';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 
 declare var $: any;
