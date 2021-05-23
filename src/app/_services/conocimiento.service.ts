@@ -12,11 +12,13 @@ import { Observable } from 'rxjs';
 export class ConocimientoService {
   private apiConocimientoUrl: string = null;
   private apiConocimientoCategoriaUrl: string = null;
+  private apiConocimientoCategoriaExternalUrl: string = null;
   private apiConocimientoTipoUrl: string = null;
 
   constructor(private httpClient: HttpClient) { 
     this.apiConocimientoUrl = GlobalConstants.apiIntBasePath + GlobalConstants.conocimientoPath;
     this.apiConocimientoCategoriaUrl = GlobalConstants.apiIntBasePath + GlobalConstants.conocimientoCategoriaPath;
+    this.apiConocimientoCategoriaExternalUrl = GlobalConstants.apiExtBasePath + GlobalConstants.conocimientoCategoriaPath;
     this.apiConocimientoTipoUrl = GlobalConstants.apiIntBasePath + GlobalConstants.conocimientoTipoPath;
   }
 
@@ -38,6 +40,10 @@ export class ConocimientoService {
 
   public getCategoriasConocimiento(): Observable<CategoriaConocimiento[]> {
     return this.httpClient.get<CategoriaConocimiento[]>(this.apiConocimientoCategoriaUrl);
+  }
+
+  public getCategoriasConocimientoExt(): Observable<CategoriaConocimiento[]> {
+    return this.httpClient.get<CategoriaConocimiento[]>(this.apiConocimientoCategoriaExternalUrl);
   }
 
   public getTiposConocimiento(): Observable<TipoConocimiento[]> {

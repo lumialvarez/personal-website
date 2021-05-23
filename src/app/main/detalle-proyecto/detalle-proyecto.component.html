@@ -10,7 +10,7 @@
     <img src={{proyecto.img}} class="img-fluid w-25">
   </div>
 
-  <div *ngIf="datos" [innerHTML]="datos.descripcion || 'Descripción pendiente...'"></div>
+  <div [innerHTML]="proyecto.detalle || 'Descripción pendiente...'"></div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>

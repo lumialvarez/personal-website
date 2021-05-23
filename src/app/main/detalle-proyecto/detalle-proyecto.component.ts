@@ -17,16 +17,5 @@ export class DetalleProyectoComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private httpClient: HttpClient,  private FormsModule: FormsModule) { }
 
   ngOnInit(): void {
-    console.log("Modal Abierto")
-    this.obtenerDatosBackend()
-  }
-
-
-  obtenerDatosBackend() {
-    this.httpClient.get("assets/misc/detailProyect" + this.proyecto.codigo + ".json").subscribe((data: any) => {
-      console.log(data);
-      this.datos = data.poyecto;
-      this.contenidoEscapado = this.datos.descripcion.escapeSpecialChars()
-    })
   }
 }

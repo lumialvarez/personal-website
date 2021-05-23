@@ -2,8 +2,9 @@
     <div class="form-group">
         <label for="selectorIdioma">Idioma</label>
         <div ngbDropdown id="selectorIdioma">
-            <button class="btn" id="dropdownBasic" ngbDropdownToggle>{{ idiomaSeleccionado || "Selecciona el idioma"
-                }}</button>
+            <button class="btn" id="dropdownBasic" ngbDropdownToggle>
+                {{ idiomaSeleccionado || "Selecciona el idioma" }}
+            </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic">
                 <div *ngFor="let perfil of lstPerfiles;">
                     <button ngbDropdownItem id="option"
@@ -11,6 +12,7 @@
                     </button>
                 </div>
             </div>
+            <a (click)="cargarDatosPerfil()" skipLocationChange><i class="fas fa-redo"></i></a>
         </div>
     </div>
 
@@ -48,25 +50,31 @@
                 <div class="col-10">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                        (change)="ordenar('nombre')">
+                            (change)="ordenar('nombre')">
                         <label class="form-check-label" for="inlineRadio1">Nombre</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                        (change)="ordenar('nivel')">
+                            (change)="ordenar('nivel')">
                         <label class="form-check-label" for="inlineRadio2">Nivel</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                        (change)="ordenar('tipoNivel')">
+                            (change)="ordenar('tipoNivel')">
                         <label class="form-check-label" for="inlineRadio3">Tipo/Nivel</label>
                     </div>
+                    
                 </div>
+                <div class="col-2">
+                    Filtro
+                </div>
+                <div class="col-10"><input type="text"  [(ngModel)]="filtroConocimiento"></div>
             </div>
             <div class="row">
+                <ng-container *ngFor="let conocimiento of perfilSeleccionado.conocimientos; let i = index">
                 <div class="col-6 col-md-6 col-lg-4 col-xl-3 mb-2"
-                    *ngFor="let conocimiento of perfilSeleccionado.conocimientos; let i = index">
-                    <div class="card card-hover" (click)="openModalModificarConocimiento(conocimiento)">
+                *ngIf="conocimiento.nombre.toLowerCase().includes(filtroConocimiento.toLowerCase())">
+                    <div class="card card-hover" (click)="openModalModificarConocimiento(conocimiento)" >
                         <div class="card-body">
 
                             <div class="row">
@@ -96,6 +104,7 @@
                         </div>
                     </div>
                 </div>
+            </ng-container>
             </div>
         </div>
 

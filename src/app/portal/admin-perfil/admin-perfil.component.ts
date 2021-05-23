@@ -19,16 +19,18 @@ export class AdminPerfilComponent implements OnInit {
   public lstPerfiles: Perfil[];
   public perfilSeleccionado: Perfil = null;
   public idiomaSeleccionado: string = null;
+  public filtroConocimiento:string = "";
 
   ordenPorNombreIsChecked: boolean = false;
 
-  constructor(private modalService: NgbModal, private perfilService: PerfilService, private conocimientoService: ConocimientoService, private toastService: ToastService) { }
+  constructor(private modalService: NgbModal, private perfilService: PerfilService, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.cargarDatosPerfil();
   }
 
   cargarDatosPerfil() {
+    this.perfilSeleccionado = null;
     this.perfilService.getPerfiles().subscribe(
       data => {
         this.lstPerfiles = data;
@@ -45,7 +47,8 @@ export class AdminPerfilComponent implements OnInit {
 
   procesarSeleccionPerfil() {
     this.idiomaSeleccionado = this.perfilSeleccionado.idioma.nombre;
-    this.perfilSeleccionado.conocimientos.sort(function (a, b) { return -(a.nivel - b.nivel) })
+    this.perfilSeleccionado.proyectos.sort((a:Proyecto, b:Proyecto) => -(b.id - a.id));
+    //this.perfilSeleccionado.conocimientos.sort(function (a, b) { return -(a.nivel - b.nivel) })
   }
 
   guardarCambiosPerfil() {
