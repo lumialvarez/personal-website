@@ -8,4 +8,5 @@ export class GlobalConstants {
     public static conocimientoPath: string = "v1/conocimiento";
     public static conocimientoCategoriaPath: string = "v1/categoria_conocimiento";
     public static conocimientoTipoPath: string = "v1/tipo_conocimiento";
+    public static proyectoPath: string = "v1/proyecto";
 }

@@ -3,10 +3,12 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Conocimiento } from 'app/_models/main/conocimiento';
 import { Perfil } from 'app/_models/main/perfil';
+import { Proyecto } from 'app/_models/main/proyecto';
 import { ConocimientoService } from 'app/_services/conocimiento.service';
 import { PerfilService } from 'app/_services/perfil.service';
 import { ToastService } from 'app/_services/toast.service';
 import { AdminConocimientoComponent } from './admin-conocimiento/admin-conocimiento.component';
+import { AdminProyectoComponent } from './admin-proyecto/admin-proyecto.component';
 
 @Component({
   selector: 'app-admin-perfil',
@@ -74,6 +76,16 @@ export class AdminPerfilComponent implements OnInit {
   openModalModificarConocimiento(conocimiento: Conocimiento) {
     const modalRef = this.modalService.open(AdminConocimientoComponent, { size: 'lg' });
     modalRef.componentInstance.conocimiento = conocimiento
+    modalRef.dismissed.subscribe(
+      data => {
+        //cuando se cierre el modal actualizar lista
+      }
+    )
+  }
+  
+  openModalModificarProyecto(proyecto: Proyecto) {
+    const modalRef = this.modalService.open(AdminProyectoComponent, { size: 'lg' });
+    modalRef.componentInstance.proyecto = proyecto
     modalRef.dismissed.subscribe(
       data => {
         //cuando se cierre el modal actualizar lista
