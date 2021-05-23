@@ -18,6 +18,8 @@ export class AdminPerfilComponent implements OnInit {
   public perfilSeleccionado: Perfil = null;
   public idiomaSeleccionado: string = null;
 
+  ordenPorNombreIsChecked: boolean = false;
+
   constructor(private modalService: NgbModal, private perfilService: PerfilService, private conocimientoService: ConocimientoService, private toastService: ToastService) { }
 
   ngOnInit(): void {
@@ -57,6 +59,16 @@ export class AdminPerfilComponent implements OnInit {
         });
       }
     )
+  }
+
+  ordenar(filtro: string) {
+    if (filtro === "nombre") {
+      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => a.nombre.localeCompare(b.nombre))
+    } else if (filtro === "nivel") {
+      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => -(a.nivel - b.nivel))
+    }else if (filtro === "tipoNivel") {
+      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => (a.tipo.nombre === b.tipo.nombre) ? -(a.nivel - b.nivel) : a.tipo.nombre.localeCompare(b.tipo.nombre))
+    }
   }
 
   openModalModificarConocimiento(conocimiento: Conocimiento) {
