@@ -279,7 +279,7 @@
                     *ngFor="let item of perfil.proyectos; let i = index">
                     <div class="card card-hover" (click)="openModalDetalleProyecto(item)">
                         <div class="card-body">
-                            <img src={{item.img}} class="img-fluid rounded-circle w-50">
+                            <img src={{item.img}} class="img-fluid rounded-circle w-50" loading="lazy">
                             <h4>{{item.nombre}}</h4>
                             <p>
                                 {{item.descripcion}}
