@@ -61,10 +61,12 @@ export class MainComponent implements OnInit {
     }
 
     //Altura del nombre principal
-    let alturaElemento = document.getElementById('main-name-container').clientHeight
-    let espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2)
+    if(document.getElementById('main-name-container')){
+      let alturaElemento = document.getElementById('main-name-container').clientHeight
+      let espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2)
 
-    document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
+      document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
+    }
 
   }
 
