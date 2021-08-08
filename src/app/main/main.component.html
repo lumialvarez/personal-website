@@ -3,13 +3,13 @@
 
 <header class="main-header">
 
-    <div class="background-overlay text-white" >
+    <div class="background-overlay text-white">
         <div class="container fill" *ngIf="perfil">
             <div id="main-name-container" class="text-center">
                 <div class="row">
                     <div class="col-full">
                         <h1>
-                            Luis Miguel Alvarez
+                            {{perfil.nombre}}
                         </h1>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-full">
                         <h4>
-                            Ingeniero de Desarrollo
+                            {{perfil.profesion}}
                         </h4>
                     </div>
                 </div>
@@ -60,16 +60,7 @@
                     </div>
                     <div class="row">
                         <div class="text-left  pt-3 pl-3 pr-3">
-                            <p>Soy un Desarrollador de software que vive actualmente en Medellín (Colombia) graduado
-                                como
-                                Ingeniero de Sistemas y Computación en la <a class="text-dark"
-                                    href="https://www.utp.edu.co/">Universidad Tecnológica de Pereira</a></p>
-                            <p>Durante los últimos 7+ años he trabajado a través de diferentes áreas del desarrollo de
-                                software,
-                                actualmente me desempeño como Desarrollador SOA para uno de los principales bancos de
-                                Colombia
-                            </p>
-                            <p>Gran parte de mi tiempo es ocupado investigando, diseñando y desarrollando</p>
+                            <div [innerHTML]="perfil.perfilProfesional"></div>
                         </div>
                     </div>
                     <div class="row pb-3">
@@ -91,12 +82,7 @@
                     </div>
                     <div class="row">
                         <div class="text-left p-3">
-                            <p>Cuando no estoy desarrollando, disfruto de actividades relacionadas con:</p>
-                            <ul>
-                                <li>Motociclismo</li>
-                                <li>Numismática</li>
-                                <li>Historia contemporánea</li>
-                            </ul>
+                            <div [innerHTML]="perfil.perfilPersonal"></div>
                         </div>
                     </div>
                 </div>
