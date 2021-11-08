@@ -16,10 +16,29 @@ pipeline {
 		}
 		stage('Deploy') {
 			steps {
-				dir('dist/personal-website') {
-					sh 'rm -rf /var/www/html/*'
-					sh 'cp -r * /var/www/html/'
+				script {
+					REMOTE_HOME = sh (
+						script: "ssh centos@lmalvarez.com 'pwd'",
+						returnStdout: true
+					).trim()
 				}
+				//script_internal_ip.sh -> ip route | awk '/docker0 /{print $9}'
+				script {
+					INTERNAL_IP = sh (
+						script: "ssh centos@lmalvarez.com 'sudo bash script_internal_ip.sh'",
+						returnStdout: true
+					).trim()
+				}
+				
+				sh "echo '${BUILD_TAG}' > BUILD_TAG.txt"
+				sh "ssh centos@lmalvarez.com 'sudo rm -rf ${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}'"
+    			sh "ssh centos@lmalvarez.com 'sudo mkdir -p -m 777 ${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}'"
+				sh "scp -r ${WORKSPACE}/BUILD_TAG.txt centos@lmalvarez.com:${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}"
+				
+				sh "scp -r ${WORKSPACE}/dist/personal-website/* centos@lmalvarez.com:${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}"
+				
+				sh "ssh centos@lmalvarez.com 'sudo rm -rf /var/www/html/*'"
+				sh "ssh centos@lmalvarez.com 'sudo cp -r ${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}/* /var/www/html/'"
 		    }
 		}
 	}
