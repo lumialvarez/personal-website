@@ -11,7 +11,7 @@ pipeline {
 			steps {
 				sh 'java ReplaceSecrets.java GOOGLE_ID_TRACKING $GOOGLE_ID_TRACKING'
 				sh 'npm i'
-				sh 'node --max_old_space_size=1532 ./node_modules/@angular/cli/bin/ng build --prod'
+				sh 'node --max_old_space_size=1024 ./node_modules/@angular/cli/bin/ng build --prod'
 			}
 		}
 		stage('Deploy') {
