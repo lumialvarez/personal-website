@@ -1,8 +1,8 @@
 pipeline {
 	agent any
 	tools {
-        jdk 'JDK'
-    }
+		jdk 'JDK'
+	}
 	environment {
 		GOOGLE_ID_TRACKING = credentials("GOOGLE_ID_TRACKING")
 		SSH_MAIN_SERVER = credentials("SSH_MAIN_SERVER")
@@ -26,14 +26,14 @@ pipeline {
 				
 				sh "echo '${BUILD_TAG}' > BUILD_TAG.txt"
 				sh "ssh ${SSH_MAIN_SERVER} 'sudo rm -rf ${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}'"
-    			sh "ssh ${SSH_MAIN_SERVER} 'sudo mkdir -p -m 777 ${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}'"
+				sh "ssh ${SSH_MAIN_SERVER} 'sudo mkdir -p -m 777 ${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}'"
 				sh "scp -r ${WORKSPACE}/BUILD_TAG.txt ${SSH_MAIN_SERVER}:${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}"
 				
 				sh "scp -r ${WORKSPACE}/dist/personal-website/* ${SSH_MAIN_SERVER}:${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}"
 				
 				sh "ssh ${SSH_MAIN_SERVER} 'sudo rm -rf /var/www/html/*'"
 				sh "ssh ${SSH_MAIN_SERVER} 'sudo cp -r ${REMOTE_HOME}/tmp_jenkins/${JOB_NAME}/* /var/www/html/'"
-		    }
+			}
 		}
 	}
 }
