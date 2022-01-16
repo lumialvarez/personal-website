@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { version } from '../../../package.json';
 import { DetalleProyectoComponent } from './detalle-proyecto/detalle-proyecto.component';
 import { PerfilService } from 'app/_services/perfil.service';
 import { Perfil } from 'app/_models/main/perfil';
@@ -12,6 +10,8 @@ import { CategoriaConocimiento } from 'app/_models/main/categoria-conocimiento';
 
 
 declare var $: any;
+declare var require: any
+const { version: appVersion } = require('../../../package.json')
 
 @Component({
   selector: 'app-main',
@@ -30,7 +30,7 @@ export class MainComponent implements OnInit {
   public categoriaSeleccionada: string = null;
 
   constructor(private modalService: NgbModal, private perfilService: PerfilService, public conocimientoService: ConocimientoService) {
-    this.version = version
+    this.version = appVersion
   }
 
   ngOnInit(): void {
@@ -61,38 +61,39 @@ export class MainComponent implements OnInit {
     }
 
     //Altura del nombre principal
-    if(document.getElementById('main-name-container')){
+    this.actualizarAlturaNombrePrincipal();
+  }
+
+  actualizarAlturaNombrePrincipal(){
+    let alturaPantalla = window.innerHeight
+    if (document.getElementById('main-name-container')) {
       let alturaElemento = document.getElementById('main-name-container').clientHeight
       let espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2)
 
       document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
     }
-
   }
 
   cargarDatosPerfil() {
     this.perfil = null;
-    this.perfilService.getPerfilExt().subscribe(
-      data => {
-          this.perfil = data[0];
-          this.perfil.proyectos.sort((a: Proyecto, b: Proyecto) => -(b.id - a.id));
-          this.procesarConocimientos();
+    this.perfilService.getPerfilExt().subscribe({
+      next: (data) => {
+        this.perfil = data[0];
+        this.perfil.proyectos.sort((a: Proyecto, b: Proyecto) => -(b.id - a.id));
+        this.procesarConocimientos();
       },
-      err => {
-        console.log(err)
-      }
-    );
+      error: (e) => console.error(e),
+      complete: () => this.actualizarAlturaNombrePrincipal()
+    });
   }
 
-  cargarDatostipoConocimiento(){
-    this.conocimientoService.getCategoriasConocimientoExt().subscribe(
-      data => {
-          this.categorias = data;
+  cargarDatostipoConocimiento() {
+    this.conocimientoService.getCategoriasConocimientoExt().subscribe({
+      next: (data) => {
+        this.categorias = data;
       },
-      err => {
-        console.log(err)
-      }
-    );
+      error: (e) => console.error(e)
+    });
   }
 
   procesarConocimientos() {
@@ -102,7 +103,7 @@ export class MainComponent implements OnInit {
     this.otros = [];
 
     for (let i = 0; i < this.perfil.conocimientos.length; i++) {
-      if (!this.categoriaSeleccionada || this.perfil.conocimientos[i].categorias.find((item) => item.nombre === this.categoriaSeleccionada)   ) {
+      if (!this.categoriaSeleccionada || this.perfil.conocimientos[i].categorias.find((item) => item.nombre === this.categoriaSeleccionada)) {
         if (this.perfil.conocimientos[i].tipo.nombre == "Lenguaje") {
           this.lenguajes.push(this.perfil.conocimientos[i])
         } else if (this.perfil.conocimientos[i].tipo.nombre == "Framework") {
