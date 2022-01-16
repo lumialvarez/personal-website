@@ -61,15 +61,17 @@ export class MainComponent implements OnInit {
     }
 
     //Altura del nombre principal
+    this.actualizarAlturaNombrePrincipal();
+  }
+
+  actualizarAlturaNombrePrincipal(){
+    let alturaPantalla = window.innerHeight
     if (document.getElementById('main-name-container')) {
       let alturaElemento = document.getElementById('main-name-container').clientHeight
       let espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2)
 
       document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
-    } else {
-      console.log("No existe main-name-container")
     }
-
   }
 
   cargarDatosPerfil() {
@@ -80,7 +82,8 @@ export class MainComponent implements OnInit {
         this.perfil.proyectos.sort((a: Proyecto, b: Proyecto) => -(b.id - a.id));
         this.procesarConocimientos();
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
+      complete: () => this.actualizarAlturaNombrePrincipal()
     });
   }
 

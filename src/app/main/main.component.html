@@ -4,25 +4,27 @@
 <header class="main-header">
 
     <div class="background-overlay text-white">
-        <div class="container fill" *ngIf="perfil">
+        <div class="container fill">
             <div id="main-name-container" class="text-center">
-                <div class="row">
-                    <div class="col-full">
-                        <h1>
-                            {{perfil.nombre}}
-                        </h1>
+                <div *ngIf="perfil">
+                    <div class="row">
+                        <div class="col-full">
+                            <h1>
+                                {{perfil.nombre}}
+                            </h1>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-full">
-                        <div class="col-1-4 centered line"></div>
+                    <div class="row">
+                        <div class="col-full">
+                            <div class="col-1-4 centered line"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-full">
-                        <h4>
-                            {{perfil.profesion}}
-                        </h4>
+                    <div class="row">
+                        <div class="col-full">
+                            <h4>
+                                {{perfil.profesion}}
+                            </h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -34,10 +36,10 @@
     <app-menu></app-menu>
 
     <!-- ABOUT -->
-    <section id="sobremi" class="m5 text-center bg-light">
+    <section id="sobremi" class="m5 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-full">
+                <div class="col-full text-center">
                     <h3>Sobre mí</h3>
                 </div>
             </div>
@@ -65,11 +67,12 @@
                     </div>
                     <div class="row pb-3">
                         <div class="col-6">
-                            <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank">
+                            <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank"
+                                class="text-decoration-none">
                                 <i class="fab fa-linkedin fa-w-14 fa-1x"></i> Linkedin</a>
                         </div>
                         <div class="col-6">
-                            <a href="https://github.com/lumialvarez" target="_blank">
+                            <a href="https://github.com/lumialvarez" target="_blank" class="text-decoration-none">
                                 <i class="fab fa-github fa-w-14 fa-1x"></i> Github</a>
                         </div>
                     </div>
@@ -91,38 +94,41 @@
     </section>
 
     <!-- CONOCIMIENTOS -->
-    <section id="conocimientos" class="m5 text-center bg-segundario">
+    <section id="conocimientos" class="m5 bg-segundario">
         <div class="container">
-            <div class="row">
-                <div class="col-full">
-                    <h3>Conocimientos</h3>
+            <div class="text-center">
+                <div class="row">
+                    <div class="col-full">
+                        <h3>Conocimientos</h3>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-full">
-                    <div class="col-1-4 centered line"></div>
+                <div class="row">
+                    <div class="col-full">
+                        <div class="col-1-4 centered line"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-full">
-                    <p>Trabajar en diferentes áreas del desarrollo me ha permitido interactuar con diferentes lenguajes
-                        y tecnologías, a continuación muestro los más destacables</p>
+                <div class="row">
+                    <div class="col-full">
+                        <p>Trabajar en diferentes áreas del desarrollo me ha permitido interactuar con diferentes
+                            lenguajes
+                            y tecnologías, a continuación muestro los más destacables</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-full">
-                    <div ngbDropdown>
-                        <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
-                            {{ categoriaSeleccionada || "Selecciona un tema" }}
-                        </button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button ngbDropdownItem id="option"
-                                on-click="categoriaSeleccionada=null; procesarConocimientos()">Todos
+                <div class="row">
+                    <div class="col-full">
+                        <div ngbDropdown>
+                            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+                                {{ categoriaSeleccionada || "Selecciona un tema" }}
                             </button>
-                            <div *ngFor="let cat of categorias;">
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                 <button ngbDropdownItem id="option"
-                                    on-click="categoriaSeleccionada=cat.nombre; procesarConocimientos()">{{cat.nombre}}
+                                    on-click="categoriaSeleccionada=null; procesarConocimientos()">Todos
                                 </button>
+                                <div *ngFor="let cat of categorias;">
+                                    <button ngbDropdownItem id="option"
+                                        on-click="categoriaSeleccionada=cat.nombre; procesarConocimientos()">{{cat.nombre}}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,11 +146,13 @@
                             <div class="row" *ngFor="let item of lenguajes; let i = index" data-toggle="tooltip"
                                 [title]=item.descripcion>
                                 <div class="col-full">
-                                    <div class="row">{{ item.nombre }}</div>
+                                    <div class="row">
+                                        <div class="col-full">{{ item.nombre }}</div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-full">
                                             <div class="progress">
-                                                <div class="progress-bar" role="progressbar"
+                                                <div class="progress-bar " role="progressbar"
                                                     [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
                                                     aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
@@ -166,7 +174,9 @@
                             <div class="row" *ngFor="let item of frameworks; let i = index" data-toggle="tooltip"
                                 [title]=item.descripcion>
                                 <div class="col-full">
-                                    <div class="row">{{ item.nombre }}</div>
+                                    <div class="row">
+                                        <div class="col-full">{{ item.nombre }}</div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-full">
                                             <div class="progress">
@@ -192,7 +202,9 @@
                             <div class="row" *ngFor="let item of herramientas; let i = index" data-toggle="tooltip"
                                 [title]=item.descripcion>
                                 <div class="col-full">
-                                    <div class="row">{{ item.nombre }}</div>
+                                    <div class="row">
+                                        <div class="col-full">{{ item.nombre }}</div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-full">
                                             <div class="progress">
@@ -218,7 +230,9 @@
                             <div class="row" *ngFor="let item of otros; let i = index" data-toggle="tooltip"
                                 [title]=item.descripcion>
                                 <div class="col-full">
-                                    <div class="row">{{ item.nombre }}</div>
+                                    <div class="row">
+                                        <div class="col-full">{{ item.nombre }}</div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-full">
                                             <div class="progress">
@@ -314,7 +328,7 @@
         <div class="container">
             <div class="row text-center text-white  pt-3">
                 <div class="col ml-auto">
-                    Copyright &copy; 2021
+                    Copyright &copy; 2022
                 </div>
             </div>
             <div class="row text-center text-white  pb-3">
