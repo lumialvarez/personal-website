@@ -13,31 +13,25 @@ import { TokenService } from 'app/_services/token.service';
 export class PortalComponent implements OnInit {
   toggleSidebar: boolean = false;
   usuario: User;
-  notificaciones: Notificacion[];
+  notificaciones: Notificacion[] = [];
 
   constructor(private tokenService: TokenService, private notificacionService: NotificacionService, private router: Router) { }
 
   ngOnInit(): void {
     this.usuario = this.tokenService.getUser();
-    this.notificacionService.getUnreadNotificaciones().subscribe(
-      data => {
+    this.notificacionService.getUnreadNotificaciones().subscribe({
+      next: (data) => {
         this.notificaciones = data;
       },
-      err => {
-        console.log(err)
-      }
-    );
+      error: (err) => console.log(err)
+    });
   }
 
   marcarNotificacionComoLeida(id: number) {
-    this.notificacionService.PutReadNotificaciones(id).subscribe(
-      data => {
-        this.notificaciones = this.notificaciones.filter(obj => obj.id !== id);
-      },
-      err => {
-        console.log(err)
-      }
-    );
+    this.notificacionService.PutReadNotificaciones(id).subscribe({
+      next: (data) => this.notificaciones = this.notificaciones.filter(obj => obj.id !== id),
+      error: (err) => console.log(err)
+    });
   }
 
   toggleSidebarEvent() {

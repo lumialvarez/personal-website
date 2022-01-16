@@ -1,7 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title text-center" id="modal-basic-title">Administrar conocimiento</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     </button>
 </div>
 
@@ -28,7 +27,7 @@
         <div class="input-group-prepend">
             <label class="input-group-text" for="conocimientoTipo">Tipo</label>
         </div>
-        <select class="custom-select" id="conocimientoTipo" [(ngModel)]="conocimiento.tipo">
+        <select class="form-select" id="conocimientoTipo" [(ngModel)]="conocimiento.tipo">
             <option disabled selected>Seleccionar...</option>
             <option *ngFor="let tipo of tiposConocimiento" [value]="tipo">{{tipo.nombre}}</option>
         </select>
