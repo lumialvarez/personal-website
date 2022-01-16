@@ -47,7 +47,7 @@ footer {
 }
 
 #main-name-container {
-    animation: 2s ease-out 0s 1 slideInFromTop;
+    /*animation: 2s ease-out 0s 1 slideInFromTop;*/
     position: relative;
     text-align: center;
     text-transform: uppercase;
