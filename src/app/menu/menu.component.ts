@@ -30,11 +30,10 @@ export class MenuComponent implements OnInit {
   }
 
   ejecutarMenu(){
-    console.log("click");
-    let elemento = document.getElementsByClassName("navbar-collapse");
+    let elemento = document.getElementsByClassName("navbar-toggler");
     let estilo = "";
     if(elemento){
-      if(elemento[0].classList.contains("show")){
+      if(elemento[0].classList.contains("collapsed")){
         console.log("cerrado");
         estilo = "background-color: transparent !important;";
         window.scroll(window.pageXOffset, window.pageYOffset + 1);
