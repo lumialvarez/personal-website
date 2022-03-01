@@ -23,6 +23,7 @@ import { BasicAuthInterceptor } from './_helpers/basic-auth-interceptor';
 import { ToastsContainer } from './toasts-container.component';
 import { AdminConocimientoComponent } from './portal/admin-perfil/admin-conocimiento/admin-conocimiento.component';
 import { AdminProyectoComponent } from './portal/admin-perfil/admin-proyecto/admin-proyecto.component';
+import { HerramientasComponent } from './portal/herramientas/herramientas.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AdminProyectoComponent } from './portal/admin-perfil/admin-proyecto/adm
     DashboardComponent,
     ToastsContainer,
     AdminConocimientoComponent,
-    AdminProyectoComponent
+    AdminProyectoComponent,
+    HerramientasComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { AdminUsuariosComponent } from './portal/admin-usuarios/admin-usuarios.c
 import { PortalComponent } from './portal/portal.component';
 import { AuthGuardGuard } from './_helpers/auth-guard.guard';
 import { DashboardComponent } from './portal/dashboard/dashboard.component';
+import { HerramientasComponent } from './portal/herramientas/herramientas.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'admin-perfil', component: AdminPerfilComponent },
-      { path: 'admin-usuarios', component: AdminUsuariosComponent }
+      { path: 'admin-usuarios', component: AdminUsuariosComponent },
+      { path: 'herramientas', component: HerramientasComponent }
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
