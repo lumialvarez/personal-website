@@ -4,6 +4,10 @@ Personal Web Page
 ## [Unreleased]
 - User admin
 
+## [1.3.1] - 01/03/2022
+### Changed
+- Delete assets and use the resource server instead
+
 ## [1.3.0] - 01/03/2022
 ### Added
 - Tools section in portal
