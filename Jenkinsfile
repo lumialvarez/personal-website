@@ -8,6 +8,19 @@ pipeline {
 		SSH_MAIN_SERVER = credentials("SSH_MAIN_SERVER")
 	}
 	stages {
+		stage('Get Version') {
+			steps {
+				script {
+					PACKAGE_VERSION = sh (
+						script: "node -p \"require('./package.json').version\"",
+						returnStdout: true
+					).trim()
+				}
+				script {
+					currentBuild.displayName = "#" + currentBuild.number + " - v" + PACKAGE_VERSION
+				}
+			}
+		}
 		stage('Build') {
 			steps {
 				sh 'java ReplaceSecrets.java GOOGLE_ID_TRACKING $GOOGLE_ID_TRACKING'
