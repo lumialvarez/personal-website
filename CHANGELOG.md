@@ -4,6 +4,10 @@ Personal Web Page
 ## [Unreleased]
 - User admin
 
+## [1.3.2] - 27/03/2022
+### Fixed
+- Fixed package vulnerabilities
+
 ## [1.3.1] - 01/03/2022
 ### Changed
 - Delete assets and use the resource server instead
