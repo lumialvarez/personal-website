@@ -2,10 +2,14 @@
 Personal Web Page
 
 ## [Unreleased]
-- User admin
+- User admin in admin portal
 - Contact form
 
-## [1.3.3] - 27/03/2022
+## [1.4.0] - 10/05/2022
+### Added
+- Create new knowledge in admin portal
+
+## [1.3.3] - 09/05/2022
 ### Fixed
 - Fixed package vulnerabilities
 - Update npm packages

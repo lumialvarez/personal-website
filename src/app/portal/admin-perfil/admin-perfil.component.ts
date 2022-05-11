@@ -4,7 +4,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Conocimiento } from 'app/_models/main/conocimiento';
 import { Perfil } from 'app/_models/main/perfil';
 import { Proyecto } from 'app/_models/main/proyecto';
-import { ConocimientoService } from 'app/_services/conocimiento.service';
 import { PerfilService } from 'app/_services/perfil.service';
 import { ToastService } from 'app/_services/toast.service';
 import { AdminConocimientoComponent } from './admin-conocimiento/admin-conocimiento.component';
@@ -48,11 +47,10 @@ export class AdminPerfilComponent implements OnInit {
   procesarSeleccionPerfil() {
     this.idiomaSeleccionado = this.perfilSeleccionado.idioma.nombre;
     this.perfilSeleccionado.proyectos.sort((a:Proyecto, b:Proyecto) => -(b.id - a.id));
-    //this.perfilSeleccionado.conocimientos.sort(function (a, b) { return -(a.nivel - b.nivel) })
+    this.ordenarConocimientos("nombre")
   }
 
   guardarCambiosPerfil() {
-    console.log(this.perfilSeleccionado);
     this.perfilService.updatePerfil(this.perfilSeleccionado).subscribe(
       data => {
         this.toastService.showSuccess("Perfil Actualizado");
@@ -66,7 +64,7 @@ export class AdminPerfilComponent implements OnInit {
     )
   }
 
-  ordenar(filtro: string) {
+  ordenarConocimientos(filtro: string) {
     if (filtro === "nombre") {
       this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => a.nombre.localeCompare(b.nombre))
     } else if (filtro === "nivel") {
@@ -74,6 +72,11 @@ export class AdminPerfilComponent implements OnInit {
     }else if (filtro === "tipoNivel") {
       this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => (a.tipo.nombre === b.tipo.nombre) ? -(a.nivel - b.nivel) : a.tipo.nombre.localeCompare(b.tipo.nombre))
     }
+  }
+
+  openModalCrearConocimiento() {
+    let conocimiento = new Conocimiento();
+    this.openModalModificarConocimiento(conocimiento)
   }
 
   openModalModificarConocimiento(conocimiento: Conocimiento) {

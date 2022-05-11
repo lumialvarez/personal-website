@@ -27,9 +27,9 @@
         <div class="input-group-prepend">
             <label class="input-group-text" for="conocimientoTipo">Tipo</label>
         </div>
-        <select class="form-select" id="conocimientoTipo" [(ngModel)]="conocimiento.tipo">
+        <select class="form-select" id="conocimientoTipo" [compareWith]="compareTipoConocimiento" [(ngModel)]="tipoConocimientoSeleccionado">
             <option disabled selected>Seleccionar...</option>
-            <option *ngFor="let tipo of tiposConocimiento" [value]="tipo">{{tipo.nombre}}</option>
+            <option *ngFor="let tipo of tiposConocimiento" [ngValue]="tipo">{{tipo.nombre}}</option>
         </select>
     </div>
 
