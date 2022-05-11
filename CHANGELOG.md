@@ -5,10 +5,9 @@ Personal Web Page
 - User admin in admin portal
 - Contact form
 
-## [1.4.0] - -/-/2022
+## [1.4.0] - 10/05/2022
 ### Added
 - Create new knowledge in admin portal
-- Create new projects in admin portal
 
 ## [1.3.3] - 09/05/2022
 ### Fixed
