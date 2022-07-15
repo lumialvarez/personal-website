@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 import { GlobalConstants } from 'app/common/global-constants';
 import { Observable } from 'rxjs/internal/Observable';
 import { Perfil } from 'app/_models/main/perfil';
@@ -8,10 +8,10 @@ import { Perfil } from 'app/_models/main/perfil';
   providedIn: 'root'
 })
 export class PerfilService {
-  private apiPerfilUrl: string = null;
-  private apiPerfilExternalUrl: string = null;
+  private readonly apiPerfilUrl: string = null;
+  private readonly apiPerfilExternalUrl: string = null;
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient) {
     this.apiPerfilUrl = GlobalConstants.apiIntBasePath + GlobalConstants.perfilPath;
     this.apiPerfilExternalUrl = GlobalConstants.apiExtBasePath + GlobalConstants.perfilPath;
   }
@@ -25,7 +25,7 @@ export class PerfilService {
   }
 
   public getPerfilById(id: number): Observable<Perfil> {
-    return this.httpClient.get<Perfil>(this.apiPerfilUrl + "/" + id);
+    return this.httpClient.get<Perfil>(this.apiPerfilUrl + '/' + id);
   }
 
   public updatePerfil(perfil: Perfil): Observable<any> {

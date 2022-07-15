@@ -10,8 +10,8 @@ import { CategoriaConocimiento } from 'app/_models/main/categoria-conocimiento';
 
 
 declare var $: any;
-declare var require: any
-const { version: appVersion } = require('../../../package.json')
+declare var require: any;
+const { version: appVersion } = require('../../../package.json');
 
 @Component({
   selector: 'app-main',
@@ -30,7 +30,7 @@ export class MainComponent implements OnInit {
   public categoriaSeleccionada: string = null;
 
   constructor(private modalService: NgbModal, private perfilService: PerfilService, public conocimientoService: ConocimientoService) {
-    this.version = appVersion
+    this.version = appVersion;
   }
 
   ngOnInit(): void {
@@ -44,37 +44,37 @@ export class MainComponent implements OnInit {
 
   actualizarEstilosContenido = (s) => {
     // Color del menu
-    let alturaPantalla = window.innerHeight
+    const alturaPantalla = window.innerHeight;
     if (s && s.target && s.target.scrollingElement) {
-      let pxScroll = s.target.scrollingElement.scrollTop;
+      const pxScroll = s.target.scrollingElement.scrollTop;
 
-      let alturaEsperada = alturaPantalla * 0.7;
-      let estilo = "";
-      if (pxScroll == 0) {
-        estilo = "background-color: transparent !important;";
+      const alturaEsperada = alturaPantalla * 0.7;
+      let estilo: string;
+      if (pxScroll === 0) {
+        estilo = 'background-color: transparent !important;';
       } else if (pxScroll > 0 && pxScroll <= alturaEsperada) {
-        estilo = "background-color: rgba(12, 36, 97," + pxScroll / alturaEsperada + ") !important;";
+        estilo = 'background-color: rgba(12, 36, 97,' + pxScroll / alturaEsperada + ') !important;';
       } else {
-        estilo = "background-color: rgba(12, 36, 97,1.0) !important;";
+        estilo = 'background-color: rgba(12, 36, 97,1.0) !important;';
       }
-      document.getElementById('navbarElement').setAttribute("style", estilo);
+      document.getElementById('navbarElement').setAttribute('style', estilo);
     }
 
-    //Altura del nombre principal
+    // Altura del nombre principal
     this.actualizarAlturaNombrePrincipal();
   }
 
-  actualizarAlturaNombrePrincipal(){
-    let alturaPantalla = window.innerHeight
+  actualizarAlturaNombrePrincipal(): void {
+    const alturaPantalla = window.innerHeight;
     if (document.getElementById('main-name-container')) {
-      let alturaElemento = document.getElementById('main-name-container').clientHeight
-      let espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2)
+      const alturaElemento = document.getElementById('main-name-container').clientHeight;
+      const espacioTop = Math.round((alturaPantalla - (alturaElemento * 1.2)) / 2);
 
-      document.getElementById('main-name-container').setAttribute("style", 'top: ' + espacioTop + 'px;');
+      document.getElementById('main-name-container').setAttribute('style', 'top: ' + espacioTop + 'px;');
     }
   }
 
-  cargarDatosPerfil() {
+  cargarDatosPerfil(): void {
     this.perfil = null;
     this.perfilService.getPerfilExt().subscribe({
       next: (data) => {
@@ -87,7 +87,7 @@ export class MainComponent implements OnInit {
     });
   }
 
-  cargarDatostipoConocimiento() {
+  cargarDatostipoConocimiento(): void {
     this.conocimientoService.getCategoriasConocimientoExt().subscribe({
       next: (data) => {
         this.categorias = data;
@@ -96,33 +96,33 @@ export class MainComponent implements OnInit {
     });
   }
 
-  procesarConocimientos() {
+  procesarConocimientos(): void {
     this.lenguajes = [];
     this.frameworks = [];
     this.herramientas = [];
     this.otros = [];
 
-    for (let i = 0; i < this.perfil.conocimientos.length; i++) {
-      if (!this.categoriaSeleccionada || this.perfil.conocimientos[i].categorias.find((item) => item.nombre === this.categoriaSeleccionada)) {
-        if (this.perfil.conocimientos[i].tipo.nombre == "Lenguaje") {
-          this.lenguajes.push(this.perfil.conocimientos[i])
-        } else if (this.perfil.conocimientos[i].tipo.nombre == "Framework") {
-          this.frameworks.push(this.perfil.conocimientos[i])
-        } else if (this.perfil.conocimientos[i].tipo.nombre == "Herramienta") {
-          this.herramientas.push(this.perfil.conocimientos[i])
-        } else if (this.perfil.conocimientos[i].tipo.nombre == "Otros") {
-          this.otros.push(this.perfil.conocimientos[i])
+    for (const conocimiento of this.perfil.conocimientos) {
+      if (!this.categoriaSeleccionada || conocimiento.categorias.find((item) => item.nombre === this.categoriaSeleccionada)) {
+        if (conocimiento.tipo.nombre === 'Lenguaje') {
+          this.lenguajes.push(conocimiento);
+        } else if (conocimiento.tipo.nombre === 'Framework') {
+          this.frameworks.push(conocimiento);
+        } else if (conocimiento.tipo.nombre === 'Herramienta') {
+          this.herramientas.push(conocimiento);
+        } else if (conocimiento.tipo.nombre === 'Otros') {
+          this.otros.push(conocimiento);
         }
       }
     }
 
-    this.lenguajes.sort((a, b) => -(a.nivel - b.nivel))
-    this.frameworks.sort((a, b) => -(a.nivel - b.nivel))
-    this.herramientas.sort((a, b) => -(a.nivel - b.nivel))
-    this.otros.sort((a, b) => -(a.nivel - b.nivel))
+    this.lenguajes.sort((a, b) => -(a.nivel - b.nivel));
+    this.frameworks.sort((a, b) => -(a.nivel - b.nivel));
+    this.herramientas.sort((a, b) => -(a.nivel - b.nivel));
+    this.otros.sort((a, b) => -(a.nivel - b.nivel));
   }
 
-  openModalDetalleProyecto(proyecto: any) {
+  openModalDetalleProyecto(proyecto: any): void {
     const modalRef = this.modalService.open(DetalleProyectoComponent, { size: 'lg' });
     modalRef.componentInstance.proyecto = proyecto;
   }

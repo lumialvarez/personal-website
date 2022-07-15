@@ -1,5 +1,5 @@
-import { CategoriaConocimiento } from "./categoria-conocimiento";
-import { TipoConocimiento } from "./tipo-conocimiento";
+import { CategoriaConocimiento } from './categoria-conocimiento';
+import { TipoConocimiento } from './tipo-conocimiento';
 
 export class Conocimiento {
     constructor(){

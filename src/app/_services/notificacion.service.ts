@@ -8,16 +8,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NotificacionService {
-  private apiNotificacionUrl: string = null;
+  private readonly apiNotificacionUrl: string = null;
   constructor(private httpClient: HttpClient) {
     this.apiNotificacionUrl = GlobalConstants.apiIntBasePath + GlobalConstants.notificacionPath;
   }
 
   public getUnreadNotificaciones(): Observable<Notificacion[]> {
-    return this.httpClient.get<Notificacion[]>(this.apiNotificacionUrl + "/unread");
+    return this.httpClient.get<Notificacion[]>(this.apiNotificacionUrl + '/unread');
   }
 
-  public PutReadNotificaciones(id: number):Observable<any> {
-    return this.httpClient.put(this.apiNotificacionUrl + "/" + id + "/read", null);
+  public PutReadNotificaciones(id: number): Observable<any> {
+    return this.httpClient.put(this.apiNotificacionUrl + '/' + id + '/read', null);
   }
 }

@@ -11,7 +11,7 @@ import { TokenService } from 'app/_services/token.service';
   styleUrls: ['./portal.component.css']
 })
 export class PortalComponent implements OnInit {
-  toggleSidebar: boolean = false;
+  toggleSidebar = false;
   usuario: User;
   notificaciones: Notificacion[] = [];
 
@@ -27,20 +27,20 @@ export class PortalComponent implements OnInit {
     });
   }
 
-  marcarNotificacionComoLeida(id: number) {
+  marcarNotificacionComoLeida(id: number): void {
     this.notificacionService.PutReadNotificaciones(id).subscribe({
       next: (data) => this.notificaciones = this.notificaciones.filter(obj => obj.id !== id),
       error: (err) => console.log(err)
     });
   }
 
-  toggleSidebarEvent() {
+  toggleSidebarEvent(): void {
     this.toggleSidebar = !this.toggleSidebar;
   }
 
-  cerrarSesion() {
+  cerrarSesion(): void {
     this.tokenService.logOut();
-    this.router.navigate(['login']);
+    this.router.navigate(['login']).then(() => {});
   }
 
 

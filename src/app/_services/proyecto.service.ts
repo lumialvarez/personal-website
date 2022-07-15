@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProyectoService {
-  private apiProyectoUrl: string = null;
+  private readonly apiProyectoUrl: string = null;
 
   constructor(private httpClient: HttpClient) {
     this.apiProyectoUrl = GlobalConstants.apiIntBasePath + GlobalConstants.proyectoPath;
   }
 
   public getProyecto(id: Int32Array): Observable<Proyecto> {
-    return this.httpClient.get<Proyecto>(this.apiProyectoUrl + "/" + id);
+    return this.httpClient.get<Proyecto>(this.apiProyectoUrl + '/' + id);
   }
 
   public getProyectos(): Observable<Proyecto[]> {

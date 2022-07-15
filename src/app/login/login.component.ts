@@ -11,7 +11,7 @@ import { TokenService } from 'app/_services/token.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  errMsj:string[] = [];
+  errMsj: string[] = [];
 
   nombreUsuario: string;
   passwordUsuario: string;
@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
-      this.router.navigate(['portal']);
+      this.router.navigate(['portal']).then(() => {});
     }
   }
 
-  inicioSesion() {
+  inicioSesion(): void {
     this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.passwordUsuario);
     this.loginService.login(this.loginUsuario).subscribe(
       dataLogin => {
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
             this.tokenService.setToken(dataLogin.token);
             this.tokenService.setUser(dataUser);
             this.tokenService.setAuthorities(dataLogin.authorities);
-            this.router.navigate(['portal']);
+            this.router.navigate(['portal']).then(() => {});
           },
           err => {
             this.isLoginfail = true;
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
               this.toastService.showDanger(detail);
             });
           }
-        )
+        );
       },
       err => {
         console.log(err);

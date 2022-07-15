@@ -7,7 +7,7 @@ import { TokenService } from 'app/_services/token.service';
   styleUrls: ['./herramientas.component.css']
 })
 export class HerramientasComponent implements OnInit {
-  public token: String;
+  public token: string;
 
   constructor(private tokenService: TokenService) { }
 
