@@ -21,9 +21,11 @@ import {ToastService} from './_services/toast.service';
       <ng-template #text>{{ toast.textOrTpl }}</ng-template>
     </ngb-toast>
   `,
+  // tslint:disable-next-line:no-host-metadata-property
   host: {'[class.ngb-toasts]': 'true'}
 })
 
+// tslint:disable-next-line:component-class-suffix
 export class ToastsContainer {
   constructor(public toastService: ToastService) {
   }

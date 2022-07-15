@@ -26,7 +26,7 @@ export class LoginService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + token
+        Authorization: 'Bearer ' + token
       })
     };
     return this.httpClient.get<User>(this.apiUserUrl + '/' + username, httpOptions);
