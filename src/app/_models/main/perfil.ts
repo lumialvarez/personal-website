@@ -1,6 +1,6 @@
-import { Conocimiento } from "./conocimiento";
-import { Idioma } from "./idioma";
-import { Proyecto } from "./proyecto";
+import { Conocimiento } from './conocimiento';
+import { Idioma } from './idioma';
+import { Proyecto } from './proyecto';
 
 export class Perfil {
     id: Int32Array;
@@ -11,5 +11,5 @@ export class Perfil {
     proyectos: Proyecto[];
     conocimientos: Conocimiento[];
     idioma: Idioma;
-    estado: boolean
+    estado: boolean;
 }

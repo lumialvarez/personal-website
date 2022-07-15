@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalConstants } from '../common/global-constants';
 import { LoginUsuario } from 'app/_models/login-usuario';
 import { JwtDTO } from 'app/_models/jwt-dto';
@@ -10,8 +10,8 @@ import { User } from 'app/_models/user';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiLoginUrl: string = null;
-  private apiUserUrl: string = null;
+  private readonly apiLoginUrl: string = null;
+  private readonly apiUserUrl: string = null;
 
   constructor(private httpClient: HttpClient) {
     this.apiLoginUrl = GlobalConstants.apiExtBasePath + GlobalConstants.loginPath;
@@ -26,9 +26,9 @@ export class LoginService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + token
+        Authorization: 'Bearer ' + token
       })
     };
-    return this.httpClient.get<User>(this.apiUserUrl + "/" + username, httpOptions);
+    return this.httpClient.get<User>(this.apiUserUrl + '/' + username, httpOptions);
   }
 }

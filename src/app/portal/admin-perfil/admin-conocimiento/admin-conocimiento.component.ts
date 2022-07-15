@@ -24,14 +24,14 @@ export class AdminConocimientoComponent implements OnInit {
     this.cargarCategoriasConocimiento();
     this.cargarTiposConocimiento();
 
-    this.tipoConocimientoSeleccionado = new TipoConocimiento({ id: 0, nombre: "" });
+    this.tipoConocimientoSeleccionado = new TipoConocimiento({ id: 0, nombre: '' });
     if (this.conocimiento.tipo && this.conocimiento.tipo.id) {
-      this.tipoConocimientoSeleccionado = new TipoConocimiento(this.conocimiento.tipo)
+      this.tipoConocimientoSeleccionado = new TipoConocimiento(this.conocimiento.tipo);
     }
     console.log(this.tipoConocimientoSeleccionado);
   }
 
-  cargarCategoriasConocimiento() {
+  cargarCategoriasConocimiento(): void {
     this.conocimientoService.getCategoriasConocimiento().subscribe(
       data => {
         this.categoriasConocimiento = data;
@@ -45,18 +45,18 @@ export class AdminConocimientoComponent implements OnInit {
         });
       },
       err => {
-        console.log(err)
+        console.log(err);
       }
     );
   }
 
-  cargarTiposConocimiento() {
+  cargarTiposConocimiento(): void {
     this.conocimientoService.getTiposConocimiento().subscribe(
       data => {
         this.tiposConocimiento = data;
       },
       err => {
-        console.log(err)
+        console.log(err);
       }
     );
   }
@@ -65,24 +65,24 @@ export class AdminConocimientoComponent implements OnInit {
     return tc1.id === tc2.id;
   }
 
-  onChangeCategoria(categoria: any, isChecked: boolean) {
+  onChangeCategoria(categoria: any, isChecked: boolean): void {
     if (isChecked) {
-      let tmpCategoria = new CategoriaConocimiento(categoria);
+      const tmpCategoria = new CategoriaConocimiento(categoria);
       this.conocimiento.categorias.push(tmpCategoria);
     } else {
-      let index = this.conocimiento.categorias.findIndex((item) => item.id === categoria.id);
+      const index = this.conocimiento.categorias.findIndex((item) => item.id === categoria.id);
       this.conocimiento.categorias.splice(index, 1);
     }
     console.log(this.tipoConocimientoSeleccionado);
   }
 
-  guardarConocimiento() {
+  guardarConocimiento(): void {
     this.conocimiento.tipo = new TipoConocimiento(this.tipoConocimientoSeleccionado);
     console.log(this.conocimiento);
     if (this.conocimiento.id && this.conocimiento.id > 0) {
       this.conocimientoService.updateConocimiento(this.conocimiento).subscribe(
         data => {
-          this.toastService.showSuccess("Conocimiento Actualizado");
+          this.toastService.showSuccess('Conocimiento Actualizado');
           console.log(data);
           this.activeModal.dismiss(this.conocimiento);
         },
@@ -91,11 +91,11 @@ export class AdminConocimientoComponent implements OnInit {
             this.toastService.showDanger(detail);
           });
         }
-      )
+      );
     } else {
       this.conocimientoService.saveConocimiento(this.conocimiento).subscribe(
         data => {
-          this.toastService.showSuccess("Conocimiento Creado");
+          this.toastService.showSuccess('Conocimiento Creado');
           console.log(data);
           this.activeModal.dismiss(this.conocimiento);
         },
@@ -104,7 +104,7 @@ export class AdminConocimientoComponent implements OnInit {
             this.toastService.showDanger(detail);
           });
         }
-      )
+      );
     }
   }
 

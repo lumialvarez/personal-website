@@ -86,8 +86,8 @@
 
 #btnVolver {
     position: fixed;
-    top: 0px;
-    right: 30px; 
+    top: 0;
+    right: 30px;
     border: 0;
     background: none;
     margin: 20px auto;

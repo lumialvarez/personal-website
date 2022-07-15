@@ -1,8 +1,8 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { TokenService } from "app/_services/token.service";
-import { NgxSpinnerService } from "ngx-spinner";
-import { Observable } from "rxjs";
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { TokenService } from 'app/_services/token.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 @Injectable()
@@ -17,8 +17,8 @@ export class BasicAuthInterceptor implements HttpInterceptor {
                 }
             });
         }
-        
-        this.spinner.show();
+
+        this.spinner.show().then(() => {});
         return next.handle(req).pipe(finalize(() => this.spinner.hide()));
     }
 }

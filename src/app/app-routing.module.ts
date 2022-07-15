@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { main } from '@popperjs/core';
 import { AdminPerfilComponent } from './portal/admin-perfil/admin-perfil.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';

@@ -16,41 +16,6 @@ export class AdminProyectoComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, public proyectoService: ProyectoService, public toastService: ToastService) { }
 
-  ngOnInit(): void {
-  }
-
-  guardarProyecto(){
-    console.log(this.proyecto);
-    if(this.proyecto.id && this.proyecto.id > 0){
-      this.proyectoService.updateProyecto(this.proyecto).subscribe(
-        data => {
-          this.toastService.showSuccess("Proyecto Actualizado");
-          console.log(data);
-          this.activeModal.dismiss("Update OK");
-        }, 
-        err => {
-          err.error.details.forEach(detail => {
-            this.toastService.showDanger(detail);
-          });
-        }
-      )
-    } else {
-      this.proyectoService.saveProyecto(this.proyecto).subscribe(
-        data => {
-          this.toastService.showSuccess("Proyecto Creado");
-          console.log(data);
-          this.activeModal.dismiss("Save OK");
-        }, 
-        err => {
-          err.error.details.forEach(detail => {
-            this.toastService.showDanger(detail);
-          });
-        }
-      )
-    }
-  }
-
-
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -71,19 +36,53 @@ export class AdminProyectoComponent implements OnInit {
       ]],
     customClasses: [
       {
-        name: "quote",
-        class: "quote",
+        name: 'quote',
+        class: 'quote',
       },
       {
         name: 'redText',
         class: 'redText'
       },
       {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
       },
     ]
   };
+
+  ngOnInit(): void {
+  }
+
+  guardarProyecto(): void {
+    console.log(this.proyecto);
+    if (this.proyecto.id && this.proyecto.id > 0){
+      this.proyectoService.updateProyecto(this.proyecto).subscribe(
+        data => {
+          this.toastService.showSuccess('Proyecto Actualizado');
+          console.log(data);
+          this.activeModal.dismiss('Update OK');
+        },
+        err => {
+          err.error.details.forEach(detail => {
+            this.toastService.showDanger(detail);
+          });
+        }
+      );
+    } else {
+      this.proyectoService.saveProyecto(this.proyecto).subscribe(
+        data => {
+          this.toastService.showSuccess('Proyecto Creado');
+          console.log(data);
+          this.activeModal.dismiss('Save OK');
+        },
+        err => {
+          err.error.details.forEach(detail => {
+            this.toastService.showDanger(detail);
+          });
+        }
+      );
+    }
+  }
 
 }

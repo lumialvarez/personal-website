@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { FormsModule } from '@angular/forms';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-detalle-proyecto',
@@ -9,12 +8,11 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./detalle-proyecto.component.css']
 })
 export class DetalleProyectoComponent implements OnInit {
-  public contenidoEscapado:string
-   
-  public proyecto:any;
-  public datos:any = {};
+  public contenidoEscapado: string;
+  public proyecto: any;
+  public datos: any = {};
 
-  constructor(public activeModal: NgbActiveModal, private httpClient: HttpClient,  private FormsModule: FormsModule) { }
+  constructor(public activeModal: NgbActiveModal, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
