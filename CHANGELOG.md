@@ -5,6 +5,10 @@ Personal Web Page
 - User admin in admin portal
 - Contact form
 
+## [1.4.2] - 06/09/2022
+### Fixed
+- Elimination of unnecessary execution of the actualizarEstilosContenido method
+
 ## [1.4.1] - 14/07/2022
 ### Fixed
 - Code quality review
