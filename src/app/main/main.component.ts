@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DetalleProyectoComponent } from './detalle-proyecto/detalle-proyecto.component';
 import { PerfilService } from 'app/_services/perfil.service';
@@ -33,10 +33,18 @@ export class MainComponent implements OnInit {
     this.version = appVersion;
   }
 
+  @HostListener('document:scroll', ['$event'])
+  onScroll = (ev: Event) => {
+    this.actualizarEstilosContenido(ev);
+  }
+
+  @HostListener('document:resize', ['$event'])
+  onResize = (ev: Event) => {
+    this.actualizarEstilosContenido(ev);
+  }
+
   ngOnInit(): void {
     $('[data-toggle="tooltip"]').tooltip();
-    window.addEventListener('scroll', this.actualizarEstilosContenido, true);
-    window.addEventListener('resize', this.actualizarEstilosContenido, true);
 
     this.cargarDatosPerfil();
     this.cargarDatostipoConocimiento();
