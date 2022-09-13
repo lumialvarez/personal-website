@@ -5,6 +5,10 @@ Personal Web Page
 - User admin in admin portal
 - Contact form
 
+## [1.4.3] - 12/09/2022
+### Fixed
+- Visual issues in mobile view (main and login)
+
 ## [1.4.2] - 06/09/2022
 ### Fixed
 - Elimination of unnecessary execution of the actualizarEstilosContenido method
