@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginUsuario } from 'app/_models/login-usuario';
-import { LoginService } from 'app/_services/login.service';
-import { ToastService } from 'app/_services/toast.service';
-import { TokenService } from 'app/_services/token.service';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {LoginUsuario} from 'app/_models/login-usuario';
+import {LoginService} from 'app/_services/login.service';
+import {ToastService} from 'app/_services/toast.service';
+import {TokenService} from 'app/_services/token.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   errMsj: string[] = [];
 
   nombreUsuario: string;
@@ -29,8 +29,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
-      this.router.navigate(['portal']).then(() => {});
+      this.router.navigate(['portal']).then(() => {
+      });
     }
+  }
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
+    document.body.classList.add('gradient');
+  }
+
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy');
+    document.body.classList.remove('gradient');
   }
 
   inicioSesion(): void {
@@ -42,7 +53,8 @@ export class LoginComponent implements OnInit {
             this.tokenService.setToken(dataLogin.token);
             this.tokenService.setUser(dataUser);
             this.tokenService.setAuthorities(dataLogin.authorities);
-            this.router.navigate(['portal']).then(() => {});
+            this.router.navigate(['portal']).then(() => {
+            });
           },
           err => {
             this.isLoginfail = true;
@@ -62,6 +74,6 @@ export class LoginComponent implements OnInit {
         });
       }
     );
-  }
+  };
 
 }

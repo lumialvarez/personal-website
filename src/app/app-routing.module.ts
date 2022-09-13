@@ -11,7 +11,7 @@ import { HerramientasComponent } from './portal/herramientas/herramientas.compon
 
 const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, data: { bodyClass: 'gradient' }  },
   {
     path: 'portal', component: PortalComponent, canActivate: [AuthGuardGuard],
     children: [

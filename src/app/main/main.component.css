@@ -1,131 +1,131 @@
 .loadview {
-    background: rgba(12, 36, 97,.9) !important;
-    background-size: cover;
-    background: url(https://resources.lmalvarez.com/img/lmalvarez/background.jpg);
-    min-height: 100vh;
-    height: 100%;
-    max-height: 100%;
+  background: rgba(12, 36, 97, .9) !important;
+  background-size: cover;
+  background: url(https://resources.lmalvarez.com/img/lmalvarez/background.jpg);
+  min-height: 100vh;
+  height: 100%;
+  max-height: 100%;
 }
 
 
 @keyframes slideInFromTop {
-    0% {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    50% {
-        opacity: 0.4;
-    }
-    95% {
-        opacity: 0.9;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1.0;
-    }
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  95% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1.0;
+  }
 }
 
 .main-header {
-    position: relative;
-    background: url(https://resources.lmalvarez.com/img/lmalvarez/background.jpg);
-    background-size: cover;
-    min-height: 100vh;
-    height: 100%;
-    max-height: 100%;
-  }
+  position: relative;
+  background: url(https://resources.lmalvarez.com/img/lmalvarez/background.jpg);
+  background-size: cover;
+  min-height: 100vh;
+  height: 100%;
+  max-height: 100%;
+}
 
 .background-overlay {
-    background: rgba(12, 36, 97,.9) !important;
-    background-size: cover;
-    min-height: 100vh;
-    height: 100%;
-    max-height: 100%;
+  background: rgba(12, 36, 97, .9) !important;
+  background-size: cover;
+  min-height: 100vh;
+  height: 100%;
+  max-height: 100%;
 }
 
 footer {
-    background:rgba(12, 36, 97,1.0);
+  background: rgba(12, 36, 97, 1.0);
 }
 
 #main-name-container {
-    animation: 2s ease-out 0s 1 slideInFromTop;
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
+  animation: 2s ease-out 0s 1 slideInFromTop;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 #main-name-container .col-full {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 #main-name-container h1 {
-    font-size: 3.650em;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    line-height: 1em;
+  font-size: 3.650em;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  line-height: 1em;
 }
 
 #main-name-container h4 {
-    font-weight: 300;
-    letter-spacing: 0.2em;
+  font-weight: 300;
+  letter-spacing: 0.2em;
 }
 
 @media only screen and (max-width: 768px) {
-    #main-name-container h1 {
-        font-size: 1.950em;
-        font-weight: 300;
-        letter-spacing: 0.1em;
-        line-height: 1em;
-    }
-    
-    #main-name-container h4 {
-        font-size: 1.100em;
-        font-weight: 300;
-        letter-spacing: 0.2em;
-    }
+  #main-name-container h1 {
+    font-size: 1.950em;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 1em;
+  }
+
+  #main-name-container h4 {
+    font-size: 1.100em;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+  }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 990px) {
-    #main-name-container h1 {
-        font-size: 2.950em;
-        font-weight: 300;
-        letter-spacing: 0.1em;
-        line-height: 1em;
-    }
-    
-    #main-name-container h4 {
-        font-size: 1.350em;
-        font-weight: 300;
-        letter-spacing: 0.2em;
-    }
+  #main-name-container h1 {
+    font-size: 2.950em;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 1em;
+  }
+
+  #main-name-container h4 {
+    font-size: 1.350em;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+  }
 }
 
 .line {
-    display: block;
-    width: 290px;
-    height: 3px;
-    padding: 0 !important;
-    background: #ccc;
-    background-color: #5b9bbc;
+  display: block;
+  width: 290px;
+  height: 3px;
+  padding: 0 !important;
+  background: #ccc;
+  background-color: #5b9bbc;
 }
 
 section .row .col-full h3 {
-    padding-top: 20px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-} 
+  padding-top: 20px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
 
 section .row .col-full .line {
-    margin-bottom: 15px;
-} 
+  margin-bottom: 15px;
+}
 
 .col-full .progress {
-    background-color:rgba(206, 214, 224,1.0);
+  background-color: rgba(206, 214, 224, 1.0);
 }
 
 .col-full .progress-bar {
-    background-color: rgba(12, 36, 97,1.0);
+  background-color: rgba(12, 36, 97, 1.0);
 }
 
 #app-version {
-    font-size: 0.6em;
+  font-size: 0.6em;
 }

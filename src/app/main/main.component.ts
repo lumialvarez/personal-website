@@ -1,17 +1,17 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DetalleProyectoComponent } from './detalle-proyecto/detalle-proyecto.component';
-import { PerfilService } from 'app/_services/perfil.service';
-import { Perfil } from 'app/_models/main/perfil';
-import { Conocimiento } from 'app/_models/main/conocimiento';
-import { Proyecto } from 'app/_models/main/proyecto';
-import { ConocimientoService } from 'app/_services/conocimiento.service';
-import { CategoriaConocimiento } from 'app/_models/main/categoria-conocimiento';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {DetalleProyectoComponent} from './detalle-proyecto/detalle-proyecto.component';
+import {PerfilService} from 'app/_services/perfil.service';
+import {Perfil} from 'app/_models/main/perfil';
+import {Conocimiento} from 'app/_models/main/conocimiento';
+import {Proyecto} from 'app/_models/main/proyecto';
+import {ConocimientoService} from 'app/_services/conocimiento.service';
+import {CategoriaConocimiento} from 'app/_models/main/categoria-conocimiento';
 
 
 declare var $: any;
 declare var require: any;
-const { version: appVersion } = require('../../../package.json');
+const {version: appVersion} = require('../../../package.json');
 
 @Component({
   selector: 'app-main',
@@ -36,12 +36,12 @@ export class MainComponent implements OnInit {
   @HostListener('document:scroll', ['$event'])
   onScroll = (ev: Event) => {
     this.actualizarEstilosContenido(ev);
-  }
+  };
 
   @HostListener('document:resize', ['$event'])
   onResize = (ev: Event) => {
     this.actualizarEstilosContenido(ev);
-  }
+  };
 
   ngOnInit(): void {
     $('[data-toggle="tooltip"]').tooltip();
@@ -70,7 +70,7 @@ export class MainComponent implements OnInit {
 
     // Altura del nombre principal
     this.actualizarAlturaNombrePrincipal();
-  }
+  };
 
   actualizarAlturaNombrePrincipal(): void {
     const alturaPantalla = window.innerHeight;
@@ -131,7 +131,7 @@ export class MainComponent implements OnInit {
   }
 
   openModalDetalleProyecto(proyecto: any): void {
-    const modalRef = this.modalService.open(DetalleProyectoComponent, { size: 'lg' });
+    const modalRef = this.modalService.open(DetalleProyectoComponent, {size: 'lg'});
     modalRef.componentInstance.proyecto = proyecto;
   }
 }
