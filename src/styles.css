@@ -1,34 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
-.form-control, .btn{
-    border-radius: 0;
+body.gradient {
+  background: linear-gradient(to right, #191919, rgba(12, 36, 97)) !important;
 }
 
-.fill { 
-    min-height: 100%;
-    height: 100%;
+.form-control, .btn {
+  border-radius: 0;
+}
+
+.fill {
+  min-height: 100%;
+  height: 100%;
 }
 
 .col-full {
-    width: 100%;
+  width: 100%;
 }
 
 .centered {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .bg-segundario {
-    background-color: #eee;
+  background-color: #eee;
 }
 
-.card-hover:hover{
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-    cursor: pointer;
+.card-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+  cursor: pointer;
 }
 
 .badge-small {
-    font-size: 60%;
-    font-weight: initial;
-    margin-right: 1px;
+  font-size: 60%;
+  font-weight: initial;
+  margin-right: 1px;
 }

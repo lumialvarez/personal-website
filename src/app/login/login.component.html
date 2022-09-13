@@ -1,22 +1,13 @@
-<div class="body">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="card">
-                    <form #myForm="ngForm" (ngSubmit)="inicioSesion()" class="box">
-                        <h1>Login</h1>
-                        <p class="text-muted">Ingrese el usuario y contraseña</p>
-                        <input id="user" type="text" class="input" placeholder="Ingresa el Usuario"
-                            [(ngModel)]="nombreUsuario" name="usuario" required>
-                        <input id="pass" type="password" class="input" data-type="password"
-                            placeholder="Ingresa la Contraseña" [(ngModel)]="passwordUsuario" name="password" required>
-                        <a class="forgot text-muted" href="#">Recuperar contraseña?</a>
-                        <input type="submit" class="button" [disabled]="!myForm.valid" value="Iniciar Sesión">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button id="btnVolver"  routerLink="/" >Regresar al Inicio</button>
+<div class="container">
+  <form #myForm="ngForm" (ngSubmit)="inicioSesion()" class="box mx-auto d-block">
+    <h1>Login</h1>
+    <p class="text-muted">Ingrese el usuario y contraseña</p>
+    <input id="user" type="text" class="input" placeholder="Ingresa el Usuario"
+           [(ngModel)]="nombreUsuario" name="usuario" required>
+    <input id="pass" type="password" class="input" data-type="password"
+           placeholder="Ingresa la Contraseña" [(ngModel)]="passwordUsuario" name="password" required>
+    <a class="forgot text-muted" href="#">Recuperar contraseña?</a>
+    <input type="submit" class="button" [disabled]="!myForm.valid" value="Iniciar Sesión">
+  </form>
 </div>
+<button id="btnVolver" routerLink="/">Regresar al Inicio</button>

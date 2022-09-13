@@ -14,22 +14,22 @@
     <!-- Page Content-->
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
-            <button class="btn" id="menu-toggle" (click)="toggleSidebarEvent()">
+            <button class="btn" id="portal-menu-toggle" (click)="toggleSidebarEvent()">
                 <i class="fas fa-angle-left"></i>
                 <i class="fas fa-angle-right"></i>
             </button>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#portalNavbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="portalNavbarSupportedContent">
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" [routerLink]="" data-bs-toggle="modal" data-bs-target="#notificacionModal">
-                            <i class="fas fa-bell"> {{notificaciones.length}}</i>
+                            <i class="fas fa-bell"></i> {{notificaciones.length}}
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                        <a class="nav-link dropdown-toggle" id="portalNavbarDropdown" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="far fa-user"></i> {{usuario.nombre}}
                         </a>

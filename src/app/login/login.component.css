@@ -1,104 +1,98 @@
 @keyframes opacityInAnimation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1.0;
-    }
-}
-
-.body {
-    min-height: 100vh;
-    background: linear-gradient(to right, #191919, rgba(12, 36, 97)) !important;
-    background-size: cover;
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1.0;
+  }
 }
 
 .card {
-    margin-bottom: 20px;
-    border: none;
-    background-color: transparent !important;
+  margin-bottom: 20px;
+  border: none;
+  background-color: transparent !important;
 }
 
 .box {
-    width: 450px;
-    padding: 40px;
-    top: 50%;
-    left: 50%;
-    background: #191919;
-    text-align: center;
-    transition: 0.25s;
-    margin-top: 100px;
-    animation: 1s ease-out 0s 1 opacityInAnimation;
+  width: 450px;
+  padding: 40px;
+  top: 50%;
+  left: 50%;
+  background: #191919;
+  text-align: center;
+  transition: 0.25s;
+  margin-top: 100px;
+  animation: 1s ease-out 0s 1 opacityInAnimation;
 }
 
 .box input[type="text"],
 .box input[type="password"] {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid rgba(12, 36, 97);
-    padding: 10px 10px;
-    width: 250px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid rgba(12, 36, 97);
+  padding: 10px 10px;
+  width: 250px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s
 }
 
 .box h1 {
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500
 }
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
-    width: 300px;
-    border-color: #ccc
+  width: 300px;
+  border-color: #ccc
 }
 
 .box input[type="submit"] {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #ccc;
-    padding: 14px 40px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s;
-    cursor: pointer;
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #ccc;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
 }
 
 .box input[type="submit"]:hover {
-    background: #ccc;
-    color: #191919;
-    font-weight: bold;
+  background: #ccc;
+  color: #191919;
+  font-weight: bold;
 }
 
 .forgot {
-    text-decoration: underline
+  text-decoration: underline
 }
 
 #btnVolver {
-    position: fixed;
-    top: 0;
-    right: 30px;
-    border: 0;
-    background: none;
-    margin: 20px auto;
-    text-align: center;
-    color: white;
-    border-radius: 24px;
-    transition: 0.55s;
-    padding: 5px 30px 5px 30px;
+  position: fixed;
+  top: 0;
+  right: 30px;
+  border: 0;
+  background: none;
+  margin: 20px auto;
+  text-align: center;
+  color: white;
+  border-radius: 24px;
+  transition: 0.55s;
+  padding: 5px 30px 5px 30px;
 }
 
 #btnVolver:hover {
-    background: #ccc;
-    color: rgba(12, 36, 97);
+  background: #ccc;
+  color: rgba(12, 36, 97);
 }
