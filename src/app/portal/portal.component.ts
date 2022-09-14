@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Notificacion } from 'app/_models/notificacion';
-import { User } from 'app/_models/user';
-import { NotificacionService } from 'app/_services/notificacion.service';
-import { TokenService } from 'app/_services/token.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Notificacion} from 'app/_models/notificacion';
+import {User} from 'app/_models/user';
+import {NotificacionService} from 'app/_services/notificacion.service';
+import {TokenService} from 'app/_services/token.service';
 
 @Component({
   selector: 'app-portal',
@@ -15,7 +15,8 @@ export class PortalComponent implements OnInit {
   usuario: User;
   notificaciones: Notificacion[] = [];
 
-  constructor(private tokenService: TokenService, private notificacionService: NotificacionService, private router: Router) { }
+  constructor(private tokenService: TokenService, private notificacionService: NotificacionService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.usuario = this.tokenService.getUser();
@@ -40,8 +41,8 @@ export class PortalComponent implements OnInit {
 
   cerrarSesion(): void {
     this.tokenService.logOut();
-    this.router.navigate(['login']).then(() => {});
+    this.router.navigate(['login']).then(() => {
+    });
   }
-
 
 }
