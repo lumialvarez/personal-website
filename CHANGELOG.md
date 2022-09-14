@@ -5,6 +5,10 @@ Personal Web Page
 - User admin in admin portal
 - Contact form
 
+## [1.4.4] - 13/09/2022
+### Fixed
+- Visual issues in mobile view (internal portal)
+
 ## [1.4.3] - 12/09/2022
 ### Fixed
 - Visual issues in mobile view (main and login)

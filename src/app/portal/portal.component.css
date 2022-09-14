@@ -37,6 +37,20 @@
   margin-left: 0;
 }
 
+.navbar {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#portalNavbarSupportedContent {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #afb0b4;
+}
+
 #portal-menu-toggle {
   color: #afb0b4;
 }
