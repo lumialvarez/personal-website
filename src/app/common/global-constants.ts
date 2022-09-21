@@ -1,6 +1,6 @@
 export class GlobalConstants {
-    public static apiIntBasePath = 'https://services.lmalvarez.com/api/int/';
-    public static apiExtBasePath = 'https://services.lmalvarez.com/api/ext/';
+    public static apiIntBasePath = 'https://services.lmalvarez.com/personal-website-services/api/int/';
+    public static apiExtBasePath = 'https://services.lmalvarez.com/personal-website-services/api/ext/';
     public static loginPath = 'v1/auth/login';
     public static userPath = 'v1/auth/user';
     public static perfilPath = 'v1/perfil';
