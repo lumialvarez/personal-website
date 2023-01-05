@@ -5,6 +5,10 @@ Personal Web Page
 - User admin in admin portal
 - Contact form
 
+## [1.4.6] - 05/01/2023
+### Fixed
+- Fix vulnerabilities shown by dependabot [Issue #37](https://github.com/lumialvarez/personal-website/issues/37)
+
 ## [1.4.5] - 20/09/2022
 ### Fixed
 - API path change
