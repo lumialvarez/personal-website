@@ -6,11 +6,11 @@
   <div class="background-overlay text-white">
     <div class="container fill">
       <div id="main-name-container" class="text-center">
-        <div *ngIf="perfil">
+        <div *ngIf="profile">
           <div class="row">
             <div class="col-full">
               <h1>
-                {{perfil.nombre}}
+                {{profile.profileData.name}}
               </h1>
             </div>
           </div>
@@ -22,7 +22,7 @@
           <div class="row">
             <div class="col-full">
               <h4>
-                {{perfil.profesion}}
+                {{profile.profileData.profession}}
               </h4>
             </div>
           </div>
@@ -32,7 +32,7 @@
   </div>
 </header>
 
-<div *ngIf="perfil">
+<div *ngIf="profile">
   <app-menu></app-menu>
 
   <!-- ABOUT -->
@@ -63,7 +63,7 @@
           </div>
           <div class="row">
             <div class="text-left  pt-3 pl-3 pr-3">
-              <div [innerHTML]="perfil.perfilProfesional"></div>
+              <div [innerHTML]="profile.profileData.professionalProfile"></div>
             </div>
           </div>
           <div class="row pb-3">
@@ -86,7 +86,7 @@
           </div>
           <div class="row">
             <div class="text-left p-3">
-              <div [innerHTML]="perfil.perfilPersonal"></div>
+              <div [innerHTML]="profile.profileData.personalProfile"></div>
             </div>
           </div>
         </div>
@@ -119,15 +119,15 @@
           <div class="col-full">
             <div ngbDropdown>
               <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
-                {{ categoriaSeleccionada || "Selecciona un tema" }}
+                {{ selectedCategory || "Selecciona un tema" }}
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button ngbDropdownItem id="option"
-                        on-click="categoriaSeleccionada=null; procesarConocimientos()">Todos
+                        on-click="selectedCategory=null; processKnowledge()">Todos
                 </button>
-                <div *ngFor="let cat of categorias;">
+                <div *ngFor="let cat of categories;">
                   <button ngbDropdownItem id="optionCategory"
-                          on-click="categoriaSeleccionada=cat.nombre; procesarConocimientos()">{{cat.nombre}}
+                          on-click="selectedCategory=cat; processKnowledge()">{{cat}}
                   </button>
                 </div>
               </div>
@@ -144,17 +144,17 @@
           </div>
           <div class="row">
             <div class="col-full text-left pl-5 pr-5 pb-5">
-              <div class="row" *ngFor="let item of lenguajes; let i = index" data-toggle="tooltip"
-                   [title]=item.descripcion>
+              <div class="row" *ngFor="let item of knowledgeLanguages; let i = index" data-toggle="tooltip"
+                   [title]=item.description>
                 <div class="col-full">
                   <div class="row">
-                    <div class="col-full">{{ item.nombre }}</div>
+                    <div class="col-full">{{ item.name }}</div>
                   </div>
                   <div class="row">
                     <div class="col-full">
                       <div class="progress">
                         <div class="progress-bar " role="progressbar"
-                             [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
+                             [style.width]="item.level + '%'" aria-valuenow="{{ item.level }}"
                              aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
@@ -172,17 +172,17 @@
           </div>
           <div class="row">
             <div class="col-full text-left pl-5 pr-5 pb-5">
-              <div class="row" *ngFor="let item of frameworks; let i = index" data-toggle="tooltip"
-                   [title]=item.descripcion>
+              <div class="row" *ngFor="let item of knowledgeFrameworks; let i = index" data-toggle="tooltip"
+                   [title]=item.description>
                 <div class="col-full">
                   <div class="row">
-                    <div class="col-full">{{ item.nombre }}</div>
+                    <div class="col-full">{{ item.name }}</div>
                   </div>
                   <div class="row">
                     <div class="col-full">
                       <div class="progress">
                         <div class="progress-bar" role="progressbar"
-                             [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
+                             [style.width]="item.level + '%'" aria-valuenow="{{ item.level }}"
                              aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
@@ -200,17 +200,17 @@
           </div>
           <div class="row">
             <div class="col-full text-left pl-5 pr-5 pb-5">
-              <div class="row" *ngFor="let item of herramientas; let i = index" data-toggle="tooltip"
-                   [title]=item.descripcion>
+              <div class="row" *ngFor="let item of knowledgeTools; let i = index" data-toggle="tooltip"
+                   [title]=item.description>
                 <div class="col-full">
                   <div class="row">
-                    <div class="col-full">{{ item.nombre }}</div>
+                    <div class="col-full">{{ item.name }}</div>
                   </div>
                   <div class="row">
                     <div class="col-full">
                       <div class="progress">
                         <div class="progress-bar" role="progressbar"
-                             [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
+                             [style.width]="item.level + '%'" aria-valuenow="{{ item.level }}"
                              aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
@@ -228,17 +228,17 @@
           </div>
           <div class="row">
             <div class="col-full text-left pl-5 pr-5 pb-5">
-              <div class="row" *ngFor="let item of otros; let i = index" data-toggle="tooltip"
-                   [title]=item.descripcion>
+              <div class="row" *ngFor="let item of knowledgeOther; let i = index" data-toggle="tooltip"
+                   [title]=item.description>
                 <div class="col-full">
                   <div class="row">
-                    <div class="col-full">{{ item.nombre }}</div>
+                    <div class="col-full">{{ item.name }}</div>
                   </div>
                   <div class="row">
                     <div class="col-full">
                       <div class="progress">
                         <div class="progress-bar" role="progressbar"
-                             [style.width]="item.nivel + '%'" aria-valuenow="{{ item.nivel }}"
+                             [style.width]="item.level + '%'" aria-valuenow="{{ item.level }}"
                              aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
@@ -276,13 +276,13 @@
         <div class="row">
           <!-- LISTA -->
           <div class="col-lg-3 d-flex mb-3 align-items-stretch"
-               *ngFor="let item of perfil.proyectos; let i = index">
-            <div class="card card-hover" (click)="openModalDetalleProyecto(item)">
+               *ngFor="let item of profile.profileData.projects; let i = index">
+            <div class="card card-hover" (click)="openModalProjectDetail(item)">
               <div class="card-body">
-                <img src={{item.img}} alt="Imagen del proyecto" class="img-fluid rounded-circle w-50" loading="lazy">
-                <h4>{{item.nombre}}</h4>
+                <img src={{item.mainImage}} alt="Imagen del proyecto" class="img-fluid rounded-circle w-50" loading="lazy">
+                <h4>{{item.name}}</h4>
                 <p>
-                  {{item.descripcion}}
+                  {{item.description}}
                 </p>
               </div>
             </div>

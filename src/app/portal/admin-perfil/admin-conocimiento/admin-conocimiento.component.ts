@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CategoriaConocimiento } from 'app/_models/main/categoria-conocimiento';
-import { Conocimiento } from 'app/_models/main/conocimiento';
-import { TipoConocimiento } from 'app/_models/main/tipo-conocimiento';
-import { ConocimientoService } from 'app/_services/conocimiento.service';
 import { ToastService } from 'app/_services/toast.service';
+import {Knowledge} from '../../../_models/main/Profile';
 
 @Component({
   selector: 'app-admin-conocimiento',
@@ -13,25 +10,27 @@ import { ToastService } from 'app/_services/toast.service';
 })
 export class AdminConocimientoComponent implements OnInit {
 
-  public conocimiento: Conocimiento;
+  public conocimiento: Knowledge;
   public categoriasConocimiento: any[];
-  public tiposConocimiento: TipoConocimiento[];
-  public tipoConocimientoSeleccionado: TipoConocimiento;
+  public tiposConocimiento: string[];
+  public tipoConocimientoSeleccionado: string;
 
-  constructor(public activeModal: NgbActiveModal, public conocimientoService: ConocimientoService, public toastService: ToastService) { }
+  constructor(public activeModal: NgbActiveModal, public toastService: ToastService) { }
 
   ngOnInit(): void {
     this.cargarCategoriasConocimiento();
     this.cargarTiposConocimiento();
-
+/*
     this.tipoConocimientoSeleccionado = new TipoConocimiento({ id: 0, nombre: '' });
     if (this.conocimiento.tipo && this.conocimiento.tipo.id) {
       this.tipoConocimientoSeleccionado = new TipoConocimiento(this.conocimiento.tipo);
     }
+ */
     console.log(this.tipoConocimientoSeleccionado);
   }
 
   cargarCategoriasConocimiento(): void {
+    /*
     this.conocimientoService.getCategoriasConocimiento().subscribe(
       data => {
         this.categoriasConocimiento = data;
@@ -48,9 +47,11 @@ export class AdminConocimientoComponent implements OnInit {
         console.log(err);
       }
     );
+     */
   }
 
   cargarTiposConocimiento(): void {
+    /*
     this.conocimientoService.getTiposConocimiento().subscribe(
       data => {
         this.tiposConocimiento = data;
@@ -59,6 +60,7 @@ export class AdminConocimientoComponent implements OnInit {
         console.log(err);
       }
     );
+     */
   }
 
   compareTipoConocimiento(tc1: any, tc2: any): boolean {
@@ -66,6 +68,7 @@ export class AdminConocimientoComponent implements OnInit {
   }
 
   onChangeCategoria(categoria: any, isChecked: boolean): void {
+    /*
     if (isChecked) {
       const tmpCategoria = new CategoriaConocimiento(categoria);
       this.conocimiento.categorias.push(tmpCategoria);
@@ -74,9 +77,11 @@ export class AdminConocimientoComponent implements OnInit {
       this.conocimiento.categorias.splice(index, 1);
     }
     console.log(this.tipoConocimientoSeleccionado);
+     */
   }
 
   guardarConocimiento(): void {
+    /*
     this.conocimiento.tipo = new TipoConocimiento(this.tipoConocimientoSeleccionado);
     console.log(this.conocimiento);
     if (this.conocimiento.id && this.conocimiento.id > 0) {
@@ -106,6 +111,7 @@ export class AdminConocimientoComponent implements OnInit {
         }
       );
     }
+     */
   }
 
 }

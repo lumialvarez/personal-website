@@ -8,19 +8,19 @@
     <div class="form-group">
         <label for="conocimientoNombre">Nombre</label>
         <input type="text" class="form-control" id="conocimientoNombre" placeholder="Nombre"
-            [(ngModel)]="conocimiento.nombre">
+            [(ngModel)]="conocimiento.name">
     </div>
 
     <div class="form-group">
         <label for="conocimientoNivel">Nivel</label>
         <input type="number" min="0" max="100" class="form-control" id="conocimientoNivel" placeholder="Nivel"
-            [(ngModel)]="conocimiento.nivel">
+            [(ngModel)]="conocimiento.level">
     </div>
 
     <div class="form-group">
         <label for="conocimientoDescripcion">Descripcion</label>
         <input type="text" class="form-control" id="conocimientoDescripcion" placeholder="Descripcion"
-            [(ngModel)]="conocimiento.descripcion">
+            [(ngModel)]="conocimiento.description">
     </div>
 
     <div class="input-group mb-3">
@@ -29,7 +29,7 @@
         </div>
         <select class="form-select" id="conocimientoTipo" [compareWith]="compareTipoConocimiento" [(ngModel)]="tipoConocimientoSeleccionado">
             <option disabled selected>Seleccionar...</option>
-            <option *ngFor="let tipo of tiposConocimiento" [ngValue]="tipo">{{tipo.nombre}}</option>
+            <option *ngFor="let tipo of tiposConocimiento" [ngValue]="tipo">{{tipo}}</option>
         </select>
     </div>
 

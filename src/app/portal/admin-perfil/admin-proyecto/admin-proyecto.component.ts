@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Proyecto } from 'app/_models/main/proyecto';
-import { ProyectoService } from 'app/_services/proyecto.service';
 import { ToastService } from 'app/_services/toast.service';
+import {Project} from '../../../_models/main/Profile';
 
 @Component({
   selector: 'app-admin-proyecto',
@@ -12,9 +11,9 @@ import { ToastService } from 'app/_services/toast.service';
 })
 export class AdminProyectoComponent implements OnInit {
 
-  public proyecto: Proyecto;
+  public project: Project;
 
-  constructor(public activeModal: NgbActiveModal, public proyectoService: ProyectoService, public toastService: ToastService) { }
+  constructor(public activeModal: NgbActiveModal, public toastService: ToastService) { }
 
   config: AngularEditorConfig = {
     editable: true,
@@ -55,9 +54,10 @@ export class AdminProyectoComponent implements OnInit {
   }
 
   guardarProyecto(): void {
-    console.log(this.proyecto);
-    if (this.proyecto.id && this.proyecto.id > 0){
-      this.proyectoService.updateProyecto(this.proyecto).subscribe(
+    console.log(this.project);
+    /*
+    if (this.project.id && this.project.id > 0){
+      this.proyectoService.updateProyecto(this.project).subscribe(
         data => {
           this.toastService.showSuccess('Proyecto Actualizado');
           console.log(data);
@@ -70,7 +70,7 @@ export class AdminProyectoComponent implements OnInit {
         }
       );
     } else {
-      this.proyectoService.saveProyecto(this.proyecto).subscribe(
+      this.proyectoService.saveProyecto(this.project).subscribe(
         data => {
           this.toastService.showSuccess('Proyecto Creado');
           console.log(data);
@@ -83,6 +83,7 @@ export class AdminProyectoComponent implements OnInit {
         }
       );
     }
+    */
   }
 
 }

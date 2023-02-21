@@ -1,12 +1,9 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DetalleProyectoComponent} from './detalle-proyecto/detalle-proyecto.component';
-import {PerfilService} from 'app/_services/perfil.service';
-import {Perfil} from 'app/_models/main/perfil';
-import {Conocimiento} from 'app/_models/main/conocimiento';
-import {Proyecto} from 'app/_models/main/proyecto';
-import {ConocimientoService} from 'app/_services/conocimiento.service';
-import {CategoriaConocimiento} from 'app/_models/main/categoria-conocimiento';
+
+import {Knowledge, Profile, Project} from '../_models/main/Profile';
+import {ProfileService} from '../_services/perfil.service';
 
 
 declare var $: any;
@@ -19,35 +16,34 @@ const {version: appVersion} = require('../../../package.json');
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  public perfil: Perfil = null;
+  public profile: Profile = null;
 
   public version;
-  public lenguajes: Conocimiento[] = [];
-  public frameworks: Conocimiento[] = [];
-  public herramientas: Conocimiento[] = [];
-  public otros: Conocimiento[] = [];
-  public categorias: CategoriaConocimiento[] = [];
-  public categoriaSeleccionada: string = null;
+  public knowledgeLanguages: Knowledge[] = [];
+  public knowledgeFrameworks: Knowledge[] = [];
+  public knowledgeTools: Knowledge[] = [];
+  public knowledgeOther: Knowledge[] = [];
+  public categories: string[] = [];
+  public selectedCategory: string = null;
 
-  constructor(private modalService: NgbModal, private perfilService: PerfilService, public conocimientoService: ConocimientoService) {
+  constructor(private modalService: NgbModal, private profileService: ProfileService) {
     this.version = appVersion;
   }
 
   @HostListener('document:scroll', ['$event'])
   onScroll = (ev: Event) => {
     this.actualizarEstilosContenido(ev);
-  };
+  }
 
   @HostListener('document:resize', ['$event'])
   onResize = (ev: Event) => {
     this.actualizarEstilosContenido(ev);
-  };
+  }
 
   ngOnInit(): void {
     $('[data-toggle="tooltip"]').tooltip();
 
-    this.cargarDatosPerfil();
-    this.cargarDatostipoConocimiento();
+    this.loadProfile();
   }
 
   actualizarEstilosContenido = (s) => {
@@ -70,7 +66,7 @@ export class MainComponent implements OnInit {
 
     // Altura del nombre principal
     this.actualizarAlturaNombrePrincipal();
-  };
+  }
 
   actualizarAlturaNombrePrincipal(): void {
     const alturaPantalla = window.innerHeight;
@@ -82,56 +78,48 @@ export class MainComponent implements OnInit {
     }
   }
 
-  cargarDatosPerfil(): void {
-    this.perfil = null;
-    this.perfilService.getPerfilExt().subscribe({
+  loadProfile(): void {
+    this.profile = null;
+    this.profileService.getProfilesExternal().subscribe({
       next: (data) => {
-        this.perfil = data[0];
-        this.perfil.proyectos.sort((a: Proyecto, b: Proyecto) => -(b.id - a.id));
-        this.procesarConocimientos();
+        console.log(data);
+        this.profile = data.profiles[0];
+        this.profile.profileData.projects.sort((a: Project, b: Project) => -(b.order - a.order));
+        this.processKnowledge();
       },
       error: (e) => console.error(e),
       complete: () => this.actualizarAlturaNombrePrincipal()
     });
   }
 
-  cargarDatostipoConocimiento(): void {
-    this.conocimientoService.getCategoriasConocimientoExt().subscribe({
-      next: (data) => {
-        this.categorias = data;
-      },
-      error: (e) => console.error(e)
-    });
-  }
+  processKnowledge(): void {
+    this.knowledgeLanguages = [];
+    this.knowledgeFrameworks = [];
+    this.knowledgeTools = [];
+    this.knowledgeOther = [];
 
-  procesarConocimientos(): void {
-    this.lenguajes = [];
-    this.frameworks = [];
-    this.herramientas = [];
-    this.otros = [];
-
-    for (const conocimiento of this.perfil.conocimientos) {
-      if (!this.categoriaSeleccionada || conocimiento.categorias.find((item) => item.nombre === this.categoriaSeleccionada)) {
-        if (conocimiento.tipo.nombre === 'Lenguaje') {
-          this.lenguajes.push(conocimiento);
-        } else if (conocimiento.tipo.nombre === 'Framework') {
-          this.frameworks.push(conocimiento);
-        } else if (conocimiento.tipo.nombre === 'Herramienta') {
-          this.herramientas.push(conocimiento);
-        } else if (conocimiento.tipo.nombre === 'Otros') {
-          this.otros.push(conocimiento);
+    for (const knowledge of this.profile.profileData.knowledges) {
+      if (!this.selectedCategory || knowledge.categories.find((item) => item === this.selectedCategory)) {
+        if (knowledge.type === 'Lenguaje') {
+          this.knowledgeLanguages.push(knowledge);
+        } else if (knowledge.type === 'Framework') {
+          this.knowledgeFrameworks.push(knowledge);
+        } else if (knowledge.type === 'Herramienta') {
+          this.knowledgeTools.push(knowledge);
+        } else if (knowledge.type === 'Otros') {
+          this.knowledgeOther.push(knowledge);
         }
       }
     }
 
-    this.lenguajes.sort((a, b) => -(a.nivel - b.nivel));
-    this.frameworks.sort((a, b) => -(a.nivel - b.nivel));
-    this.herramientas.sort((a, b) => -(a.nivel - b.nivel));
-    this.otros.sort((a, b) => -(a.nivel - b.nivel));
+    this.knowledgeLanguages.sort((a, b) => -(a.level - b.level));
+    this.knowledgeFrameworks.sort((a, b) => -(a.level - b.level));
+    this.knowledgeTools.sort((a, b) => -(a.level - b.level));
+    this.knowledgeOther.sort((a, b) => -(a.level - b.level));
   }
 
-  openModalDetalleProyecto(proyecto: any): void {
+  openModalProjectDetail(project: Project): void {
     const modalRef = this.modalService.open(DetalleProyectoComponent, {size: 'lg'});
-    modalRef.componentInstance.proyecto = proyecto;
+    modalRef.componentInstance.project = project;
   }
 }

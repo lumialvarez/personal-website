@@ -26,13 +26,13 @@
         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
           <li class="nav-item active">
             <a class="nav-link" [routerLink]="" data-bs-toggle="modal" data-bs-target="#notificacionModal">
-              <i class="fas fa-bell"></i> {{notificaciones.length}}
+              <i class="fas fa-bell"></i> {{user.notifications.length}}
             </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="portalNavbarDropdown" href="#" role="button"
                data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="far fa-user"></i> {{usuario.nombre}}
+              <i class="far fa-user"></i> {{user.name}}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" [routerLink]="" skipLocationChange>Action</a>
@@ -64,11 +64,11 @@
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <ng-container *ngFor="let notificacion of notificaciones; let i = index">
+          <ng-container *ngFor="let notification of user.notifications; let i = index">
             <div class="row">
               <div class="col-1">{{i + 1}}</div>
-              <div class="col-10'">{{notificacion.detalle}}</div>
-              <div class="col-1"><a (click)="marcarNotificacionComoLeida(notificacion.id)"><i
+              <div class="col-10'">{{notification.detail}}</div>
+              <div class="col-1"><a (click)="setReadNotification(notification.id)"><i
                 class="fas fa-eye-slash"></i></a></div>
             </div>
           </ng-container>

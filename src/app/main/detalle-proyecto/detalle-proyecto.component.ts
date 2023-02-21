@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {Project} from '../../_models/main/Profile';
 
 @Component({
   selector: 'app-detalle-proyecto',
@@ -8,9 +9,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./detalle-proyecto.component.css']
 })
 export class DetalleProyectoComponent implements OnInit {
-  public contenidoEscapado: string;
-  public proyecto: any;
-  public datos: any = {};
+  public escapedContent: string;
+  public project: Project;
+  public data: any = {};
 
   constructor(public activeModal: NgbActiveModal, private httpClient: HttpClient) { }
 

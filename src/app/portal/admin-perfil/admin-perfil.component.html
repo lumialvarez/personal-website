@@ -3,12 +3,12 @@
         <label for="selectorIdioma">Idioma</label>
         <div ngbDropdown id="selectorIdioma">
             <button class="btn" id="dropdownBasic" ngbDropdownToggle>
-                {{ idiomaSeleccionado || "Selecciona el idioma" }}
+                {{ selectedLanguage || "Selecciona el idioma" }}
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic">
-                <div *ngFor="let perfil of lstPerfiles;">
+                <div *ngFor="let perfil of profileList;">
                     <button ngbDropdownItem id="option"
-                        on-click="perfilSeleccionado=perfil; procesarSeleccionPerfil();">{{perfil.idioma.nombre}}
+                        on-click="selectedProfile=perfil; procesarSeleccionPerfil();">{{perfil.idioma.nombre}}
                     </button>
                 </div>
             </div>
@@ -16,29 +16,29 @@
         </div>
     </div>
 
-    <div *ngIf="perfilSeleccionado">
+    <div *ngIf="selectedProfile">
 
         <div class="form-group">
             <label for="perfilNombre">Nombre</label>
             <input type="text" class="form-control" id="perfilNombre" placeholder="Nombre"
-                [(ngModel)]="perfilSeleccionado.nombre">
+                [(ngModel)]="selectedProfile.nombre">
         </div>
 
         <div class="form-group">
             <label for="perfilProfesion">Profesion</label>
             <input type="text" class="form-control" id="perfilProfesion" placeholder="Profesion"
-                [(ngModel)]="perfilSeleccionado.profesion">
+                [(ngModel)]="selectedProfile.profesion">
         </div>
 
         <div class="form-group">
             <label for="perfilPerfilProfesional">Perfil Profesional</label>
-            <angular-editor id="perfilPerfilProfesional" [(ngModel)]="perfilSeleccionado.perfilProfesional"
+            <angular-editor id="perfilPerfilProfesional" [(ngModel)]="selectedProfile.perfilProfesional"
                 [config]="config"></angular-editor>
         </div>
 
         <div class="form-group">
             <label for="perfilPerfilPersonal">Perfil Personal</label>
-            <angular-editor id="perfilPerfilPersonal" [(ngModel)]="perfilSeleccionado.perfilPersonal" [config]="config">
+            <angular-editor id="perfilPerfilPersonal" [(ngModel)]="selectedProfile.perfilPersonal" [config]="config">
             </angular-editor>
         </div>
 
@@ -64,23 +64,23 @@
                             (change)="ordenarConocimientos('tipoNivel')">
                         <label class="form-check-label" for="inlineRadio3">Tipo/Nivel</label>
                     </div>
-                    
+
                 </div>
                 <div class="col-2">
                     Filtro
                 </div>
-                <div class="col-10"><input type="text"  [(ngModel)]="filtroConocimiento"></div>
+                <div class="col-10"><input type="text"  [(ngModel)]="knowledgeFilter"></div>
                 <div class="col-12 p-3">
-                    <button type="button" class="btn btn-outline-info" (click)="openModalCrearConocimiento()">
+                    <button type="button" class="btn btn-outline-info" (click)="openModalCreateKnowledge()">
                         <i class="fas fa-plus"></i> Crear nuevo
                     </button>
                 </div>
             </div>
             <div class="row">
-                <ng-container *ngFor="let conocimiento of perfilSeleccionado.conocimientos; let i = index">
+                <ng-container *ngFor="let conocimiento of selectedProfile.conocimientos; let i = index">
                 <div class="col-6 col-md-6 col-lg-4 col-xl-3 mb-2"
-                *ngIf="conocimiento.nombre.toLowerCase().includes(filtroConocimiento.toLowerCase())">
-                    <div class="card card-hover" (click)="openModalModificarConocimiento(conocimiento)" >
+                *ngIf="conocimiento.nombre.toLowerCase().includes(knowledgeFilter.toLowerCase())">
+                    <div class="card card-hover" (click)="openModalUpdateKnowledge(conocimiento)" >
                         <div class="card-body">
 
                             <div class="row">
@@ -117,8 +117,8 @@
         <div class="form-group">
             <hr>
             <div class="row">
-                <div class="col-12 col-lg-6" *ngFor="let proyecto of perfilSeleccionado.proyectos; let i = index">
-                    <div class="card card-hover" (click)="openModalModificarProyecto(proyecto)">
+                <div class="col-12 col-lg-6" *ngFor="let proyecto of selectedProfile.proyectos; let i = index">
+                    <div class="card card-hover" (click)="openModalUpdateProject(proyecto)">
                         <h5 class="card-header">{{proyecto.nombre}}</h5>
                         <div class="card-body">
                             <p class="card-text">
@@ -131,7 +131,7 @@
         </div>
 
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="perfilEstado" [(ngModel)]="perfilSeleccionado.estado">
+            <input type="checkbox" class="form-check-input" id="perfilEstado" [(ngModel)]="selectedProfile.estado">
             <label class="form-check-label" for="perfilEstado">Estado</label>
         </div>
 

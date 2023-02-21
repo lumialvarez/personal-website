@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Notificacion} from 'app/_models/notificacion';
 import {User} from 'app/_models/user';
-import {NotificacionService} from 'app/_services/notificacion.service';
+import {NotificationService} from 'app/_services/notification.service';
 import {TokenService} from 'app/_services/token.service';
 
 @Component({
@@ -12,25 +11,18 @@ import {TokenService} from 'app/_services/token.service';
 })
 export class PortalComponent implements OnInit {
   toggleSidebar = false;
-  usuario: User;
-  notificaciones: Notificacion[] = [];
+  user: User;
 
-  constructor(private tokenService: TokenService, private notificacionService: NotificacionService, private router: Router) {
+  constructor(private tokenService: TokenService, private notificacionService: NotificationService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.usuario = this.tokenService.getUser();
-    this.notificacionService.getUnreadNotificaciones().subscribe({
-      next: (data) => {
-        this.notificaciones = data;
-      },
-      error: (err) => console.log(err)
-    });
+    this.user = this.tokenService.getUser();
   }
 
-  marcarNotificacionComoLeida(id: number): void {
-    this.notificacionService.PutReadNotificaciones(id).subscribe({
-      next: (data) => this.notificaciones = this.notificaciones.filter(obj => obj.id !== id),
+  setReadNotification(id: Int32Array): void {
+    this.notificacionService.SetReadNotification(id).subscribe({
+      next: (data) => this.user.notifications = this.user.notifications.filter(obj => obj.id !== id),
       error: (err) => console.log(err)
     });
   }

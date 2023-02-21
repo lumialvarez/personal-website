@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginUsuario} from 'app/_models/login-usuario';
+import {LoginRequest} from 'app/_services/dto/login-request';
 import {LoginService} from 'app/_services/login.service';
 import {ToastService} from 'app/_services/toast.service';
 import {TokenService} from 'app/_services/token.service';
@@ -13,11 +13,11 @@ import {TokenService} from 'app/_services/token.service';
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   errMsj: string[] = [];
 
-  nombreUsuario: string;
-  passwordUsuario: string;
-  isLoginfail = false;
+  userName: string;
+  passwordUser: string;
+  isLoginFail = false;
 
-  public loginUsuario: LoginUsuario;
+  public loginRequest: LoginRequest;
 
   constructor(
     private tokenService: TokenService,
@@ -44,20 +44,19 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     document.body.classList.remove('gradient');
   }
 
-  inicioSesion(): void {
-    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.passwordUsuario);
-    this.loginService.login(this.loginUsuario).subscribe(
+  login(): void {
+    this.loginRequest = new LoginRequest(this.userName, this.passwordUser);
+    this.loginService.login(this.loginRequest).subscribe(
       dataLogin => {
-        this.loginService.getUserByUsername(dataLogin.nombreUsuario, dataLogin.token).subscribe(
+        this.loginService.getCurrentUserOfToken(dataLogin.token).subscribe(
           dataUser => {
             this.tokenService.setToken(dataLogin.token);
             this.tokenService.setUser(dataUser);
-            this.tokenService.setAuthorities(dataLogin.authorities);
             this.router.navigate(['portal']).then(() => {
             });
           },
           err => {
-            this.isLoginfail = true;
+            this.isLoginFail = true;
             this.errMsj = err.error.details;
             this.errMsj.forEach(detail => {
               this.toastService.showDanger(detail);
@@ -67,13 +66,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       err => {
         console.log(err);
-        this.isLoginfail = true;
+        this.isLoginFail = true;
         this.errMsj = err.error.details;
         this.errMsj.forEach(detail => {
           this.toastService.showDanger(detail);
         });
       }
     );
-  };
+  }
 
 }
