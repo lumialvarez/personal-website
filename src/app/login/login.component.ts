@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           err => {
             this.isLoginFail = true;
-            this.errMsj = err.error.details;
+            this.errMsj = err.error.Cause;
             this.errMsj.forEach(detail => {
               this.toastService.showDanger(detail);
             });
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       err => {
         console.log(err);
         this.isLoginFail = true;
-        this.errMsj = err.error.details;
+        this.errMsj = err.error.Cause;
         this.errMsj.forEach(detail => {
           this.toastService.showDanger(detail);
         });
