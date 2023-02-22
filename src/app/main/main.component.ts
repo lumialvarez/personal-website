@@ -23,7 +23,7 @@ export class MainComponent implements OnInit {
   public knowledgeFrameworks: Knowledge[] = [];
   public knowledgeTools: Knowledge[] = [];
   public knowledgeOther: Knowledge[] = [];
-  public categories: string[] = [];
+  public categories: string[] = ['Fullstack', 'Backend', 'Integracion', 'Frontend', 'Infraestructura', 'Base de datos', 'Devops'];
   public selectedCategory: string = null;
 
   constructor(private modalService: NgbModal, private profileService: ProfileService) {

@@ -88,6 +88,7 @@ export class AdminPerfilComponent implements OnInit {
       data => {
         this.toastService.showSuccess('Perfil Actualizado');
         console.log(data);
+        this.selectedProfile = data.profile;
       },
       err => {
         err.error.details.forEach(detail => {
@@ -95,6 +96,13 @@ export class AdminPerfilComponent implements OnInit {
         });
       }
     );
+  }
+
+  processFilterKnowledgeName(knowledge: Knowledge, knowledgeFilter: string): boolean {
+    if (!knowledge || !knowledgeFilter) {
+      return true;
+    }
+    return knowledge.name.toLowerCase().includes(knowledgeFilter.toLowerCase());
   }
 
   orderKnowledges(filter: string): void {
@@ -120,6 +128,20 @@ export class AdminPerfilComponent implements OnInit {
       data => {
         // cuando se cierre el modal actualizar lista
         console.log(data);
+        if (data) {
+          const knowledgeModified = data as Knowledge;
+          let exists = false;
+          for (let i = 0; i < this.selectedProfile.profileData.knowledges.length; i++) {
+            if (this.selectedProfile.profileData.knowledges[i].id === knowledgeModified.id) {
+              this.selectedProfile.profileData.knowledges[i] = knowledgeModified;
+              exists = true;
+            }
+          }
+          if (!exists) {
+            knowledgeModified.id = 0;
+            this.selectedProfile.profileData.knowledges.push(knowledgeModified);
+          }
+        }
       }
     );
   }

@@ -37,6 +37,20 @@ export class Project {
 
 
 export class Knowledge {
+  constructor(knowledge?: Knowledge) {
+    if (knowledge) {
+      this.id = knowledge.id;
+      this.name = knowledge.name;
+      this.type = knowledge.type;
+      this.level = knowledge.level;
+      this.description = knowledge.description;
+      this.categories = [];
+      for (const category of knowledge.categories) {
+        this.categories.push(category);
+      }
+    }
+  }
+
   id: number;
   name: string;
   type: string;

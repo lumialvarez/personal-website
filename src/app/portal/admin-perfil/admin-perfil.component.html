@@ -80,7 +80,7 @@
       <div class="row">
         <ng-container *ngFor="let knowledge of selectedProfile.profileData.knowledges; let i = index">
           <div class="col-6 col-md-6 col-lg-4 col-xl-3 mb-2"
-               *ngIf="knowledge.name.toLowerCase().includes(knowledgeFilter.toLowerCase())">
+               *ngIf="processFilterKnowledgeName(knowledge, knowledgeFilter)">
             <div class="card card-hover" (click)="openModalUpdateKnowledge(knowledge)">
               <div class="card-body">
 
@@ -106,8 +106,7 @@
                   </div>
                 </div>
                 <span *ngFor="let category of knowledge.categories"
-                      class="badge badge-small badge-pill badge-info">{{category}}</span>
-
+                      class="badge-small badge-pill badge-info">{{category}} </span>
               </div>
             </div>
           </div>
@@ -127,7 +126,7 @@
       <div class="row">
         <div class="col-12 col-lg-6" *ngFor="let project of selectedProfile.profileData.projects; let i = index">
           <div class="card card-hover" (click)="openModalUpdateProject(project)">
-            <h5 class="card-header">{{project.name}}</h5>
+            <h5 class="card-header">{{project.order}} - {{project.name}}</h5>
             <div class="card-body">
               <p class="card-text">
                 <small>{{project.description}}</small>

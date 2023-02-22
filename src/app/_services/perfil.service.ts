@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {Profile} from 'app/_models/main/profile';
 import {ProfileResponse} from './dto/profile-response';
 import {SaveProfileRequest} from './dto/save-profile-request';
+import {SaveProfileResponse} from './dto/save-profile-response';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class ProfileService {
     return this.httpClient.get<Profile>(this.profileInternalPath + '/' + id);
   }
 
-  public updateProfile(profile: Profile): Observable<any> {
+  public updateProfile(profile: Profile): Observable<SaveProfileResponse> {
     const saveProfileRequest: SaveProfileRequest = new SaveProfileRequest();
     saveProfileRequest.profile = profile;
     return this.httpClient.put<any>(this.profileInternalPath, saveProfileRequest);
