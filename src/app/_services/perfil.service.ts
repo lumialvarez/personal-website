@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { GlobalConstants } from 'app/common/global-constants';
-import { Observable } from 'rxjs/internal/Observable';
-import { Profile } from 'app/_models/main/profile';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {GlobalConstants} from 'app/common/global-constants';
+import {Observable} from 'rxjs/internal/Observable';
+import {Profile} from 'app/_models/main/profile';
 import {ProfileResponse} from './dto/profile-response';
+import {SaveProfileRequest} from './dto/save-profile-request';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,8 @@ export class ProfileService {
   }
 
   public updateProfile(profile: Profile): Observable<any> {
-    return this.httpClient.put<any>(this.profileInternalPath, profile);
+    const saveProfileRequest: SaveProfileRequest = new SaveProfileRequest();
+    saveProfileRequest.profile = profile;
+    return this.httpClient.put<any>(this.profileInternalPath, saveProfileRequest);
   }
 }

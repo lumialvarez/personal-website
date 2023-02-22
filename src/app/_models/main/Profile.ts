@@ -16,6 +16,17 @@ export class ProfileData {
 }
 
 export class Project {
+  constructor(project?: Project) {
+    if (project) {
+      this.id = project.id;
+      this.name = project.name;
+      this.description = project.description;
+      this.detailHtml = project.detailHtml;
+      this.mainImage = project.mainImage;
+      this.order = project.order;
+    }
+  }
+
   id: number;
   name: string;
   description: string;
@@ -23,6 +34,7 @@ export class Project {
   mainImage: string;
   order: number;
 }
+
 
 export class Knowledge {
   id: number;

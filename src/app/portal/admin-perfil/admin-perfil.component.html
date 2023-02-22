@@ -1,144 +1,152 @@
 <div class="container">
+  <div class="form-group">
+    <label for="selectorIdioma">Idioma</label>
+    <div ngbDropdown id="selectorIdioma">
+      <button class="btn" id="dropdownBasic" ngbDropdownToggle>
+        {{ selectedLanguage || "Selecciona el idioma" }}
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+        <div *ngFor="let profile of profileList;">
+          <button ngbDropdownItem id="option"
+                  on-click="selectedProfile=profile; processSelectedProfile();">{{profile.profileLanguage}}
+          </button>
+        </div>
+      </div>
+      <a (click)="loadProfileData()" skipLocationChange><i class="fas fa-redo"></i></a>
+    </div>
+  </div>
+
+  <div *ngIf="selectedProfile">
+
     <div class="form-group">
-        <label for="selectorIdioma">Idioma</label>
-        <div ngbDropdown id="selectorIdioma">
-            <button class="btn" id="dropdownBasic" ngbDropdownToggle>
-                {{ selectedLanguage || "Selecciona el idioma" }}
-            </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic">
-                <div *ngFor="let perfil of profileList;">
-                    <button ngbDropdownItem id="option"
-                        on-click="selectedProfile=perfil; procesarSeleccionPerfil();">{{perfil.idioma.nombre}}
-                    </button>
-                </div>
-            </div>
-            <a (click)="cargarDatosPerfil()" skipLocationChange><i class="fas fa-redo"></i></a>
-        </div>
+      <label for="perfilNombre">Nombre</label>
+      <input type="text" class="form-control" id="perfilNombre" placeholder="Nombre"
+             [(ngModel)]="selectedProfile.profileData.name">
     </div>
 
-    <div *ngIf="selectedProfile">
-
-        <div class="form-group">
-            <label for="perfilNombre">Nombre</label>
-            <input type="text" class="form-control" id="perfilNombre" placeholder="Nombre"
-                [(ngModel)]="selectedProfile.nombre">
-        </div>
-
-        <div class="form-group">
-            <label for="perfilProfesion">Profesion</label>
-            <input type="text" class="form-control" id="perfilProfesion" placeholder="Profesion"
-                [(ngModel)]="selectedProfile.profesion">
-        </div>
-
-        <div class="form-group">
-            <label for="perfilPerfilProfesional">Perfil Profesional</label>
-            <angular-editor id="perfilPerfilProfesional" [(ngModel)]="selectedProfile.perfilProfesional"
-                [config]="config"></angular-editor>
-        </div>
-
-        <div class="form-group">
-            <label for="perfilPerfilPersonal">Perfil Personal</label>
-            <angular-editor id="perfilPerfilPersonal" [(ngModel)]="selectedProfile.perfilPersonal" [config]="config">
-            </angular-editor>
-        </div>
-
-        <div class="form-group">
-            <hr>
-            <div class="row">
-                <div class="col-2">
-                    Orden
-                </div>
-                <div class="col-10">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            (change)="ordenarConocimientos('nombre')" checked="checked">
-                        <label class="form-check-label" for="inlineRadio1">Nombre</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                            (change)="ordenarConocimientos('nivel')">
-                        <label class="form-check-label" for="inlineRadio2">Nivel</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                            (change)="ordenarConocimientos('tipoNivel')">
-                        <label class="form-check-label" for="inlineRadio3">Tipo/Nivel</label>
-                    </div>
-
-                </div>
-                <div class="col-2">
-                    Filtro
-                </div>
-                <div class="col-10"><input type="text"  [(ngModel)]="knowledgeFilter"></div>
-                <div class="col-12 p-3">
-                    <button type="button" class="btn btn-outline-info" (click)="openModalCreateKnowledge()">
-                        <i class="fas fa-plus"></i> Crear nuevo
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <ng-container *ngFor="let conocimiento of selectedProfile.conocimientos; let i = index">
-                <div class="col-6 col-md-6 col-lg-4 col-xl-3 mb-2"
-                *ngIf="conocimiento.nombre.toLowerCase().includes(knowledgeFilter.toLowerCase())">
-                    <div class="card card-hover" (click)="openModalUpdateKnowledge(conocimiento)" >
-                        <div class="card-body">
-
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <small><strong>{{conocimiento.nombre}}</strong></small>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <small><strong>Nivel:</strong></small>
-                                </div>
-                                <div class="col-7">
-                                    <small>{{conocimiento.nivel}}</small>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <small><strong>Tipo:</strong></small>
-                                </div>
-                                <div class="col-7">
-                                    <small>{{conocimiento.tipo.nombre}}</small>
-                                </div>
-                            </div>
-                            <span *ngFor="let categoria of conocimiento.categorias"
-                                class="badge badge-small badge-pill badge-info">{{categoria.nombre}}</span>
-
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <hr>
-            <div class="row">
-                <div class="col-12 col-lg-6" *ngFor="let proyecto of selectedProfile.proyectos; let i = index">
-                    <div class="card card-hover" (click)="openModalUpdateProject(proyecto)">
-                        <h5 class="card-header">{{proyecto.nombre}}</h5>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <small>{{proyecto.descripcion}}</small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="perfilEstado" [(ngModel)]="selectedProfile.estado">
-            <label class="form-check-label" for="perfilEstado">Estado</label>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <button type="button" class="btn btn-primary" (click)="guardarCambiosPerfil()">Guardar</button>
-            </div>
-        </div>
+    <div class="form-group">
+      <label for="perfilProfesion">Profesion</label>
+      <input type="text" class="form-control" id="perfilProfesion" placeholder="Profesion"
+             [(ngModel)]="selectedProfile.profileData.profession">
     </div>
+
+    <div class="form-group">
+      <label for="perfilPerfilProfesional">Perfil Profesional</label>
+      <angular-editor id="perfilPerfilProfesional" [(ngModel)]="selectedProfile.profileData.professionalProfile"
+                      [config]="config"></angular-editor>
+    </div>
+
+    <div class="form-group">
+      <label for="perfilPerfilPersonal">Perfil Personal</label>
+      <angular-editor id="perfilPerfilPersonal" [(ngModel)]="selectedProfile.profileData.personalProfile"
+                      [config]="config">
+      </angular-editor>
+    </div>
+
+    <div class="form-group">
+      <hr>
+      <div class="row">
+        <div class="col-2">
+          Orden
+        </div>
+        <div class="col-10">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                   (change)="orderKnowledges('nombre')" checked="checked">
+            <label class="form-check-label" for="inlineRadio1">Nombre</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                   (change)="orderKnowledges('nivel')">
+            <label class="form-check-label" for="inlineRadio2">Nivel</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                   (change)="orderKnowledges('tipoNivel')">
+            <label class="form-check-label" for="inlineRadio3">Tipo/Nivel</label>
+          </div>
+
+        </div>
+        <div class="col-2">
+          Filtro
+        </div>
+        <div class="col-10"><input type="text" [(ngModel)]="knowledgeFilter"></div>
+        <div class="col-12 p-3">
+          <button type="button" class="btn btn-outline-info" (click)="openModalCreateKnowledge()">
+            <i class="fas fa-plus"></i> Crear nuevo
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <ng-container *ngFor="let knowledge of selectedProfile.profileData.knowledges; let i = index">
+          <div class="col-6 col-md-6 col-lg-4 col-xl-3 mb-2"
+               *ngIf="knowledge.name.toLowerCase().includes(knowledgeFilter.toLowerCase())">
+            <div class="card card-hover" (click)="openModalUpdateKnowledge(knowledge)">
+              <div class="card-body">
+
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center">
+                    <small><strong>{{knowledge.name}}</strong></small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <small><strong>Nivel:</strong></small>
+                  </div>
+                  <div class="col-7">
+                    <small>{{knowledge.level}}</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <small><strong>Tipo:</strong></small>
+                  </div>
+                  <div class="col-7">
+                    <small>{{knowledge.type}}</small>
+                  </div>
+                </div>
+                <span *ngFor="let category of knowledge.categories"
+                      class="badge badge-small badge-pill badge-info">{{category}}</span>
+
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <hr>
+      <div class="row">
+        <div class="col-12 p-3">
+          <button type="button" class="btn btn-outline-info" (click)="openModalCreateProject()">
+            <i class="fas fa-plus"></i> Crear nuevo
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6" *ngFor="let project of selectedProfile.profileData.projects; let i = index">
+          <div class="card card-hover" (click)="openModalUpdateProject(project)">
+            <h5 class="card-header">{{project.name}}</h5>
+            <div class="card-body">
+              <p class="card-text">
+                <small>{{project.description}}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="perfilEstado" [(ngModel)]="selectedProfile.status">
+      <label class="form-check-label" for="perfilEstado">Estado</label>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="saveProfileData()">Guardar</button>
+      </div>
+    </div>
+  </div>
 </div>
