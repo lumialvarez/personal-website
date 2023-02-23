@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ToastService} from 'app/_services/toast.service';
 import {Knowledge} from '../../../_models/main/Profile';
+import {ToastService} from '../../../_services/toast.service';
 
 @Component({
   selector: 'app-admin-conocimiento',

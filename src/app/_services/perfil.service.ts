@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {GlobalConstants} from 'app/common/global-constants';
 import {Observable} from 'rxjs/internal/Observable';
-import {Profile} from 'app/_models/main/profile';
 import {ProfileResponse} from './dto/profile-response';
 import {SaveProfileRequest} from './dto/save-profile-request';
 import {SaveProfileResponse} from './dto/save-profile-response';
+import {Profile} from '../_models/main/Profile';
+import {GlobalConstants} from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TokenService } from 'app/_services/token.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import {TokenService} from '../_services/token.service';
 
 @Injectable()
 export class BasicAuthInterceptor implements HttpInterceptor {

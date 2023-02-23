@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from 'app/_models/user';
+import {User} from '../_models/user';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUser';

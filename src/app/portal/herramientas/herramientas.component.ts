@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenService } from 'app/_services/token.service';
+import {TokenService} from '../../_services/token.service';
 
 @Component({
   selector: 'app-herramientas',
