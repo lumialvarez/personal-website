@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {GlobalConstants} from 'app/common/global-constants';
 import {Observable} from 'rxjs';
+import {GlobalConstants} from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'

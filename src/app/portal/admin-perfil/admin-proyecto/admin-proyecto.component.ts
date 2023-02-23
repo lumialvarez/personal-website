@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ToastService} from 'app/_services/toast.service';
 import {Project} from '../../../_models/main/Profile';
+import {ToastService} from '../../../_services/toast.service';
 
 @Component({
   selector: 'app-admin-proyecto',

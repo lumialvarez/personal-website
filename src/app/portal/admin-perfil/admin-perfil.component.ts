@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ToastService} from 'app/_services/toast.service';
 import {AdminConocimientoComponent} from './admin-conocimiento/admin-conocimiento.component';
 import {AdminProyectoComponent} from './admin-proyecto/admin-proyecto.component';
 import {ProfileService} from '../../_services/perfil.service';
 import {Knowledge, Profile, Project} from '../../_models/main/Profile';
+import {ToastService} from '../../_services/toast.service';
 
 @Component({
   selector: 'app-admin-perfil',

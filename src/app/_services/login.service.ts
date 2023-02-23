@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {GlobalConstants} from '../common/global-constants';
-import {LoginRequest} from 'app/_services/dto/login-request';
-import {LoginResponse} from 'app/_services/dto/login-response';
-import {Observable} from 'rxjs/internal/Observable';
-import {User} from 'app/_models/user';
+import {LoginRequest} from './dto/login-request';
+import {LoginResponse} from './dto/login-response';
+import {User} from '../_models/user';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,7 @@ export class LoginService {
     this.apiCurrentUserUrl = GlobalConstants.currentUserPath;
   }
 
+  // @ts-ignore
   public login(loginRequest: LoginRequest): Observable<LoginResponse> {
     return this.httpClient.post<LoginResponse>(this.apiLoginUrl, loginRequest);
   }

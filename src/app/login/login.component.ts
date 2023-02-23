@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginRequest} from 'app/_services/dto/login-request';
-import {LoginService} from 'app/_services/login.service';
-import {ToastService} from 'app/_services/toast.service';
-import {TokenService} from 'app/_services/token.service';
+import {LoginRequest} from '../_services/dto/login-request';
+import {TokenService} from '../_services/token.service';
+import {ToastService} from '../_services/toast.service';
+import {LoginService} from '../_services/login.service';
+
 
 @Component({
   selector: 'app-login',
