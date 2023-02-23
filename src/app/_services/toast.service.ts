@@ -11,15 +11,15 @@ export class ToastService {
   }
 
   showInfo(textOrTpl: string | TemplateRef<any>): void {
-    this.show(textOrTpl, { classname: 'bg-info text-light', delay: 3000, title: '' });
+    this.show(textOrTpl, { classname: 'bg-info text-light', delay: 8000, title: '' });
   }
 
   showSuccess(textOrTpl: string | TemplateRef<any>): void {
-    this.show(textOrTpl, { classname: 'bg-success text-light', delay: 3000, title: 'Exito!' });
+    this.show(textOrTpl, { classname: 'bg-success text-light', delay: 8000, title: 'Exito!' });
   }
 
   showDanger(textOrTpl: string | TemplateRef<any>): void {
-    this.show(textOrTpl, { classname: 'bg-danger text-light', delay: 3000, title: 'Error' });
+    this.show(textOrTpl, { classname: 'bg-danger text-light', delay: 8000, title: 'Error' });
   }
   remove(toast): void {
     this.toasts = this.toasts.filter(t => t !== toast);
