@@ -4,15 +4,12 @@ import { User } from 'app/_models/user';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUser';
-const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
   public jwtHelper: JwtHelperService = new JwtHelperService();
-
-  roles: Array<string> = [];
 
   constructor() { }
 
@@ -32,21 +29,6 @@ export class TokenService {
 
   public getUser(): User{
     return JSON.parse(window.sessionStorage.getItem(USERNAME_KEY));
-  }
-
-  public setAuthorities(authorities: string[]): void{
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
-  }
-
-  public getAuthorities(): string[]{
-    this.roles = [];
-    if (window.sessionStorage.getItem(AUTHORITIES_KEY)){
-      JSON.parse(window.sessionStorage.getItem(AUTHORITIES_KEY)).array.forEach(authority => {
-        this.roles.push(authority.authority);
-      });
-    }
-    return this.roles;
   }
 
   public logOut(): void {

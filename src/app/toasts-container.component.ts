@@ -10,7 +10,7 @@ import {ToastService} from './_services/toast.service';
       [class]="toast.classname"
       [animation]="true"
       [autohide]="true"
-      [delay]="toast.delay || 5000"
+      [delay]="toast.delay || 8000"
       (hidden)="toastService.remove(toast)"
       [header]="toast.title"
     >
@@ -22,11 +22,10 @@ import {ToastService} from './_services/toast.service';
     </ngb-toast>
   `,
   // tslint:disable-next-line:no-host-metadata-property
-  host: {'[class.ngb-toasts]': 'true'}
+  host: {class: 'toast-container position-fixed top-0 end-0 p-3', '[class.ngb-toasts]': 'true', style: 'z-index: 1200'}
 })
 
-// tslint:disable-next-line:component-class-suffix
-export class ToastsContainer {
+export class ToastsContainerComponent {
   constructor(public toastService: ToastService) {
   }
 

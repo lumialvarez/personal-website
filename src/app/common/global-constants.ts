@@ -1,12 +1,14 @@
 export class GlobalConstants {
-    public static apiIntBasePath = 'https://services.lmalvarez.com/personal-website-services/api/int/';
-    public static apiExtBasePath = 'https://services.lmalvarez.com/personal-website-services/api/ext/';
-    public static loginPath = 'v1/auth/login';
-    public static userPath = 'v1/auth/user';
-    public static perfilPath = 'v1/perfil';
-    public static conocimientoPath = 'v1/conocimiento';
-    public static conocimientoCategoriaPath = 'v1/categoria_conocimiento';
-    public static conocimientoTipoPath = 'v1/tipo_conocimiento';
-    public static proyectoPath = 'v1/proyecto';
-    public static notificacionPath = 'v1/notificacion';
+  private static apiBasePath = 'https://services.lmalvarez.com';
+  private static authorizationServicePath = '/authorization/api/v1';
+  private static profileServicePath = '/profile/api/v1';
+
+  public static userPath = this.apiBasePath + this.authorizationServicePath + '/int/user';
+  public static loginPath = this.apiBasePath + this.authorizationServicePath + '/ext/user/login';
+  public static currentUserPath = this.apiBasePath + this.authorizationServicePath + '/int/user/current/notification';
+  public static notificationUserPath = this.apiBasePath + this.authorizationServicePath + '/int/user/current/notification';
+  public static profileInternalPath = this.apiBasePath + this.profileServicePath + '/int/profile';
+  public static profileExternalPath = this.apiBasePath + this.profileServicePath + '/ext/profile';
+
+
 }

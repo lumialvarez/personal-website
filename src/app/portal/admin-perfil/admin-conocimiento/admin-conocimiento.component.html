@@ -1,51 +1,52 @@
 <div class="modal-header">
-    <h4 class="modal-title text-center" id="modal-basic-title">Administrar conocimiento</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    </button>
+  <h4 class="modal-title text-center" id="modal-basic-title">Administrar conocimiento</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss(null)">
+  </button>
 </div>
 
 <div class="modal-body">
-    <div class="form-group">
-        <label for="conocimientoNombre">Nombre</label>
-        <input type="text" class="form-control" id="conocimientoNombre" placeholder="Nombre"
-            [(ngModel)]="conocimiento.nombre">
-    </div>
+  <div class="form-group">
+    <label for="conocimientoNombre">Nombre</label>
+    <input type="text" class="form-control" id="conocimientoNombre" placeholder="Nombre"
+           [(ngModel)]="knowledgeEdit.name">
+  </div>
 
-    <div class="form-group">
-        <label for="conocimientoNivel">Nivel</label>
-        <input type="number" min="0" max="100" class="form-control" id="conocimientoNivel" placeholder="Nivel"
-            [(ngModel)]="conocimiento.nivel">
-    </div>
+  <div class="form-group">
+    <label for="conocimientoNivel">Nivel</label>
+    <input type="number" min="0" max="100" class="form-control" id="conocimientoNivel" placeholder="Nivel"
+           [(ngModel)]="knowledgeEdit.level">
+  </div>
 
-    <div class="form-group">
-        <label for="conocimientoDescripcion">Descripcion</label>
-        <input type="text" class="form-control" id="conocimientoDescripcion" placeholder="Descripcion"
-            [(ngModel)]="conocimiento.descripcion">
-    </div>
+  <div class="form-group">
+    <label for="conocimientoDescripcion">Descripcion</label>
+    <input type="text" class="form-control" id="conocimientoDescripcion" placeholder="Descripcion"
+           [(ngModel)]="knowledgeEdit.description">
+  </div>
 
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="conocimientoTipo">Tipo</label>
-        </div>
-        <select class="form-select" id="conocimientoTipo" [compareWith]="compareTipoConocimiento" [(ngModel)]="tipoConocimientoSeleccionado">
-            <option disabled selected>Seleccionar...</option>
-            <option *ngFor="let tipo of tiposConocimiento" [ngValue]="tipo">{{tipo.nombre}}</option>
-        </select>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="conocimientoTipo">Tipo</label>
     </div>
+    <select class="form-select" id="conocimientoTipo" [compareWith]="compareKnowledgeType"
+            [(ngModel)]="knowledgeEdit.type">
+      <option disabled selected>Seleccionar...</option>
+      <option *ngFor="let tipo of knowledgeTypes" [ngValue]="tipo">{{tipo}}</option>
+    </select>
+  </div>
 
-    <div>
-        <div class="form-check" *ngFor="let categoria of categoriasConocimiento">
-            <input class="form-check-input" type="checkbox" [value]="categoria" id="defaultCheck{{categoria.id}}"
-                (change)="onChangeCategoria(categoria, $event.target.checked)" [(ngModel)]="categoria.isChecked">
-            <label class="form-check-label" for="defaultCheck{{categoria.id}}">
-                {{categoria.nombre}}
-            </label>
-        </div>
+  <div>
+    <div class="form-check" *ngFor="let category of knowledgeCategories">
+      <input class="form-check-input" type="checkbox" [value]="category" id="defaultCheck{{category.name}}"
+             (change)="onChangeCategory(category.name, $event.target['checked'])" [(ngModel)]="category.isChecked">
+      <label class="form-check-label" for="defaultCheck{{category.name}}">
+        {{category.name}}
+      </label>
     </div>
+  </div>
 
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close')">Cerrar</button>
-    <button type="button" class="btn btn-primary" (click)="guardarConocimiento()">Guardar</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss(null)">Cerrar</button>
+  <button type="button" class="btn btn-primary" (click)="saveKnowledge()">Aceptar</button>
 </div>

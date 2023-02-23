@@ -1,13 +1,13 @@
 <div class="modal-header text-center">
-  <h3 class="modal-title w-100" id="modal-basic-title">{{datos.nombre || proyecto.nombre}}</h3>
+  <h3 class="modal-title w-100" id="modal-basic-title">{{data.nombre || project.name}}</h3>
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
   </button>
 </div>
 
 <div class="modal-body">
   <div class="text-center">
-    <img src={{proyecto.img}} class="img-fluid w-25 pb-3" alt="Imagen del proyecto">
+    <img src={{project.mainImage}} class="img-fluid w-25 pb-3" alt="Imagen del proyecto">
   </div>
 
-  <div [innerHTML]="proyecto.detalle || 'Descripción pendiente...'"></div>
+  <div [innerHTML]="project.detailHtml || 'Descripción pendiente...'"></div>
 </div>

@@ -1,34 +1,39 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { GlobalConstants } from 'app/common/global-constants';
-import { Observable } from 'rxjs/internal/Observable';
-import { Perfil } from 'app/_models/main/perfil';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {GlobalConstants} from 'app/common/global-constants';
+import {Observable} from 'rxjs/internal/Observable';
+import {Profile} from 'app/_models/main/profile';
+import {ProfileResponse} from './dto/profile-response';
+import {SaveProfileRequest} from './dto/save-profile-request';
+import {SaveProfileResponse} from './dto/save-profile-response';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PerfilService {
-  private readonly apiPerfilUrl: string = null;
-  private readonly apiPerfilExternalUrl: string = null;
+export class ProfileService {
+  private readonly profileInternalPath: string = null;
+  private readonly profileExternalPath: string = null;
 
   constructor(private httpClient: HttpClient) {
-    this.apiPerfilUrl = GlobalConstants.apiIntBasePath + GlobalConstants.perfilPath;
-    this.apiPerfilExternalUrl = GlobalConstants.apiExtBasePath + GlobalConstants.perfilPath;
+    this.profileInternalPath = GlobalConstants.profileInternalPath;
+    this.profileExternalPath = GlobalConstants.profileExternalPath;
   }
 
-  public getPerfilExt(): Observable<Perfil[]> {
-    return this.httpClient.get<Perfil[]>(this.apiPerfilExternalUrl);
+  public getProfilesExternal(): Observable<ProfileResponse> {
+    return this.httpClient.get<ProfileResponse>(this.profileExternalPath);
   }
 
-  public getPerfiles(): Observable<Perfil[]> {
-    return this.httpClient.get<Perfil[]>(this.apiPerfilUrl);
+  public getProfiles(): Observable<ProfileResponse> {
+    return this.httpClient.get<ProfileResponse>(this.profileInternalPath);
   }
 
-  public getPerfilById(id: number): Observable<Perfil> {
-    return this.httpClient.get<Perfil>(this.apiPerfilUrl + '/' + id);
+  public getProfileById(id: number): Observable<Profile> {
+    return this.httpClient.get<Profile>(this.profileInternalPath + '/' + id);
   }
 
-  public updatePerfil(perfil: Perfil): Observable<any> {
-    return this.httpClient.put<any>(this.apiPerfilUrl, perfil);
+  public updateProfile(profile: Profile): Observable<SaveProfileResponse> {
+    const saveProfileRequest: SaveProfileRequest = new SaveProfileRequest();
+    saveProfileRequest.profile = profile;
+    return this.httpClient.put<any>(this.profileInternalPath, saveProfileRequest);
   }
 }

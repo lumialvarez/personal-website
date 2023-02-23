@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Conocimiento } from 'app/_models/main/conocimiento';
-import { Perfil } from 'app/_models/main/perfil';
-import { Proyecto } from 'app/_models/main/proyecto';
-import { PerfilService } from 'app/_services/perfil.service';
-import { ToastService } from 'app/_services/toast.service';
-import { AdminConocimientoComponent } from './admin-conocimiento/admin-conocimiento.component';
-import { AdminProyectoComponent } from './admin-proyecto/admin-proyecto.component';
+import {Component, OnInit} from '@angular/core';
+import {AngularEditorConfig} from '@kolkov/angular-editor';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ToastService} from 'app/_services/toast.service';
+import {AdminConocimientoComponent} from './admin-conocimiento/admin-conocimiento.component';
+import {AdminProyectoComponent} from './admin-proyecto/admin-proyecto.component';
+import {ProfileService} from '../../_services/perfil.service';
+import {Knowledge, Profile, Project} from '../../_models/main/Profile';
 
 @Component({
   selector: 'app-admin-perfil',
@@ -16,13 +14,15 @@ import { AdminProyectoComponent } from './admin-proyecto/admin-proyecto.componen
 })
 export class AdminPerfilComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, private perfilService: PerfilService, private toastService: ToastService) { }
-  public lstPerfiles: Perfil[];
-  public perfilSeleccionado: Perfil = null;
-  public idiomaSeleccionado: string = null;
-  public filtroConocimiento = '';
+  constructor(private modalService: NgbModal, private profileService: ProfileService, private toastService: ToastService) {
+  }
 
-  ordenPorNombreIsChecked = false;
+  public profileList: Profile[];
+  public selectedProfile: Profile = null;
+  public selectedLanguage: string = null;
+  public knowledgeFilter = '';
+
+  orderByNameIsChecked = false;
 
   config: AngularEditorConfig = {
     editable: true,
@@ -33,9 +33,7 @@ export class AdminPerfilComponent implements OnInit {
     translate: 'no',
     defaultParagraphSeparator: 'p',
     defaultFontName: '',
-    fonts: [
-
-    ],
+    fonts: [],
     toolbarHiddenButtons: [
       [
         'heading',
@@ -60,17 +58,17 @@ export class AdminPerfilComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.cargarDatosPerfil();
+    this.loadProfileData();
   }
 
-  cargarDatosPerfil(): void {
-    this.perfilSeleccionado = null;
-    this.perfilService.getPerfiles().subscribe(
+  loadProfileData(): void {
+    this.selectedProfile = null;
+    this.profileService.getProfiles().subscribe(
       data => {
-        this.lstPerfiles = data;
-        if (this.lstPerfiles.length === 1) {
-          this.perfilSeleccionado = this.lstPerfiles[0];
-          this.procesarSeleccionPerfil();
+        this.profileList = data.profiles;
+        if (this.profileList.length === 1) {
+          this.selectedProfile = this.profileList[0];
+          this.processSelectedProfile();
         }
       },
       err => {
@@ -79,17 +77,18 @@ export class AdminPerfilComponent implements OnInit {
     );
   }
 
-  procesarSeleccionPerfil(): void {
-    this.idiomaSeleccionado = this.perfilSeleccionado.idioma.nombre;
-    this.perfilSeleccionado.proyectos.sort((a: Proyecto, b: Proyecto) => -(b.id - a.id));
-    this.ordenarConocimientos('nombre');
+  processSelectedProfile(): void {
+    this.selectedLanguage = this.selectedProfile.profileLanguage;
+    this.selectedProfile.profileData.projects.sort((a: Project, b: Project) => -(b.order - a.order));
+    this.orderKnowledges('nombre');
   }
 
-  guardarCambiosPerfil(): void {
-    this.perfilService.updatePerfil(this.perfilSeleccionado).subscribe(
+  saveProfileData(): void {
+    this.profileService.updateProfile(this.selectedProfile).subscribe(
       data => {
         this.toastService.showSuccess('Perfil Actualizado');
         console.log(data);
+        this.selectedProfile = data.profile;
       },
       err => {
         err.error.details.forEach(detail => {
@@ -99,38 +98,80 @@ export class AdminPerfilComponent implements OnInit {
     );
   }
 
-  ordenarConocimientos(filtro: string): void {
-    if (filtro === 'nombre') {
-      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => a.nombre.localeCompare(b.nombre));
-    } else if (filtro === 'nivel') {
-      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => -(a.nivel - b.nivel));
-    }else if (filtro === 'tipoNivel') {
+  processFilterKnowledgeName(knowledge: Knowledge, knowledgeFilter: string): boolean {
+    if (!knowledge || !knowledgeFilter) {
+      return true;
+    }
+    return knowledge.name.toLowerCase().includes(knowledgeFilter.toLowerCase());
+  }
+
+  orderKnowledges(filter: string): void {
+    if (filter === 'nombre') {
+      this.selectedProfile.profileData.knowledges.sort((a: Knowledge, b: Knowledge) => a.name.localeCompare(b.name));
+    } else if (filter === 'nivel') {
+      this.selectedProfile.profileData.knowledges.sort((a: Knowledge, b: Knowledge) => -(a.level - b.level));
+    } else if (filter === 'tipoNivel') {
       // tslint:disable-next-line:max-line-length
-      this.perfilSeleccionado.conocimientos.sort((a: Conocimiento, b: Conocimiento) => (a.tipo.nombre === b.tipo.nombre) ? -(a.nivel - b.nivel) : a.tipo.nombre.localeCompare(b.tipo.nombre));
+      this.selectedProfile.profileData.knowledges.sort((a: Knowledge, b: Knowledge) => (a.type === b.type) ? -(a.level - b.level) : a.type.localeCompare(b.type));
     }
   }
 
-  openModalCrearConocimiento(): void {
-    const conocimiento = new Conocimiento();
-    this.openModalModificarConocimiento(conocimiento);
+  openModalCreateKnowledge(): void {
+    const knowledge = new Knowledge();
+    this.openModalUpdateKnowledge(knowledge);
   }
 
-  openModalModificarConocimiento(conocimiento: Conocimiento): void {
-    const modalRef = this.modalService.open(AdminConocimientoComponent, { size: 'lg' });
-    modalRef.componentInstance.conocimiento = conocimiento;
+  openModalUpdateKnowledge(knowledge: Knowledge): void {
+    const modalRef = this.modalService.open(AdminConocimientoComponent, {size: 'lg'});
+    modalRef.componentInstance.knowledge = knowledge;
     modalRef.dismissed.subscribe(
       data => {
         // cuando se cierre el modal actualizar lista
+        console.log(data);
+        if (data) {
+          const knowledgeModified = data as Knowledge;
+          let exists = false;
+          for (let i = 0; i < this.selectedProfile.profileData.knowledges.length; i++) {
+            if (this.selectedProfile.profileData.knowledges[i].id === knowledgeModified.id) {
+              this.selectedProfile.profileData.knowledges[i] = knowledgeModified;
+              exists = true;
+            }
+          }
+          if (!exists) {
+            knowledgeModified.id = 0;
+            this.selectedProfile.profileData.knowledges.push(knowledgeModified);
+          }
+        }
       }
     );
   }
 
-  openModalModificarProyecto(proyecto: Proyecto): void {
-    const modalRef = this.modalService.open(AdminProyectoComponent, { size: 'lg' });
-    modalRef.componentInstance.proyecto = proyecto;
+
+  openModalCreateProject(): void {
+    const project = new Project();
+    this.openModalUpdateProject(project);
+  }
+
+  openModalUpdateProject(project: Project): void {
+    const modalRef = this.modalService.open(AdminProyectoComponent, {size: 'lg'});
+    modalRef.componentInstance.project = project;
     modalRef.dismissed.subscribe(
       data => {
         // cuando se cierre el modal actualizar lista
+        console.log(data);
+        if (data) {
+          const projectModified = data as Project;
+          let exists = false;
+          for (let i = 0; i < this.selectedProfile.profileData.projects.length; i++) {
+            if (this.selectedProfile.profileData.projects[i].id === projectModified.id) {
+              this.selectedProfile.profileData.projects[i] = projectModified;
+              exists = true;
+            }
+          }
+          if (!exists) {
+            this.selectedProfile.profileData.projects.push(projectModified);
+          }
+        }
       }
     );
   }

@@ -1,37 +1,49 @@
 <div class="modal-header">
-    <h4 class="modal-title text-center" id="modal-basic-title">Administrar Proyecto</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    </button>
+  <h4 class="modal-title text-center" id="modal-basic-title">Administrar Proyecto</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss(null)">
+  </button>
 </div>
 
 <div class="modal-body">
-    <div class="form-group">
-        <label for="proyectoNombre">Nombre</label>
-        <input type="text" class="form-control" id="proyectoNombre" placeholder="Nombre"
-            [(ngModel)]="proyecto.nombre">
-    </div>
+  <div class="form-group">
+    <label for="proyectoNombre">Nombre</label>
+    <input type="text" class="form-control" id="proyectoId" placeholder="ID"
+           [(ngModel)]="projectEdit.id" [disabled]="!!project.id">
+  </div>
 
-    <div class="form-group">
-        <label for="proyectoDescripcion">Descripcion</label>
-        <input type="text" class="form-control" id="proyectoDescripcion" placeholder="Descripcion"
-            [(ngModel)]="proyecto.descripcion">
-    </div>
+  <div class="form-group">
+    <label for="proyectoNombre">Nombre</label>
+    <input type="text" class="form-control" id="proyectoNombre" placeholder="Nombre"
+           [(ngModel)]="projectEdit.name">
+  </div>
 
-    <div class="form-group">
-        <label for="proyectoDetalle">Detalle</label>
-        <angular-editor id="proyectoDetalle" [(ngModel)]="proyecto.detalle"
-            [config]="config"></angular-editor>
-    </div>
+  <div class="form-group">
+    <label for="proyectoDescripcion">Descripcion</label>
+    <input type="text" class="form-control" id="proyectoDescripcion" placeholder="Descripcion"
+           [(ngModel)]="projectEdit.description">
+  </div>
 
-    <div class="form-group">
-        <label for="proyectoDescripcion">Imagen</label>
-        <input type="text" class="form-control" id="proyectoImg" placeholder="Imagen (assets\\img\\...)"
-            [(ngModel)]="proyecto.img">
-    </div>
+  <div class="form-group">
+    <label for="proyectoDetalle">Detalle</label>
+    <angular-editor id="proyectoDetalle" [(ngModel)]="projectEdit.detailHtml"
+                    [config]="config"></angular-editor>
+  </div>
+
+  <div class="form-group">
+    <label for="proyectoDescripcion">Imagen</label>
+    <input type="text" class="form-control" id="proyectoImg" placeholder="Imagen (assets\\img\\...)"
+           [(ngModel)]="projectEdit.mainImage">
+  </div>
+
+  <div class="form-group">
+    <label for="proyectoNombre">Orden</label>
+    <input type="text" class="form-control" id="proyectoOrder" placeholder="Orden"
+           [(ngModel)]="projectEdit.order">
+  </div>
 
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close')">Cerrar</button>
-    <button type="button" class="btn btn-primary" (click)="guardarProyecto()">Guardar</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss(null)">Cancelar</button>
+  <button type="button" class="btn btn-primary" (click)="saveProject()">Aceptar</button>
 </div>

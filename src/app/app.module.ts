@@ -20,10 +20,10 @@ import { AdminUsuariosComponent } from './portal/admin-usuarios/admin-usuarios.c
 import { AdminPerfilComponent } from './portal/admin-perfil/admin-perfil.component';
 import { DashboardComponent } from './portal/dashboard/dashboard.component';
 import { BasicAuthInterceptor } from './_helpers/basic-auth-interceptor';
-import { ToastsContainer } from './toasts-container.component';
 import { AdminConocimientoComponent } from './portal/admin-perfil/admin-conocimiento/admin-conocimiento.component';
 import { AdminProyectoComponent } from './portal/admin-perfil/admin-proyecto/admin-proyecto.component';
 import { HerramientasComponent } from './portal/herramientas/herramientas.component';
+import {ToastsContainerComponent} from './toasts-container.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { HerramientasComponent } from './portal/herramientas/herramientas.compon
     AdminPerfilComponent,
     AdminUsuariosComponent,
     DashboardComponent,
-    ToastsContainer,
+    ToastsContainerComponent,
     AdminConocimientoComponent,
     AdminProyectoComponent,
     HerramientasComponent

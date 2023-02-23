@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Notificacion} from 'app/_models/notificacion';
 import {User} from 'app/_models/user';
-import {NotificacionService} from 'app/_services/notificacion.service';
+import {NotificationService} from 'app/_services/notification.service';
 import {TokenService} from 'app/_services/token.service';
+import {LoginService} from '../_services/login.service';
 
 @Component({
   selector: 'app-portal',
@@ -12,37 +12,53 @@ import {TokenService} from 'app/_services/token.service';
 })
 export class PortalComponent implements OnInit {
   toggleSidebar = false;
-  usuario: User;
-  notificaciones: Notificacion[] = [];
+  user: User;
+  notificationsCount = 0;
 
-  constructor(private tokenService: TokenService, private notificacionService: NotificacionService, private router: Router) {
+  constructor(private tokenService: TokenService,
+              private loginService: LoginService,
+              private notificacionService: NotificationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.usuario = this.tokenService.getUser();
-    this.notificacionService.getUnreadNotificaciones().subscribe({
+    this.user = this.tokenService.getUser();
+    this.processNotificationCount();
+  }
+
+  setReadNotification(id: Int32Array): void {
+    this.notificacionService.SetReadNotification(id).subscribe({
       next: (data) => {
-        this.notificaciones = data;
+        this.refreshUser();
       },
       error: (err) => console.log(err)
     });
   }
 
-  marcarNotificacionComoLeida(id: number): void {
-    this.notificacionService.PutReadNotificaciones(id).subscribe({
-      next: (data) => this.notificaciones = this.notificaciones.filter(obj => obj.id !== id),
-      error: (err) => console.log(err)
-    });
+  processNotificationCount(): void {
+    this.notificationsCount = this.user.notifications.filter(d => !d.read).length;
+  }
+
+  refreshUser(): void {
+    this.loginService.getCurrentUser().subscribe(
+      dataUser => {
+        this.user = dataUser;
+        this.tokenService.setUser(dataUser);
+        this.processNotificationCount();
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   toggleSidebarEvent(): void {
     this.toggleSidebar = !this.toggleSidebar;
   }
 
-  cerrarSesion(): void {
+  logout(): void {
     this.tokenService.logOut();
     this.router.navigate(['login']).then(() => {
     });
   }
-
 }

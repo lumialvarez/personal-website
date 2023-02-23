@@ -1,9 +1,16 @@
-import { Rol } from './rol';
-
 export class User {
-    id: Int32Array;
-    nombre: string;
-    nombreUsuario: string;
-    email: string;
-    roles: Rol[];
+  userId: Int32Array;
+  name: string;
+  userName: string;
+  email: string;
+  role: string;
+  notifications: UserNotification[];
+}
+
+export class UserNotification {
+  id: Int32Array;
+  title: string;
+  detail: string;
+  date: string;
+  read: boolean;
 }
