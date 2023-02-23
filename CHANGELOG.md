@@ -5,9 +5,9 @@ Personal Web Page
 - User admin in admin portal
 - Contact form
 
-## [2.0.0] - 00/00/2023
+## [2.0.0] - 22/02/2023
 ### Added
-- Usage of new backend services in Golang (authorization and profile)
+- Usage of new backend services in Golang (authorization and profile) [Issue #43](https://github.com/lumialvarez/personal-website/issues/43)
 
 ## [1.4.6] - 05/01/2023
 ### Fixed
