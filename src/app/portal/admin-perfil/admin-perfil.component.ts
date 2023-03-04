@@ -3,7 +3,7 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AdminConocimientoComponent} from './admin-conocimiento/admin-conocimiento.component';
 import {AdminProyectoComponent} from './admin-proyecto/admin-proyecto.component';
-import {ProfileService} from '../../_services/perfil.service';
+import {ProfileService} from '../../_services/profile/perfil.service';
 import {Knowledge, Profile, Project} from '../../_models/main/Profile';
 import {ToastService} from '../../_services/toast.service';
 

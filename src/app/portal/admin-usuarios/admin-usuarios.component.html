@@ -1,1 +1,35 @@
-<p>admin-usuarios works!</p>
+<div class="container">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-12 p-3">
+        <button type="button" class="btn btn-outline-info m-1" (click)="loadUserData()">
+          <i class="fas fa-sync"></i> Refrescar lista
+        </button>
+        <button type="button" class="btn btn-outline-primary m-1" (click)="loadUserData()">
+          <i class="fas fa-plus"></i> Crear nuevo
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-6" *ngFor="let user of userList.users let i = index">
+        <div class="card card-hover" (click)="openModalUpdateUser(user)">
+          <h5 class="card-header">{{user.name}}</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">Usuario: </div><div class="col-8">{{user.userName}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4">Email: </div><div class="col-8">{{user.email}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4">Rol: </div><div class="col-8">{{user.role}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4">Estado: </div><div class="col-8">{{user.status}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

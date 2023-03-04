@@ -4,8 +4,8 @@ import {Observable} from 'rxjs/internal/Observable';
 import {ProfileResponse} from './dto/profile-response';
 import {SaveProfileRequest} from './dto/save-profile-request';
 import {SaveProfileResponse} from './dto/save-profile-response';
-import {Profile} from '../_models/main/Profile';
-import {GlobalConstants} from '../common/global-constants';
+import {Profile} from '../../_models/main/Profile';
+import {GlobalConstants} from '../../common/global-constants';
 
 @Injectable({
   providedIn: 'root'

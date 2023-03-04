@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginService} from '../_services/login.service';
+import {LoginService} from '../_services/login/login.service';
 import {TokenService} from '../_services/token.service';
 import {User} from '../_models/user';
-import {NotificationService} from '../_services/notification.service';
+import {NotificationService} from '../_services/notification/notification.service';
 
 @Component({
   selector: 'app-portal',

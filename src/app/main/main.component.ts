@@ -3,7 +3,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DetalleProyectoComponent} from './detalle-proyecto/detalle-proyecto.component';
 
 import {Knowledge, Profile, Project} from '../_models/main/Profile';
-import {ProfileService} from '../_services/perfil.service';
+import {ProfileService} from '../_services/profile/perfil.service';
 
 
 declare var $: any;
