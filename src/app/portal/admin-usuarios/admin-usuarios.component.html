@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 col-lg-6" *ngFor="let user of userList.users let i = index">
+      <div class="col-12 col-lg-12" *ngFor="let user of users let i = index">
         <div class="card card-hover" (click)="openModalUpdateUser(user)">
           <h5 class="card-header">{{user.name}}</h5>
           <div class="card-body">
@@ -25,7 +25,7 @@
               <div class="col-4">Rol: </div><div class="col-8">{{user.role}}</div>
             </div>
             <div class="row">
-              <div class="col-4">Estado: </div><div class="col-8">{{user.status}}</div>
+              <div class="col-4">Estado: </div><div class="col-8">{{user.status? "ACTIVO" : "INACTIVO"}}</div>
             </div>
           </div>
         </div>

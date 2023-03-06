@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ListResponse, User} from '../../_services/user/dto/list-response';
 import {UserService} from '../../_services/user/user.service';
+import {UserMapperService} from '../../_services/user/mapper/user-mapper';
+import {User} from '../../_models/user';
+import {AdminProyectoComponent} from '../admin-perfil/admin-proyecto/admin-proyecto.component';
+import {Project} from '../../_models/main/Profile';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {UserUpdateComponent} from './user-update/user-update.component';
 
 @Component({
   selector: 'app-admin-usuarios',
@@ -9,9 +14,9 @@ import {UserService} from '../../_services/user/user.service';
 })
 export class AdminUsuariosComponent implements OnInit {
 
-  public userList: ListResponse;
+  public users: User[];
 
-  constructor(private userService: UserService) { }
+  constructor(private modalService: NgbModal, private userService: UserService, private userMapperService: UserMapperService) { }
 
   ngOnInit(): void {
     this.loadUserData();
@@ -20,7 +25,9 @@ export class AdminUsuariosComponent implements OnInit {
   loadUserData(): void {
     this.userService.getUsers().subscribe(
       data => {
-        this.userList = data;
+        console.log(data);
+        this.users = this.userMapperService.listResponseToModel(data);
+        console.log(this.users);
       },
       err => {
         console.log(err);
@@ -29,6 +36,13 @@ export class AdminUsuariosComponent implements OnInit {
   }
 
   openModalUpdateUser(user: User): void {
-    console.log(user);
+    const modalRef = this.modalService.open(UserUpdateComponent, {size: 'lg'});
+    modalRef.componentInstance.user = user;
+    modalRef.dismissed.subscribe(
+      data => {
+        // cuando se cierre el modal actualizar lista
+        console.log(data);
+      }
+    );
   }
 }

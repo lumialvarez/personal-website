@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <h4 class="modal-title text-center" id="modal-basic-title">Administrar Usuario</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss(null)">
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control" id="nombre" placeholder="Nombre"
+           [(ngModel)]="userEdit.name">
+  </div>
+
+  <div class="form-group">
+    <label for="usernameUser">Usuario</label>
+    <input type="text" class="form-control" id="usernameUser" placeholder="Usuario"
+           [(ngModel)]="userEdit.userName">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" placeholder="Email"
+           [(ngModel)]="userEdit.email">
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="role">Rol</label>
+    </div>
+    <select class="form-select" id="role"
+            [(ngModel)]="userEdit.role">
+      <option disabled selected>Seleccionar...</option>
+      <option value="role_admin">Admin</option>
+      <option value="role_user">User</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="userpassword1">Contraseña</label>
+    <input type="password" class="form-control" id="userpassword1" placeholder="Contraseña"
+           [(ngModel)]="password1">
+    <label for="userpassword2">Repite la Contraseña</label>
+    <input type="password" class="form-control" id="userpassword2" placeholder="Repite la Contraseña"
+           [(ngModel)]="password2">
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="estado" [(ngModel)]="userEdit.status">
+    <label class="form-check-label" for="estado">Estado</label>
+  </div>
+
+
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss(null)">Cerrar</button>
+  <button type="button" class="btn btn-primary" (click)="saveUser()">Aceptar</button>
+</div>
