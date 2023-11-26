@@ -51,12 +51,10 @@ export class AdminProyectoComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    console.log(this.project);
     this.projectEdit = new Project(this.project);
   }
 
   saveProject(): void {
-    console.log(this.projectEdit);
     this.activeModal.dismiss(this.projectEdit);
   }
 

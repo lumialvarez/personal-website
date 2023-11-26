@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginRequest} from '../_services/login/dto/login-request';
+import {LoginRequest} from '../_services/http/login/dto/login-request';
 import {TokenService} from '../_services/token.service';
 import {ToastService} from '../_services/toast.service';
-import {LoginService} from '../_services/login/login.service';
+import {LoginService} from '../_services/http/login/login.service';
 
 
 @Component({
@@ -36,12 +36,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
     document.body.classList.add('gradient');
   }
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy');
     document.body.classList.remove('gradient');
   }
 

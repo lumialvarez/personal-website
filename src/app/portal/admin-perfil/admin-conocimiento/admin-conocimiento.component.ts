@@ -41,8 +41,6 @@ export class AdminConocimientoComponent implements OnInit {
       const index = this.knowledgeEdit.categories.findIndex((item) => item === category);
       this.knowledgeEdit.categories.splice(index, 1);
     }
-    console.log(this.knowledgeEdit.categories);
-    console.log(this.knowledge.categories);
   }
 
   saveKnowledge(): void {

@@ -3,7 +3,7 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AdminConocimientoComponent} from './admin-conocimiento/admin-conocimiento.component';
 import {AdminProyectoComponent} from './admin-proyecto/admin-proyecto.component';
-import {ProfileService} from '../../_services/profile/perfil.service';
+import {ProfileService} from '../../_services/http/profile/perfil.service';
 import {Knowledge, Profile, Project} from '../../_models/main/Profile';
 import {ToastService} from '../../_services/toast.service';
 
@@ -87,7 +87,6 @@ export class AdminPerfilComponent implements OnInit {
     this.profileService.updateProfile(this.selectedProfile).subscribe(
       data => {
         this.toastService.showSuccess('Perfil Actualizado');
-        console.log(data);
         this.selectedProfile = data.profile;
       },
       err => {
@@ -127,7 +126,6 @@ export class AdminPerfilComponent implements OnInit {
     modalRef.dismissed.subscribe(
       data => {
         // cuando se cierre el modal actualizar lista
-        console.log(data);
         if (data) {
           const knowledgeModified = data as Knowledge;
           let exists = false;
@@ -158,7 +156,6 @@ export class AdminPerfilComponent implements OnInit {
     modalRef.dismissed.subscribe(
       data => {
         // cuando se cierre el modal actualizar lista
-        console.log(data);
         if (data) {
           const projectModified = data as Project;
           let exists = false;

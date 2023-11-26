@@ -3,7 +3,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DetalleProyectoComponent} from './detalle-proyecto/detalle-proyecto.component';
 
 import {Knowledge, Profile, Project} from '../_models/main/Profile';
-import {ProfileService} from '../_services/profile/perfil.service';
+import {ProfileService} from '../_services/http/profile/perfil.service';
 
 
 declare var $: any;
@@ -82,7 +82,6 @@ export class MainComponent implements OnInit {
     this.profile = null;
     this.profileService.getProfilesExternal().subscribe({
       next: (data) => {
-        console.log(data);
         this.profile = data.profiles[0];
         this.profile.profileData.projects.sort((a: Project, b: Project) => -(b.order - a.order));
         this.processKnowledge();
