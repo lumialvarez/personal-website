@@ -24,6 +24,7 @@ import { AdminConocimientoComponent } from './portal/admin-perfil/admin-conocimi
 import { AdminProyectoComponent } from './portal/admin-perfil/admin-proyecto/admin-proyecto.component';
 import { HerramientasComponent } from './portal/herramientas/herramientas.component';
 import {ToastsContainerComponent} from './toasts-container.component';
+import {UserUpdateComponent} from './portal/admin-usuarios/user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {ToastsContainerComponent} from './toasts-container.component';
     PortalComponent,
     AdminPerfilComponent,
     AdminUsuariosComponent,
+    UserUpdateComponent,
     DashboardComponent,
     ToastsContainerComponent,
     AdminConocimientoComponent,

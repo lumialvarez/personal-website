@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginService} from '../_services/login.service';
+import {LoginService} from '../_services/http/login/login.service';
 import {TokenService} from '../_services/token.service';
 import {User} from '../_models/user';
-import {NotificationService} from '../_services/notification.service';
+import {NotificationService} from '../_services/http/notification/notification.service';
 
 @Component({
   selector: 'app-portal',
@@ -17,7 +17,7 @@ export class PortalComponent implements OnInit {
 
   constructor(private tokenService: TokenService,
               private loginService: LoginService,
-              private notificacionService: NotificationService,
+              private notificationService: NotificationService,
               private router: Router) {
   }
 
@@ -27,7 +27,7 @@ export class PortalComponent implements OnInit {
   }
 
   setReadNotification(id: Int32Array): void {
-    this.notificacionService.SetReadNotification(id).subscribe({
+    this.notificationService.SetReadNotification(id).subscribe({
       next: (data) => {
         this.refreshUser();
       },

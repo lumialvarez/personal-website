@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {GlobalConstants} from '../common/global-constants';
+import {GlobalConstants} from '../../../common/global-constants';
 import {LoginRequest} from './dto/login-request';
 import {LoginResponse} from './dto/login-response';
-import {User} from '../_models/user';
+import {User} from '../../../_models/user';
 import {Observable} from 'rxjs';
 
 @Injectable({
