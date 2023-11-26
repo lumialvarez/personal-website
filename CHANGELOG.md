@@ -2,8 +2,11 @@
 Personal Web Page
 
 ## [Unreleased]
-- User admin in admin portal
 - Contact form
+
+## [2.1.0] - 25/11/2023
+### Added
+- Add User Administration [Issue #31](https://github.com/lumialvarez/personal-website/issues/31)
 
 ## [2.0.1] - 22/02/2023
 ### Fixed

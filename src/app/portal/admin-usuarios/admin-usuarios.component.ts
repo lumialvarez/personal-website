@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../_services/user/user.service';
-import {UserMapperService} from '../../_services/user/mapper/user-mapper';
 import {User} from '../../_models/user';
-import {AdminProyectoComponent} from '../admin-perfil/admin-proyecto/admin-proyecto.component';
-import {Project} from '../../_models/main/Profile';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserUpdateComponent} from './user-update/user-update.component';
 
@@ -16,7 +13,7 @@ export class AdminUsuariosComponent implements OnInit {
 
   public users: User[];
 
-  constructor(private modalService: NgbModal, private userService: UserService, private userMapperService: UserMapperService) { }
+  constructor(private modalService: NgbModal, private userService: UserService) { }
 
   ngOnInit(): void {
     this.loadUserData();
@@ -24,9 +21,9 @@ export class AdminUsuariosComponent implements OnInit {
 
   loadUserData(): void {
     this.userService.getUsers().subscribe(
-      data => {
-        console.log(data);
-        this.users = this.userMapperService.listResponseToModel(data);
+      userListResponse => {
+        console.log(userListResponse);
+        this.users = userListResponse.users;
         console.log(this.users);
       },
       err => {

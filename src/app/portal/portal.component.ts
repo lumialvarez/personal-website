@@ -17,7 +17,7 @@ export class PortalComponent implements OnInit {
 
   constructor(private tokenService: TokenService,
               private loginService: LoginService,
-              private notificacionService: NotificationService,
+              private notificationService: NotificationService,
               private router: Router) {
   }
 
@@ -27,7 +27,7 @@ export class PortalComponent implements OnInit {
   }
 
   setReadNotification(id: Int32Array): void {
-    this.notificacionService.SetReadNotification(id).subscribe({
+    this.notificationService.SetReadNotification(id).subscribe({
       next: (data) => {
         this.refreshUser();
       },
