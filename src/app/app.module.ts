@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -51,8 +50,7 @@ import {UserUpdateComponent} from './portal/admin-usuarios/user-update/user-upda
     NgbModule,
     AngularEditorModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule,
-    NgxGoogleAnalyticsModule.forRoot('#{GOOGLE_ID_TRACKING}#')
+    NgxSpinnerModule
   ],
   providers: [
     {
