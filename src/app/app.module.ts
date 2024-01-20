@@ -52,7 +52,7 @@ import {UserUpdateComponent} from './portal/admin-usuarios/user-update/user-upda
     AngularEditorModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    NgxGoogleAnalyticsModule.forRoot('{GOOGLE_ID_TRACKING}')
+    NgxGoogleAnalyticsModule.forRoot('#{GOOGLE_ID_TRACKING}#')
   ],
   providers: [
     {
