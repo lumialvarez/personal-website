@@ -21,7 +21,7 @@ RUN npm run build --omit=dev
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /app/dist/angular-github-actions/browser/ /usr/share/nginx/html
+COPY --from=build /app/dist/personal-website/browser/ /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
