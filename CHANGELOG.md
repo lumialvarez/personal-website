@@ -6,7 +6,7 @@ Personal Web Page
 
 ## [2.1.1] - 19/01/2024
 ### Fixed
-- CI migration from jenkins to Github Actions
+- CI migration from jenkins to Github Actions [Isuue #50](https://github.com/lumialvarez/personal-website/issues/50)
 
 ## [2.1.0] - 25/11/2023
 ### Added
