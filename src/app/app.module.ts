@@ -51,8 +51,7 @@ import {UserUpdateComponent} from './portal/admin-usuarios/user-update/user-upda
     NgbModule,
     AngularEditorModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule,
-    NgxGoogleAnalyticsModule.forRoot('#{GOOGLE_ID_TRACKING}#')
+    NgxSpinnerModule
   ],
   providers: [
     {
