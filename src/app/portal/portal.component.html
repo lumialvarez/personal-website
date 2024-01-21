@@ -6,9 +6,9 @@
       <a class="list-group-item list-group-item-action" routerLink="./" skipLocationChange>INICIO</a>
       <a class="list-group-item list-group-item-action" routerLink="./admin-perfil" skipLocationChange>PERFIL</a>
       <a class="list-group-item list-group-item-action" routerLink="./admin-usuarios"
-         skipLocationChange>USUARIOS</a>
+      skipLocationChange>USUARIOS</a>
       <a class="list-group-item list-group-item-action" routerLink="./herramientas"
-         skipLocationChange>HERRAMIENTAS</a>
+      skipLocationChange>HERRAMIENTAS</a>
     </div>
   </div>
   <!-- Page Content-->
@@ -19,9 +19,9 @@
         <i class="fas fa-angle-right"></i>
       </button>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#portalNavbarSupportedContent"
-              aria-controls="portalNavbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-        class="navbar-toggler-icon"></span></button>
+        data-bs-target="#portalNavbarSupportedContent"
+        aria-controls="portalNavbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+      class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="portalNavbarSupportedContent">
         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
           <li class="nav-item active">
@@ -31,7 +31,7 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="portalNavbarDropdown" href="#" role="button"
-               data-bs-toggle="dropdown" aria-expanded="false">
+              data-bs-toggle="dropdown" aria-expanded="false">
               <i class="far fa-user"></i> {{user.name}}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -53,7 +53,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="notificacionModal" tabindex="-1" aria-labelledby="notificacionModalLabel"
-     aria-hidden="true">
+  aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -63,22 +63,24 @@
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <ng-container *ngFor="let notification of user.notifications; let i = index">
-            <div *ngIf="!notification.read">
-              <div class="row">
-                <div class="col-10"><strong>{{i + 1}} - {{notification.title}} ({{notification.date}})</strong></div>
-                <div class="col-2"><a (click)="setReadNotification(notification.id)"><i
+          @for (notification of user.notifications; track notification; let i = $index) {
+            @if (!notification.read) {
+              <div>
+                <div class="row">
+                  <div class="col-10"><strong>{{i + 1}} - {{notification.title}} ({{notification.date}})</strong></div>
+                  <div class="col-2"><a (click)="setReadNotification(notification.id)"><i
                   class="fas fa-eye-slash"></i></a></div>
-                <div class="col-12">{{notification.detail}}</div>
-              </div>
-              <hr>
-            </div>
-          </ng-container>
+                  <div class="col-12">{{notification.detail}}</div>
+                </div>
+                <hr>
+                </div>
+              }
+            }
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

@@ -11,25 +11,27 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 col-lg-12" *ngFor="let user of users let i = index">
-        <div class="card card-hover" (click)="openModalUpdateUser(user)">
-          <h5 class="card-header">{{user.name}}</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-4">Usuario: </div><div class="col-8">{{user.userName}}</div>
-            </div>
-            <div class="row">
-              <div class="col-4">Email: </div><div class="col-8">{{user.email}}</div>
-            </div>
-            <div class="row">
-              <div class="col-4">Rol: </div><div class="col-8">{{user.role}}</div>
-            </div>
-            <div class="row">
-              <div class="col-4">Estado: </div><div class="col-8">{{user.status? "Activo" : "Inactivo"}}</div>
+      @for (user of users; track user) {
+        <div class="col-12 col-lg-12">
+          <div class="card card-hover" (click)="openModalUpdateUser(user)">
+            <h5 class="card-header">{{user.name}}</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">Usuario: </div><div class="col-8">{{user.userName}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Email: </div><div class="col-8">{{user.email}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Rol: </div><div class="col-8">{{user.role}}</div>
+              </div>
+              <div class="row">
+                <div class="col-4">Estado: </div><div class="col-8">{{user.status? "Activo" : "Inactivo"}}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </div>
