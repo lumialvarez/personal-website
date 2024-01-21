@@ -4,13 +4,17 @@ Personal Web Page
 ## [Unreleased]
 - Contact form
 
+## [2.1.3] - 20/01/2024
+### Fixed
+- Update to Angular 17 syntax
+
 ## [2.1.2] - 19/01/2024
 ### Fixed
-- Update Angular version and dependecies [Isuue #32](https://github.com/lumialvarez/personal-website/issues/32)
+- Update Angular version and dependencies [Issue #32](https://github.com/lumialvarez/personal-website/issues/32)
 
 ## [2.1.1] - 19/01/2024
 ### Fixed
-- CI migration from jenkins to Github Actions [Isuue #50](https://github.com/lumialvarez/personal-website/issues/50)
+- CI migration from jenkins to Github Actions [Issue #50](https://github.com/lumialvarez/personal-website/issues/50)
 
 ## [2.1.0] - 25/11/2023
 ### Added
