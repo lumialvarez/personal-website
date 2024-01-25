@@ -1,4 +1,4 @@
-name: GitHub Action
+name: Build and push
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set env
         run: echo "APP_VERSION=$(grep -m 1 -Po '[0-9]+[.][0-9]+[.][0-9]+' CHANGELOG.md)" >> $GITHUB_ENV
