@@ -1,5 +1,5 @@
 export class GlobalConstants {
-  private static apiBasePath = 'go-api-gateway:9191';
+  private static apiBasePath = 'http://localhost:9191';
   private static authorizationServicePath = '/authorization/api/v1';
   private static profileServicePath = '/profile/api/v1';
 
@@ -9,6 +9,4 @@ export class GlobalConstants {
   public static notificationUserPath = this.apiBasePath + this.authorizationServicePath + '/int/user/current/notification';
   public static profileInternalPath = this.apiBasePath + this.profileServicePath + '/int/profile';
   public static profileExternalPath = this.apiBasePath + this.profileServicePath + '/ext/profile';
-
-
 }
