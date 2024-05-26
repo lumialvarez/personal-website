@@ -1,5 +1,5 @@
 export class GlobalConstants {
-  private static apiBasePath = 'http://localhost:9191';
+  private static apiBasePath = 'https://services.lmalvarez.com';
   private static authorizationServicePath = '/authorization/api/v1';
   private static profileServicePath = '/profile/api/v1';
 
