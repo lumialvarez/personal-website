@@ -4,6 +4,10 @@ Personal Web Page
 ## [Unreleased]
 - Contact form
 
+## [2.1.4] - 24/01/2024
+### Fixed
+- Add Github Action for pull request and create test
+
 ## [2.1.3] - 20/01/2024
 ### Fixed
 - Update to Angular 17 syntax

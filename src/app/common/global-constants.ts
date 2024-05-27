@@ -9,6 +9,4 @@ export class GlobalConstants {
   public static notificationUserPath = this.apiBasePath + this.authorizationServicePath + '/int/user/current/notification';
   public static profileInternalPath = this.apiBasePath + this.profileServicePath + '/int/profile';
   public static profileExternalPath = this.apiBasePath + this.profileServicePath + '/ext/profile';
-
-
 }
