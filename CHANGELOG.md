@@ -4,6 +4,10 @@ Personal Web Page
 ## [Unreleased]
 - Contact form
 
+## [2.1.5] - 24/01/2024
+### Fixed
+- Add CORS policy
+
 ## [2.1.4] - 24/01/2024
 ### Fixed
 - Add Github Action for pull request and create test
