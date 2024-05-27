@@ -4,7 +4,11 @@ Personal Web Page
 ## [Unreleased]
 - Contact form
 
-## [2.1.5] - 24/01/2024
+## [2.1.6] - 26/05/2024
+### Fixed
+- Fix CORS policy
+
+## [2.1.5] - 26/05/2024
 ### Fixed
 - Add CORS policy
 
