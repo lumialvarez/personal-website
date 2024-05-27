@@ -24,7 +24,6 @@ FROM nginx:latest
 COPY --from=build /app/dist/personal-website/ /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./cors_configs.conf /etc/nginx/conf.d/cors_configs.conf.conf
 
 # Expose port 80
 EXPOSE 80
