@@ -4,6 +4,10 @@ Personal Web Page
 ## [Unreleased]
 - Contact form
 
+## [2.1.7] - 04/06/2024
+### Fixed
+- Update Dependencies
+
 ## [2.1.6] - 26/05/2024
 ### Fixed
 - Fix CORS policy
