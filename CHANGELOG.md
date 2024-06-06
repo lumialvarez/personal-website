@@ -4,6 +4,10 @@ Personal Web Page
 ## [Unreleased]
 - Contact form
 
+## [2.2.0] - 05/06/2024
+### Added
+- Add GitHub Action force to update changelog
+
 ## [2.1.7] - 04/06/2024
 ### Fixed
 - Update Dependencies
