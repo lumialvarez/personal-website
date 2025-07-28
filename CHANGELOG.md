@@ -3,6 +3,11 @@ Personal Web Page
 
 ## [Unreleased]
 - Contact form
+- Chatbot
+
+## [2.2.1] - 05/06/2024
+### Fixed
+- nginx config
 
 ## [2.2.0] - 05/06/2024
 ### Added
