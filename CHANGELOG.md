@@ -5,7 +5,11 @@ Personal Web Page
 - Contact form
 - Chatbot
 
-## [2.2.1] - 05/06/2024
+## [2.2.2] - 27/07/2025
+### Fixed
+- nginx config
+
+## [2.2.1] - 27/07/2025
 ### Fixed
 - nginx config
 
