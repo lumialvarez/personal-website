@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, OnInit, inject} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Router} from '@angular/router';
 import {LoginService} from '../_services/http/login/login.service';
 import {TokenService} from '../_services/token.service';
@@ -7,6 +8,7 @@ import {NotificationService} from '../_services/http/notification/notification.s
 
 @Component({
   selector: 'app-portal',
+  standalone: false,
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.css']
 })
@@ -14,6 +16,10 @@ export class PortalComponent implements OnInit {
   toggleSidebar = false;
   user: User;
   notificationsCount = 0;
+  userInitial = '?';
+
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   constructor(private tokenService: TokenService,
               private loginService: LoginService,
@@ -23,33 +29,35 @@ export class PortalComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.tokenService.getUser();
+    this.userInitial = (this.user?.name || '?').charAt(0).toUpperCase();
     this.processNotificationCount();
   }
 
-  setReadNotification(id: Int32Array): void {
-    this.notificationService.SetReadNotification(id).subscribe({
-      next: (data) => {
-        this.refreshUser();
-      },
-      error: (err) => console.log(err)
-    });
+  setReadNotification(id: number): void {
+    this.notificationService.SetReadNotification(id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => this.refreshUser(),
+        error: (err) => console.error(err)
+      });
   }
 
   processNotificationCount(): void {
-    this.notificationsCount = this.user.notifications.filter(d => !d.read).length;
+    this.notificationsCount = (this.user?.notifications || []).filter((d) => !d.read).length;
   }
 
   refreshUser(): void {
-    this.loginService.getCurrentUser().subscribe(
-      dataUser => {
-        this.user = dataUser;
-        this.tokenService.setUser(dataUser);
-        this.processNotificationCount();
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.loginService.getCurrentUser()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (dataUser) => {
+          this.user = dataUser;
+          this.tokenService.setUser(dataUser);
+          this.processNotificationCount();
+          this.cdr.markForCheck();
+        },
+        error: (err) => console.error(err)
+      });
   }
 
   toggleSidebarEvent(): void {

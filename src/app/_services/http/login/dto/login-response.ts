@@ -1,6 +1,6 @@
 export class LoginResponse {
   token: string;
-  userId: Int32Array;
+  userId: number;
   userName: string;
   role: string;
 }

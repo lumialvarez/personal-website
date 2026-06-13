@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, OnInit, inject} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AdminConocimientoComponent} from './admin-conocimiento/admin-conocimiento.component';
@@ -9,6 +10,7 @@ import {ToastService} from '../../_services/toast.service';
 
 @Component({
   selector: 'app-admin-perfil',
+  standalone: false,
   templateUrl: './admin-perfil.component.html',
   styleUrls: ['./admin-perfil.component.css']
 })
@@ -16,6 +18,9 @@ export class AdminPerfilComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private profileService: ProfileService, private toastService: ToastService) {
   }
+
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   public profileList: Profile[];
   public selectedProfile: Profile = null;
@@ -63,18 +68,22 @@ export class AdminPerfilComponent implements OnInit {
 
   loadProfileData(): void {
     this.selectedProfile = null;
-    this.profileService.getProfiles().subscribe(
-      data => {
-        this.profileList = data.profiles;
-        if (this.profileList.length === 1) {
-          this.selectedProfile = this.profileList[0];
-          this.processSelectedProfile();
+    this.profileService.getProfiles()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (data) => {
+          this.profileList = data.profiles;
+          if (this.profileList.length === 1) {
+            this.selectedProfile = this.profileList[0];
+            this.processSelectedProfile();
+          }
+          this.cdr.markForCheck();
+        },
+        error: (err) => {
+          console.error(err);
+          this.cdr.markForCheck();
         }
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   processSelectedProfile(): void {
@@ -84,17 +93,21 @@ export class AdminPerfilComponent implements OnInit {
   }
 
   saveProfileData(): void {
-    this.profileService.updateProfile(this.selectedProfile).subscribe(
-      data => {
-        this.toastService.showSuccess('Perfil Actualizado');
-        this.selectedProfile = data.profile;
-      },
-      err => {
-        err.error.details.forEach(detail => {
-          this.toastService.showDanger(detail);
-        });
-      }
-    );
+    this.profileService.updateProfile(this.selectedProfile)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (data) => {
+          this.toastService.showSuccess('Perfil Actualizado');
+          this.selectedProfile = data.profile;
+          this.cdr.markForCheck();
+        },
+        error: (err) => {
+          (err?.error?.details || []).forEach((detail: string) => {
+            this.toastService.showDanger(detail);
+          });
+          this.cdr.markForCheck();
+        }
+      });
   }
 
   processFilterKnowledgeName(knowledge: Knowledge, knowledgeFilter: string): boolean {
@@ -105,13 +118,17 @@ export class AdminPerfilComponent implements OnInit {
   }
 
   orderKnowledges(filter: string): void {
+    if (!this.selectedProfile) {
+      return;
+    }
     if (filter === 'nombre') {
       this.selectedProfile.profileData.knowledges.sort((a: Knowledge, b: Knowledge) => a.name.localeCompare(b.name));
     } else if (filter === 'nivel') {
       this.selectedProfile.profileData.knowledges.sort((a: Knowledge, b: Knowledge) => -(a.level - b.level));
     } else if (filter === 'tipoNivel') {
-      // tslint:disable-next-line:max-line-length
-      this.selectedProfile.profileData.knowledges.sort((a: Knowledge, b: Knowledge) => (a.type === b.type) ? -(a.level - b.level) : a.type.localeCompare(b.type));
+      this.selectedProfile.profileData.knowledges.sort((a: Knowledge, b: Knowledge) =>
+        (a.type === b.type) ? -(a.level - b.level) : a.type.localeCompare(b.type)
+      );
     }
   }
 
@@ -123,25 +140,22 @@ export class AdminPerfilComponent implements OnInit {
   openModalUpdateKnowledge(knowledge: Knowledge): void {
     const modalRef = this.modalService.open(AdminConocimientoComponent, {size: 'lg'});
     modalRef.componentInstance.knowledge = knowledge;
-    modalRef.dismissed.subscribe(
-      data => {
-        // cuando se cierre el modal actualizar lista
+    modalRef.dismissed
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data) => {
         if (data) {
           const knowledgeModified = data as Knowledge;
-          let exists = false;
-          for (let i = 0; i < this.selectedProfile.profileData.knowledges.length; i++) {
-            if (this.selectedProfile.profileData.knowledges[i].id === knowledgeModified.id) {
-              this.selectedProfile.profileData.knowledges[i] = knowledgeModified;
-              exists = true;
-            }
-          }
-          if (!exists) {
+          const existing = this.selectedProfile.profileData.knowledges
+            .findIndex((k) => k.id === knowledgeModified.id);
+          if (existing >= 0) {
+            this.selectedProfile.profileData.knowledges[existing] = knowledgeModified;
+          } else {
             knowledgeModified.id = 0;
             this.selectedProfile.profileData.knowledges.push(knowledgeModified);
           }
         }
-      }
-    );
+        this.cdr.markForCheck();
+      });
   }
 
 
@@ -153,24 +167,21 @@ export class AdminPerfilComponent implements OnInit {
   openModalUpdateProject(project: Project): void {
     const modalRef = this.modalService.open(AdminProyectoComponent, {size: 'lg'});
     modalRef.componentInstance.project = project;
-    modalRef.dismissed.subscribe(
-      data => {
-        // cuando se cierre el modal actualizar lista
+    modalRef.dismissed
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data) => {
         if (data) {
           const projectModified = data as Project;
-          let exists = false;
-          for (let i = 0; i < this.selectedProfile.profileData.projects.length; i++) {
-            if (this.selectedProfile.profileData.projects[i].id === projectModified.id) {
-              this.selectedProfile.profileData.projects[i] = projectModified;
-              exists = true;
-            }
-          }
-          if (!exists) {
+          const existing = this.selectedProfile.profileData.projects
+            .findIndex((p) => p.id === projectModified.id);
+          if (existing >= 0) {
+            this.selectedProfile.profileData.projects[existing] = projectModified;
+          } else {
             this.selectedProfile.profileData.projects.push(projectModified);
           }
         }
-      }
-    );
+        this.cdr.markForCheck();
+      });
   }
 
 }

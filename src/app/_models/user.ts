@@ -22,7 +22,7 @@ export class User {
 }
 
 export class UserNotification {
-  id: Int32Array;
+  id: number;
   title: string;
   detail: string;
   date: string;

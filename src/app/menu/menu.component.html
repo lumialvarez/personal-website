@@ -1,35 +1,44 @@
-<nav id="navbarElement" class="navbar navbar-expand-lg fixed-top navbar-light bg-lignt">
+<nav id="navbarElement" class="navbar navbar-expand-lg fixed-top navbar-light">
   <div class="container-xl text-uppercase">
-    <a class="navbar-brand" routerLink="/" href="#">
-      <!--<img src="assets\img\logo.png" alt="Logo">-->
+    <a class="navbar-brand brand-mark" routerLink="/" aria-label="Inicio">
+      <span class="brand-mark-dot" aria-hidden="true"></span>
+      <span class="brand-mark-text">LMA</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-      (click)="ejecutarMenu()">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation" (click)="ejecutarMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/" (click)="moveToTag('top')" href="#">Inicio</a>
+        <li class="nav-item">
+          <a class="nav-link nav-link-animated" routerLink="/"
+             (click)="moveToTag('top')" href="#top">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" (click)="moveToTag('sobremi')" href="#">Sobre mí</a>
+          <a class="nav-link nav-link-animated" routerLink="/"
+             (click)="moveToTag('sobremi')" href="#sobremi">Sobre mí</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" (click)="moveToTag('conocimientos')" href="#">Conocimientos</a>
+          <a class="nav-link nav-link-animated" routerLink="/"
+             (click)="moveToTag('conocimientos')" href="#conocimientos">Conocimientos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" (click)="moveToTag('proyectos')" href="#">Proyectos</a>
+          <a class="nav-link nav-link-animated" routerLink="/"
+             (click)="moveToTag('proyectos')" href="#proyectos">Proyectos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" (click)="moveToTag('contacto')" href="#">Contacto</a>
+          <a class="nav-link nav-link-animated" routerLink="/"
+             (click)="moveToTag('contacto')" href="#contacto">Contacto</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link nav-link-dark" routerLink="login" href="#">Ingreso</a>
+          <a class="nav-link nav-link-cta" routerLink="login" href="#">
+            <i class="fas fa-user-lock me-2" aria-hidden="true"></i>Ingreso
+          </a>
         </li>
       </ul>
     </div>

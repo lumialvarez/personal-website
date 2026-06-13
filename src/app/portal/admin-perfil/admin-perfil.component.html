@@ -9,7 +9,7 @@
         @for (profile of profileList; track profile) {
           <div>
             <button ngbDropdownItem id="option"
-              on-click="selectedProfile=profile; processSelectedProfile();">{{profile.profileLanguage}}
+              (click)="selectedProfile=profile; processSelectedProfile();">{{profile.profileLanguage}}
             </button>
           </div>
         }

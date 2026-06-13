@@ -13,7 +13,7 @@ export class NotificationService {
     this.apiNotificationUrl = GlobalConstants.notificationUserPath;
   }
 
-  public SetReadNotification(id: Int32Array): Observable<any> {
+  public SetReadNotification(id: number): Observable<any> {
     return this.httpClient.put(this.apiNotificationUrl + '/' + id , null);
   }
 }

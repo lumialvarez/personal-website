@@ -1,5 +1,5 @@
 export class Profile {
-  profileId: Int32Array;
+  profileId: number;
   profileLanguage: string;
   profileData: ProfileData;
   lastUpdate: string;

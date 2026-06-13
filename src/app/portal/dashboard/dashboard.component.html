@@ -1,1 +1,98 @@
-<p>dashboard works!</p>
+<div class="container-fluid p-4 dashboard">
+  @if (user) {
+    <header class="dashboard-header">
+      <div>
+        <p class="dashboard-greeting">Hola,</p>
+        <h1 class="dashboard-name">{{ user.name }}</h1>
+      </div>
+      <div class="dashboard-date">
+        {{ today }}
+      </div>
+    </header>
+
+    <div class="row g-3 mb-4 stagger" appReveal revealDirection="up">
+      <div class="col-12 col-sm-6 col-lg-3 stagger-item">
+        <div class="metric-card metric-card--primary">
+          <div class="metric-card-icon"><i class="fas fa-folder-open" aria-hidden="true"></i></div>
+          <div class="metric-card-body">
+            <p class="metric-card-label">Proyectos</p>
+            <p class="metric-card-value">{{ projectsCount }}</p>
+            <a routerLink="./admin-perfil" class="metric-card-link">Administrar &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 stagger-item">
+        <div class="metric-card metric-card--secondary">
+          <div class="metric-card-icon"><i class="fas fa-cogs" aria-hidden="true"></i></div>
+          <div class="metric-card-body">
+            <p class="metric-card-label">Conocimientos</p>
+            <p class="metric-card-value">{{ knowledgesCount }}</p>
+            <a routerLink="./admin-perfil" class="metric-card-link">Administrar &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 stagger-item">
+        <div class="metric-card metric-card--accent">
+          <div class="metric-card-icon"><i class="fas fa-bell" aria-hidden="true"></i></div>
+          <div class="metric-card-body">
+            <p class="metric-card-label">Notificaciones</p>
+            <p class="metric-card-value">{{ unreadNotifications.length }}</p>
+            <span class="metric-card-sub">sin leer</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 stagger-item">
+        <div class="metric-card metric-card--muted">
+          <div class="metric-card-icon"><i class="fas fa-user-shield" aria-hidden="true"></i></div>
+          <div class="metric-card-body">
+            <p class="metric-card-label">Rol</p>
+            <p class="metric-card-value text-capitalize">{{ user.role }}</p>
+            <a routerLink="./admin-usuarios" class="metric-card-link">Usuarios &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-12">
+        <div class="panel">
+          <div class="panel-header">
+            <h5 class="panel-title">Notificaciones recientes</h5>
+          </div>
+          <ul class="notification-list">
+            @for (n of recentNotifications; track n) {
+              <li class="notification-list-item">
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <strong class="notification-list-title">{{ n.title }}</strong>
+                  <small class="notification-list-date">{{ n.date }}</small>
+                </div>
+                <p class="notification-list-detail">{{ n.detail }}</p>
+              </li>
+            } @empty {
+              <li class="notification-list-empty">Sin notificaciones</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+      <div class="col-12">
+        <div class="quick-actions">
+          <a routerLink="./admin-perfil" class="quick-action">
+            <i class="fas fa-user-edit" aria-hidden="true"></i>
+            <span>Editar perfil</span>
+          </a>
+          <a routerLink="./admin-usuarios" class="quick-action">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <span>Usuarios</span>
+          </a>
+          <a routerLink="./herramientas" class="quick-action">
+            <i class="fas fa-tools" aria-hidden="true"></i>
+            <span>Herramientas</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  }
+</div>

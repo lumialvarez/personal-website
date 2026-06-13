@@ -1,350 +1,267 @@
 <div id="top"></div>
 
-
-<header class="main-header">
-
-  <div class="background-overlay text-white">
+<header class="main-header" appReveal revealDirection="fade">
+  <div class="background-overlay">
     <div class="container fill">
       <div id="main-name-container" class="text-center">
-        @if (profile) {
-          <div>
-            <div class="row">
-              <div class="col-full">
-                <h1>
-                  {{profile.profileData.name}}
-                </h1>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-full">
-                <div class="col-1-4 centered line"></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-full">
-                <h4>
-                  {{profile.profileData.profession}}
-                </h4>
-              </div>
+        @if (loading) {
+          <div class="hero-loading fade-up">
+            <div class="hero-spinner" aria-hidden="true"></div>
+            <p class="hero-loading-text">Cargando perfil…</p>
+          </div>
+        } @else if (profile) {
+          <div class="hero-content">
+            <p class="hero-greeting fade-up">Hola, soy</p>
+            <h1 class="hero-name fade-up fade-up-delay-1">{{ profile.profileData.name }}</h1>
+            <div class="hero-divider fade-up fade-up-delay-2"></div>
+            <h4 class="hero-profession fade-up fade-up-delay-3">{{ profile.profileData.profession }}</h4>
+            <div class="hero-cta fade-up fade-up-delay-3">
+              <a class="btn btn-hero" (click)="moveToTag('proyectos')" role="button">
+                Ver proyectos
+                <i class="fas fa-arrow-down ms-2" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
+        } @else if (loadError) {
+          <div class="hero-error fade-up">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            <p class="hero-error-text">{{ loadError }}</p>
+            <button type="button" class="btn btn-hero" (click)="loadProfile()">
+              <i class="fas fa-redo me-2" aria-hidden="true"></i>Reintentar
+            </button>
+          </div>
         }
+      </div>
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-hint-line"></span>
       </div>
     </div>
   </div>
 </header>
 
 @if (profile) {
-  <div>
-    <app-menu></app-menu>
-    <!-- ABOUT -->
-    <section id="sobremi" class="m5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-full text-center">
-            <h3>Sobre mí</h3>
+  <app-menu></app-menu>
+
+  <!-- ABOUT -->
+  <section id="sobremi" class="section section-light" appReveal revealDirection="up">
+    <div class="container">
+      <div class="section-title" appReveal revealDirection="fade">
+        <h2>Sobre mí</h2>
+        <span class="line" aria-hidden="true"></span>
+      </div>
+      <div class="row g-4 align-items-start stagger" appReveal revealDirection="up">
+        <div class="col-md-4 stagger-item">
+          <div class="about-photo-wrap">
+            <img src="https://resources.lmalvarez.com/img/lmalvarez/foto.jpg"
+                 alt="Foto personal"
+                 class="img-fluid about-photo float-anim"
+                 loading="lazy">
           </div>
         </div>
-        <div class="row">
-          <div class="col-full">
-            <div class="col-1-4 centered line"></div>
+        <div class="col-md-4 stagger-item">
+          <div class="about-card">
+            <h5 class="about-card-title">Como Profesional</h5>
+            <div class="about-card-body" [innerHTML]="profile.profileData.professionalProfile"></div>
+            <div class="about-socials">
+              <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank" rel="noopener noreferrer"
+                 class="social-link social-link--linkedin" aria-label="LinkedIn">
+                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/lumialvarez" target="_blank" rel="noopener noreferrer"
+                 class="social-link social-link--github" aria-label="GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i>
+                <span>GitHub</span>
+              </a>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-4 col-sm-12 col-12">
-            <div class="col-full p-3">
-              <img src="https://resources.lmalvarez.com/img/lmalvarez/foto.jpg" alt="Foto personal"
-                class="img-fluid img-thumbnail mx-auto d-block">
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-              <div class="row">
-                <div class="col-full">
-                  <h5 class="text-uppercase text-center">Como Profesional</h5>
-                </div>
-              </div>
-              <div class="row">
-                <div class="text-left  pt-3 pl-3 pr-3">
-                  <div [innerHTML]="profile.profileData.professionalProfile"></div>
-                </div>
-              </div>
-              <div class="row pb-3">
-                <div class="col-6">
-                  <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank"
-                    class="text-decoration-none">
-                    <i class="fab fa-linkedin fa-w-14 fa-1x"></i> Linkedin</a>
-                  </div>
-                  <div class="col-6">
-                    <a href="https://github.com/lumialvarez" target="_blank" class="text-decoration-none">
-                      <i class="fab fa-github fa-w-14 fa-1x"></i> Github</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                  <div class="row">
-                    <div class="col-full">
-                      <h5 class="text-uppercase text-center">Como Persona</h5>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="text-left p-3">
-                      <div [innerHTML]="profile.profileData.personalProfile"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- CONOCIMIENTOS -->
-          <section id="conocimientos" class="m5 bg-segundario">
-            <div class="container">
-              <div class="text-center">
-                <div class="row">
-                  <div class="col-full">
-                    <h3>Conocimientos</h3>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-full">
-                    <div class="col-1-4 centered line"></div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-full">
-                    <p>Trabajar en diferentes áreas del desarrollo me ha permitido interactuar con diferentes
-                      lenguajes
-                    y tecnologías, a continuación muestro los más destacables</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-full">
-                    <div ngbDropdown>
-                      <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
-                        {{ selectedCategory || "Selecciona un tema" }}
-                      </button>
-                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                        <button ngbDropdownItem id="option"
-                          on-click="selectedCategory=null; processKnowledge()">Todos
-                        </button>
-                        @for (cat of categories; track cat) {
-                          <div>
-                            <button ngbDropdownItem id="optionCategory"
-                              on-click="selectedCategory=cat; processKnowledge()">{{cat}}
-                            </button>
-                          </div>
-                        }
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="row">
-                    <div class="col-full">
-                      <h6 class="text-uppercase text-center">Lenguajes</h6>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-full text-left pl-5 pr-5 pb-5">
-                      @for (item of knowledgeLanguages; track item; let i = $index) {
-                        <div class="row" data-toggle="tooltip"
-                          [title]=item.description>
-                          <div class="col-full">
-                            <div class="row">
-                              <div class="col-full">{{ item.name }}</div>
-                            </div>
-                            <div class="row">
-                              <div class="col-full">
-                                <div class="progress">
-                                  <div class="progress-bar " role="progressbar"
-                                    [style.width]="item.level + '%'" attr.aria-valuenow="{{ item.level }}"
-                                  aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="row">
-                    <div class="col-full">
-                      <h6 class="text-uppercase text-center">Framework/Tecnología</h6>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-full text-left pl-5 pr-5 pb-5">
-                      @for (item of knowledgeFrameworks; track item; let i = $index) {
-                        <div class="row" data-toggle="tooltip"
-                          [title]=item.description>
-                          <div class="col-full">
-                            <div class="row">
-                              <div class="col-full">{{ item.name }}</div>
-                            </div>
-                            <div class="row">
-                              <div class="col-full">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar"
-                                    [style.width]="item.level + '%'" attr.aria-valuenow="{{ item.level }}"
-                                  aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="row">
-                    <div class="col-full">
-                      <h6 class="text-uppercase text-center">Herramientas</h6>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-full text-left pl-5 pr-5 pb-5">
-                      @for (item of knowledgeTools; track item; let i = $index) {
-                        <div class="row" data-toggle="tooltip"
-                          [title]=item.description>
-                          <div class="col-full">
-                            <div class="row">
-                              <div class="col-full">{{ item.name }}</div>
-                            </div>
-                            <div class="row">
-                              <div class="col-full">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar"
-                                    [style.width]="item.level + '%'" attr.aria-valuenow="{{ item.level }}"
-                                  aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="row">
-                    <div class="col-full">
-                      <h6 class="text-uppercase text-center">Otros</h6>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-full text-left pl-5 pr-5 pb-5">
-                      @for (item of knowledgeOther; track item; let i = $index) {
-                        <div class="row" data-toggle="tooltip"
-                          [title]=item.description>
-                          <div class="col-full">
-                            <div class="row">
-                              <div class="col-full">{{ item.name }}</div>
-                            </div>
-                            <div class="row">
-                              <div class="col-full">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar"
-                                    [style.width]="item.level + '%'" attr.aria-valuenow="{{ item.level }}"
-                                  aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- PROYECTOS -->
-          <section id="proyectos" class="text-center">
-            <div class="container p-5">
-              <div class="text-center">
-                <div class="row">
-                  <div class="col-full">
-                    <h3>Proyectos</h3>
-                  </div>
-                </div>
-                <div class="row mb-2">
-                  <div class="col-full">
-                    <div class="col-1-4 centered line"></div>
-                  </div>
-                </div>
-                <div class="row">
-                  <p>
-                    A continuación resumo los proyectos los cuales de una u otra manera han significaron algo para
-                    mí, ya sea por el reto que fueron o por los resultados obtenidos
-                  </p>
-                </div>
-                <div class="row">
-                  <!-- LISTA -->
-                  @for (item of profile.profileData.projects; track item; let i = $index) {
-                    <div class="col-lg-3 d-flex mb-3 align-items-stretch"
-                      >
-                      <div class="card card-hover" (click)="openModalProjectDetail(item)">
-                        <div class="card-body">
-                          <img src={{item.mainImage}} alt="Imagen del proyecto" class="img-fluid rounded-circle w-50" loading="lazy">
-                          <h4>{{item.name}}</h4>
-                          <p>
-                            {{item.description}}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  }
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- CONTACTO -->
-          <section id="contacto" class="m5 text-center bg-segundario">
-            <div class="container">
-              <div class="row">
-                <div class="col-full">
-                  <h3>Contacto</h3>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-full">
-                  <div class="col-1-4 centered line"></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-full">
-                  <p>
-                    Si tienes alguna pregunta, sugerencia o revisar nuevas posibilidades no dudes en dejarme un
-                    mensaje
-                    por mi red social Linkedin
-                  </p>
-                </div>
-              </div>
-              <div class="row justify-content-center">
-                <div class="p-12 pb-5">
-                  <a href="https://www.linkedin.com/in/lumi-aalvarez/" target="_blank"><i
-                  class="fab fa-linkedin fa-w-14 fa-3x"></i></a>
-                </div>
-              </div>
-            </div>
-          </section>
-          <footer>
-            <div class="container">
-              <div class="row text-center text-white  pt-3">
-                <div class="col ml-auto">
-                  Copyright &copy; 2022
-                </div>
-              </div>
-              <div class="row text-center text-white  pb-3">
-                <div id="app-version" class="col ml-auto">
-                  Versión {{version}}
-                </div>
-              </div>
-            </div>
-          </footer>
+        <div class="col-md-4 stagger-item">
+          <div class="about-card">
+            <h5 class="about-card-title">Como Persona</h5>
+            <div class="about-card-body" [innerHTML]="profile.profileData.personalProfile"></div>
+          </div>
         </div>
-      }
+      </div>
+    </div>
+  </section>
+
+  <!-- CONOCIMIENTOS -->
+  <section id="conocimientos" class="section section-muted" appReveal revealDirection="up">
+    <div class="container">
+      <div class="section-title" appReveal revealDirection="fade">
+        <h2>Conocimientos</h2>
+        <span class="line" aria-hidden="true"></span>
+      </div>
+      <p class="section-lead">
+        Trabajar en diferentes áreas del desarrollo me ha permitido interactuar con diferentes
+        lenguajes y tecnologías. Estos son los más destacables.
+      </p>
+      <div class="d-flex justify-content-center mb-5" appReveal revealDirection="fade">
+        <div ngbDropdown class="knowledge-filter">
+          <button class="btn btn-pill" id="dropdownBasic1" ngbDropdownToggle>
+            <i class="fas fa-filter me-2" aria-hidden="true"></i>
+            {{ selectedCategory || 'Todos los temas' }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="selectedCategory=null; processKnowledge()">Todos</button>
+            @for (cat of categories; track cat) {
+              <button ngbDropdownItem (click)="selectedCategory=cat; processKnowledge()">{{ cat }}</button>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="row g-4 stagger" appReveal revealDirection="up">
+        <div class="col-md-6 col-lg-3 stagger-item">
+          <div class="knowledge-column">
+            <h6 class="knowledge-column-title">Lenguajes</h6>
+            @for (item of knowledgeLanguages; track item) {
+              <div class="knowledge-item" data-toggle="tooltip" [title]="item.description">
+                <div class="knowledge-item-header">
+                  <span class="knowledge-item-name">{{ item.name }}</span>
+                  <span class="knowledge-item-value">{{ item.level }}%</span>
+                </div>
+                <div class="progress progress-thin progress-animated"
+                     [style.--progress-target]="item.level + '%'">
+                  <div class="progress-bar" role="progressbar"
+                       [attr.aria-valuenow]="item.level" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            } @empty {
+              <p class="text-muted small">Sin entradas</p>
+            }
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 stagger-item">
+          <div class="knowledge-column">
+            <h6 class="knowledge-column-title">Frameworks</h6>
+            @for (item of knowledgeFrameworks; track item) {
+              <div class="knowledge-item" data-toggle="tooltip" [title]="item.description">
+                <div class="knowledge-item-header">
+                  <span class="knowledge-item-name">{{ item.name }}</span>
+                  <span class="knowledge-item-value">{{ item.level }}%</span>
+                </div>
+                <div class="progress progress-thin progress-animated"
+                     [style.--progress-target]="item.level + '%'">
+                  <div class="progress-bar" role="progressbar"
+                       [attr.aria-valuenow]="item.level" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            } @empty {
+              <p class="text-muted small">Sin entradas</p>
+            }
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 stagger-item">
+          <div class="knowledge-column">
+            <h6 class="knowledge-column-title">Herramientas</h6>
+            @for (item of knowledgeTools; track item) {
+              <div class="knowledge-item" data-toggle="tooltip" [title]="item.description">
+                <div class="knowledge-item-header">
+                  <span class="knowledge-item-name">{{ item.name }}</span>
+                  <span class="knowledge-item-value">{{ item.level }}%</span>
+                </div>
+                <div class="progress progress-thin progress-animated"
+                     [style.--progress-target]="item.level + '%'">
+                  <div class="progress-bar" role="progressbar"
+                       [attr.aria-valuenow]="item.level" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            } @empty {
+              <p class="text-muted small">Sin entradas</p>
+            }
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 stagger-item">
+          <div class="knowledge-column">
+            <h6 class="knowledge-column-title">Otros</h6>
+            @for (item of knowledgeOther; track item) {
+              <div class="knowledge-item" data-toggle="tooltip" [title]="item.description">
+                <div class="knowledge-item-header">
+                  <span class="knowledge-item-name">{{ item.name }}</span>
+                  <span class="knowledge-item-value">{{ item.level }}%</span>
+                </div>
+                <div class="progress progress-thin progress-animated"
+                     [style.--progress-target]="item.level + '%'">
+                  <div class="progress-bar" role="progressbar"
+                       [attr.aria-valuenow]="item.level" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            } @empty {
+              <p class="text-muted small">Sin entradas</p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos" class="section section-light" appReveal revealDirection="up">
+    <div class="container">
+      <div class="section-title" appReveal revealDirection="fade">
+        <h2>Proyectos</h2>
+        <span class="line" aria-hidden="true"></span>
+      </div>
+      <p class="section-lead">
+        A continuación resumo los proyectos los cuales de una u otra manera significaron algo para
+        mí, ya sea por el reto que fueron o por los resultados obtenidos.
+      </p>
+      <div class="row g-4 stagger" appReveal revealDirection="up">
+        @for (item of profile.profileData.projects; track item) {
+          <div class="col-sm-6 col-lg-3 stagger-item">
+            <article class="project-card card-hover"
+                     (click)="openModalProjectDetail(item)"
+                     tabindex="0"
+                     (keyup.enter)="openModalProjectDetail(item)">
+              <div class="project-card-image">
+                <img [src]="item.mainImage" [alt]="item.name" loading="lazy">
+              </div>
+              <div class="project-card-body">
+                <h4 class="project-card-title">{{ item.name }}</h4>
+                <p class="project-card-desc">{{ item.description }}</p>
+                <span class="project-card-cta">
+                  Ver detalle <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i>
+                </span>
+              </div>
+            </article>
+          </div>
+        } @empty {
+          <p class="text-center text-muted">Aún no hay proyectos cargados.</p>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section section-muted" appReveal revealDirection="up">
+    <div class="container">
+      <div class="section-title" appReveal revealDirection="fade">
+        <h2>Contacto</h2>
+        <span class="line" aria-hidden="true"></span>
+      </div>
+      <p class="section-lead">
+        Si tienes alguna pregunta, sugerencia o quieres revisar nuevas posibilidades,
+        no dudes en dejarme un mensaje por mi red social LinkedIn.
+      </p>
+      <div class="d-flex justify-content-center" appReveal revealDirection="scale">
+        <a class="contact-cta" href="https://www.linkedin.com/in/lumi-aalvarez/"
+           target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+          <span>Conectar en LinkedIn</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row text-center text-white pt-4 pb-4">
+        <div class="col-12">Copyright &copy; {{ currentYear }} Luis Miguel Alvarez</div>
+        <div class="col-12" id="app-version">Versión {{ version }}</div>
+      </div>
+    </div>
+  </footer>
+
+  <app-scroll-top></app-scroll-top>
+}

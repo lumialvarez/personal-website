@@ -4,6 +4,7 @@ import {ToastService} from './_services/toast.service';
 
 @Component({
   selector: 'app-toasts',
+  standalone: false,
   template: `
     @for (toast of toastService.toasts; track toast) {
       <ngb-toast

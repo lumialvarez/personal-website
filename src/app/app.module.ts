@@ -24,6 +24,8 @@ import { AdminProyectoComponent } from './portal/admin-perfil/admin-proyecto/adm
 import { HerramientasComponent } from './portal/herramientas/herramientas.component';
 import {ToastsContainerComponent} from './toasts-container.component';
 import {UserUpdateComponent} from './portal/admin-usuarios/user-update/user-update.component';
+import {RevealDirective} from './_directives/reveal.directive';
+import {ScrollTopComponent} from './shared/scroll-top/scroll-top.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +35,16 @@ import {UserUpdateComponent} from './portal/admin-usuarios/user-update/user-upda
     LoginComponent,
     DetalleProyectoComponent,
     PortalComponent,
-    AdminPerfilComponent,
     AdminUsuariosComponent,
+    AdminPerfilComponent,
     UserUpdateComponent,
     DashboardComponent,
     ToastsContainerComponent,
     AdminConocimientoComponent,
     AdminProyectoComponent,
-    HerramientasComponent
+    HerramientasComponent,
+    RevealDirective,
+    ScrollTopComponent
   ],
   imports: [
     BrowserModule,

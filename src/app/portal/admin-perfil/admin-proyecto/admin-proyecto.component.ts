@@ -6,6 +6,7 @@ import {ToastService} from '../../../_services/toast.service';
 
 @Component({
   selector: 'app-admin-proyecto',
+  standalone: false,
   templateUrl: './admin-proyecto.component.html',
   styleUrls: ['./admin-proyecto.component.css']
 })
