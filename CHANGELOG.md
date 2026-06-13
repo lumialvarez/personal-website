@@ -2,8 +2,27 @@
 Personal Web Page
 
 ## [Unreleased]
-- Contact form
-- Chatbot
+### Added
+- Dashboard with profile metrics (projects, knowledges, notifications), top skills and recent notifications
+- Meta tags for SEO and social sharing (description, Open Graph, Twitter Card, theme-color, preconnect to external resources)
+- CSS custom properties in `:root` for colors, transitions and shadows
+- Support for `prefers-reduced-motion` to disable animations
+### Fixed
+- Filter by category in "Conocimientos" section not working (invalid `on-click` attribute replaced with Angular `(click)`)
+- Language selector in admin profile not working (same root cause)
+- JWT token leaked in URL when opening StaticFileAdmin (now sent via `Authorization: Bearer` header)
+- Memory leaks from unsubscribed Observables in main, login, portal, admin-perfil, admin-usuarios, user-update and new dashboard components
+- Wrong types: `Int32Array` replaced with `number` for `User.id`, `Profile.profileId`, `LoginResponse.userId` and notification `SetReadNotification(id)`
+- Login flow now validates token expiration via `isAuthenticated()` instead of only checking presence
+- Debug `console.log` statements removed from menu and admin components
+### Changed
+- All HTTP subscriptions now use `takeUntilDestroyed(destroyRef)` for automatic cleanup
+- Color values centralized in CSS variables and applied across main, menu, portal and login styles
+- Hardcoded `rgba(12, 36, 97, ...)` replaced with `var(--color-primary)` and `rgba(var(--color-primary-rgb), ...)`
+- `admin-usuarios` modal handling refactored: `openUserModal(user)` private method shared by create and update flows
+### Removed
+- Dead code: `String.prototype.escapeSpecialChars` global prototype pollution
+- Production polyfill: `import 'zone.js/testing'`
 
 ## [2.2.2] - 27/07/2025
 ### Fixed

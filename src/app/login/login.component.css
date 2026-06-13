@@ -18,7 +18,7 @@
   padding: 40px;
   top: 50%;
   left: 50%;
-  background: #191919;
+  background: var(--color-dark);
   text-align: center;
   transition: 0.25s;
   margin-top: 100px;
@@ -32,7 +32,7 @@
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid rgba(12, 36, 97);
+  border: 2px solid var(--color-primary);
   padding: 10px 10px;
   width: 250px;
   outline: none;
@@ -50,7 +50,7 @@
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
   width: 300px;
-  border-color: #ccc
+  border-color: var(--color-line)
 }
 
 .box input[type="submit"] {
@@ -59,7 +59,7 @@
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #ccc;
+  border: 2px solid var(--color-line);
   padding: 14px 40px;
   outline: none;
   color: white;
@@ -69,8 +69,8 @@
 }
 
 .box input[type="submit"]:hover {
-  background: #ccc;
-  color: #191919;
+  background: var(--color-line);
+  color: var(--color-dark);
   font-weight: bold;
 }
 
@@ -93,6 +93,6 @@
 }
 
 #btnVolver:hover {
-  background: #ccc;
-  color: rgba(12, 36, 97);
+  background: var(--color-line);
+  color: var(--color-primary);
 }

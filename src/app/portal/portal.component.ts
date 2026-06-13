@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DestroyRef, OnInit, inject} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Router} from '@angular/router';
 import {LoginService} from '../_services/http/login/login.service';
 import {TokenService} from '../_services/token.service';
@@ -15,6 +16,8 @@ export class PortalComponent implements OnInit {
   user: User;
   notificationsCount = 0;
 
+  private readonly destroyRef = inject(DestroyRef);
+
   constructor(private tokenService: TokenService,
               private loginService: LoginService,
               private notificationService: NotificationService,
@@ -26,30 +29,30 @@ export class PortalComponent implements OnInit {
     this.processNotificationCount();
   }
 
-  setReadNotification(id: Int32Array): void {
-    this.notificationService.SetReadNotification(id).subscribe({
-      next: (data) => {
-        this.refreshUser();
-      },
-      error: (err) => console.log(err)
-    });
+  setReadNotification(id: number): void {
+    this.notificationService.SetReadNotification(id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => this.refreshUser(),
+        error: (err) => console.error(err)
+      });
   }
 
   processNotificationCount(): void {
-    this.notificationsCount = this.user.notifications.filter(d => !d.read).length;
+    this.notificationsCount = (this.user?.notifications || []).filter((d) => !d.read).length;
   }
 
   refreshUser(): void {
-    this.loginService.getCurrentUser().subscribe(
-      dataUser => {
-        this.user = dataUser;
-        this.tokenService.setUser(dataUser);
-        this.processNotificationCount();
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.loginService.getCurrentUser()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (dataUser) => {
+          this.user = dataUser;
+          this.tokenService.setUser(dataUser);
+          this.processNotificationCount();
+        },
+        error: (err) => console.error(err)
+      });
   }
 
   toggleSidebarEvent(): void {

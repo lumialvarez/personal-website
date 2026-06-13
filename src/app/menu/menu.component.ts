@@ -34,13 +34,11 @@ export class MenuComponent implements OnInit {
     let estilo = '';
     if (elemento){
       if (elemento[0].classList.contains('collapsed')){
-        console.log('cerrado');
         estilo = 'background-color: transparent !important;';
         window.scroll(window.pageXOffset, window.pageYOffset + 1);
         window.scroll(window.pageXOffset, window.pageYOffset - 1);
       } else {
-        console.log('abierto');
-        estilo = 'background-color: rgba(12, 36, 97,1.0) !important;';
+        estilo = 'background-color: var(--color-primary) !important;';
       }
       document.getElementById('navbarElement').setAttribute('style', estilo);
     }

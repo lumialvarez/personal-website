@@ -1,5 +1,5 @@
 .loadview {
-  background: rgba(12, 36, 97, .9) !important;
+  background: rgba(var(--color-primary-rgb), .9) !important;
   background-size: cover;
   background: url(https://resources.lmalvarez.com/img/lmalvarez/background.jpg);
   min-height: 100vh;
@@ -35,7 +35,7 @@
 }
 
 .background-overlay {
-  background: rgba(12, 36, 97, .9) !important;
+  background: rgba(var(--color-primary-rgb), .9) !important;
   background-size: cover;
   min-height: 100vh;
   height: 100%;
@@ -43,7 +43,7 @@
 }
 
 footer {
-  background: rgba(12, 36, 97, 1.0);
+  background: var(--color-primary);
 }
 
 #main-name-container {
@@ -104,8 +104,7 @@ footer {
   width: 290px;
   height: 3px;
   padding: 0 !important;
-  background: #ccc;
-  background-color: #5b9bbc;
+  background-color: var(--color-secondary);
 }
 
 section .row .col-full h3 {
@@ -123,7 +122,7 @@ section .row .col-full .line {
 }
 
 .col-full .progress-bar {
-  background-color: rgba(12, 36, 97, 1.0);
+  background-color: var(--color-primary);
 }
 
 #app-version {

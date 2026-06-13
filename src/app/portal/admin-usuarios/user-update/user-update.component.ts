@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DestroyRef, OnInit, inject} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ToastService} from '../../../_services/toast.service';
 import {User} from '../../../_models/user';
@@ -20,6 +21,8 @@ export class UserUpdateComponent implements OnInit {
     public isNewUser: boolean;
     public password1 = '';
     public password2 = '';
+
+    private readonly destroyRef = inject(DestroyRef);
 
     constructor(public activeModal: NgbActiveModal, public toastService: ToastService, public userService: UserService) {
     }
@@ -61,16 +64,18 @@ export class UserUpdateComponent implements OnInit {
         }
         this.userEdit.password = this.password1;
         const createUserRequest: CreateUserRequest = new CreateUserRequest(this.userEdit);
-        this.userService.createUser(createUserRequest).subscribe(
-            data => {
-                this.toastService.showSuccess('Usuario creado');
-                this.activeModal.dismiss('saved data');
-            },
-            err => {
-                this.toastService.showDanger('Error al guardar los datos');
-                (new CommonError(err.error, this.toastService)).printErrorDetails();
-            }
-        );
+        this.userService.createUser(createUserRequest)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: () => {
+                    this.toastService.showSuccess('Usuario creado');
+                    this.activeModal.dismiss('saved data');
+                },
+                error: (err) => {
+                    this.toastService.showDanger('Error al guardar los datos');
+                    (new CommonError(err.error, this.toastService)).printErrorDetails();
+                }
+            });
     }
 
     private updateUser(): void {
@@ -84,15 +89,17 @@ export class UserUpdateComponent implements OnInit {
 
         const updateUserRequest: UpdateUserRequest = new UpdateUserRequest();
         updateUserRequest.user = this.userEdit;
-        this.userService.updateUser(updateUserRequest).subscribe(
-            data => {
-                this.toastService.showSuccess('Usuario actualizado');
-                this.activeModal.dismiss('saved data');
-            },
-            err => {
-                this.toastService.showDanger('Error al guardar los datos');
-                (new CommonError(err.error, this.toastService)).printErrorDetails();
-            }
-        );
+        this.userService.updateUser(updateUserRequest)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: () => {
+                    this.toastService.showSuccess('Usuario actualizado');
+                    this.activeModal.dismiss('saved data');
+                },
+                error: (err) => {
+                    this.toastService.showDanger('Error al guardar los datos');
+                    (new CommonError(err.error, this.toastService)).printErrorDetails();
+                }
+            });
     }
 }

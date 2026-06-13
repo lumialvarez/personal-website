@@ -1,6 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-primary: #0c2461;
+  --color-primary-rgb: 12, 36, 97;
+  --color-secondary: #5b9bbc;
+  --color-dark: #191919;
+  --color-text-light: #f1f2f6;
+  --color-text-muted: #afb0b4;
+  --color-bg-secondary: #eee;
+  --color-line: #ccc;
+
+  --shadow-card-hover: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+  --transition-card: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
 body.gradient {
-  background: linear-gradient(to right, #191919, rgba(12, 36, 97)) !important;
+  background: linear-gradient(to right, var(--color-dark), var(--color-primary)) !important;
 }
 
 .form-control, .btn {
@@ -22,12 +36,16 @@ body.gradient {
 }
 
 .bg-segundario {
-  background-color: #eee;
+  background-color: var(--color-bg-secondary);
+}
+
+.card-hover {
+  transition: var(--transition-card);
 }
 
 .card-hover:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+  box-shadow: var(--shadow-card-hover);
   cursor: pointer;
 }
 
@@ -35,4 +53,13 @@ body.gradient {
   font-size: 60%;
   font-weight: initial;
   margin-right: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

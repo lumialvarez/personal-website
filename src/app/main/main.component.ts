@@ -1,4 +1,5 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, DestroyRef, HostListener, OnInit, inject} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DetalleProyectoComponent} from './detalle-proyecto/detalle-proyecto.component';
 
@@ -26,17 +27,19 @@ export class MainComponent implements OnInit {
   public categories: string[] = ['Fullstack', 'Backend', 'Integracion', 'Frontend', 'Infraestructura', 'Base de datos', 'Devops'];
   public selectedCategory: string = null;
 
+  private readonly destroyRef = inject(DestroyRef);
+
   constructor(private modalService: NgbModal, private profileService: ProfileService) {
     this.version = appVersion;
   }
 
   @HostListener('document:scroll', ['$event'])
-  onScroll = (ev: Event) => {
+  onScroll(ev: Event): void {
     this.actualizarEstilosContenido(ev);
   }
 
   @HostListener('document:resize', ['$event'])
-  onResize = (ev: Event) => {
+  onResize(ev: Event): void {
     this.actualizarEstilosContenido(ev);
   }
 
@@ -46,8 +49,7 @@ export class MainComponent implements OnInit {
     this.loadProfile();
   }
 
-  actualizarEstilosContenido = (s) => {
-    // Color del menu
+  actualizarEstilosContenido(s): void {
     const alturaPantalla = window.innerHeight;
     if (s && s.target && s.target.scrollingElement) {
       const pxScroll = s.target.scrollingElement.scrollTop;
@@ -57,14 +59,13 @@ export class MainComponent implements OnInit {
       if (pxScroll === 0) {
         estilo = 'background-color: transparent !important;';
       } else if (pxScroll > 0 && pxScroll <= alturaEsperada) {
-        estilo = 'background-color: rgba(12, 36, 97,' + pxScroll / alturaEsperada + ') !important;';
+        estilo = 'background-color: rgba(var(--color-primary-rgb),' + pxScroll / alturaEsperada + ') !important;';
       } else {
-        estilo = 'background-color: rgba(12, 36, 97,1.0) !important;';
+        estilo = 'background-color: var(--color-primary) !important;';
       }
       document.getElementById('navbarElement').setAttribute('style', estilo);
     }
 
-    // Altura del nombre principal
     this.actualizarAlturaNombrePrincipal();
   }
 
@@ -80,15 +81,17 @@ export class MainComponent implements OnInit {
 
   loadProfile(): void {
     this.profile = null;
-    this.profileService.getProfilesExternal().subscribe({
-      next: (data) => {
-        this.profile = data.profiles[0];
-        this.profile.profileData.projects.sort((a: Project, b: Project) => -(b.order - a.order));
-        this.processKnowledge();
-      },
-      error: (e) => console.error(e),
-      complete: () => this.actualizarAlturaNombrePrincipal()
-    });
+    this.profileService.getProfilesExternal()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (data) => {
+          this.profile = data.profiles[0];
+          this.profile.profileData.projects.sort((a: Project, b: Project) => -(b.order - a.order));
+          this.processKnowledge();
+        },
+        error: (e) => console.error(e),
+        complete: () => this.actualizarAlturaNombrePrincipal()
+      });
   }
 
   processKnowledge(): void {

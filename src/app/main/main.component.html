@@ -124,12 +124,12 @@
                       </button>
                       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                         <button ngbDropdownItem id="option"
-                          on-click="selectedCategory=null; processKnowledge()">Todos
+                          (click)="selectedCategory=null; processKnowledge()">Todos
                         </button>
                         @for (cat of categories; track cat) {
                           <div>
                             <button ngbDropdownItem id="optionCategory"
-                              on-click="selectedCategory=cat; processKnowledge()">{{cat}}
+                              (click)="selectedCategory=cat; processKnowledge()">{{cat}}
                             </button>
                           </div>
                         }

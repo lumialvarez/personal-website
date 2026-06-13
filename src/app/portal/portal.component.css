@@ -7,13 +7,13 @@
   margin-left: -15rem;
   transition: margin 0.25s ease-out;
   border-right: none !important;
-  background-color: rgba(12, 36, 97) !important;
+  background-color: var(--color-primary) !important;
 }
 
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
-  color: #f1f2f6;
+  color: var(--color-text-light);
 }
 
 #sidebar-wrapper .list-group {
@@ -21,8 +21,8 @@
 }
 
 #sidebar-wrapper .list-group .list-group-item {
-  background-color: rgba(12, 36, 97) !important;
-  color: #afb0b4;
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-muted);
 }
 
 #page-content-wrapper {
@@ -30,7 +30,7 @@
 }
 
 #page-content-wrapper nav {
-  background-color: rgba(12, 36, 97) !important;
+  background-color: var(--color-primary) !important;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -48,11 +48,11 @@
 }
 
 .navbar-nav > li > .dropdown-menu {
-  background-color: #afb0b4;
+  background-color: var(--color-text-muted);
 }
 
 #portal-menu-toggle {
-  color: #afb0b4;
+  color: var(--color-text-muted);
 }
 
 @media (min-width: 768px) {
