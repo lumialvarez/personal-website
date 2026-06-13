@@ -3,7 +3,6 @@ import {RouterLink} from '@angular/router';
 import {TokenService} from '../../_services/token.service';
 import {User, UserNotification} from '../../_models/user';
 import {ProfileService} from '../../_services/http/profile/perfil.service';
-import {Knowledge} from '../../_models/main/Profile';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
@@ -21,7 +20,6 @@ export class DashboardComponent implements OnInit {
   projectsCount = 0;
   knowledgesCount = 0;
   recentNotifications: UserNotification[] = [];
-  topKnowledges: Knowledge[] = [];
   today = '';
 
   private readonly monthNames = [
@@ -57,9 +55,6 @@ export class DashboardComponent implements OnInit {
           }
           this.projectsCount = active.profileData.projects.length;
           this.knowledgesCount = active.profileData.knowledges.length;
-          this.topKnowledges = [...active.profileData.knowledges]
-            .sort((a, b) => b.level - a.level)
-            .slice(0, 6);
         },
         error: (err) => console.error('Error cargando estadísticas del perfil', err)
       });

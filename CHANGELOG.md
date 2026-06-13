@@ -38,6 +38,9 @@ Personal Web Page
 - Section content (About, Conocimientos, Proyectos, Dashboard metric cards) was invisible because `.stagger` containers were missing `appReveal`, so child items never received the `.revealed` class and stayed at `opacity: 0`
 - Progress bars in `Conocimientos` and Dashboard now animate from 0 to target when the ancestor `.stagger` reveals (no longer requires `appReveal` on each bar)
 
+### Removed
+- "Top conocimientos" panel from dashboard (now only metric cards, recent notifications and quick actions); related `topKnowledges` state and `.skill-list*` CSS
+
 ## [2.2.2] - 27/07/2025
 ### Fixed
 - nginx config
