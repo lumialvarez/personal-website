@@ -36,7 +36,7 @@
         <h2>Sobre mí</h2>
         <span class="line" aria-hidden="true"></span>
       </div>
-      <div class="row g-4 align-items-start stagger">
+      <div class="row g-4 align-items-start stagger" appReveal revealDirection="up">
         <div class="col-md-4 stagger-item">
           <div class="about-photo-wrap">
             <img src="https://resources.lmalvarez.com/img/lmalvarez/foto.jpg"
@@ -98,7 +98,7 @@
           </div>
         </div>
       </div>
-      <div class="row g-4 stagger">
+      <div class="row g-4 stagger" appReveal revealDirection="up">
         <div class="col-md-6 col-lg-3 stagger-item">
           <div class="knowledge-column">
             <h6 class="knowledge-column-title">Lenguajes</h6>
@@ -194,7 +194,7 @@
         A continuación resumo los proyectos los cuales de una u otra manera significaron algo para
         mí, ya sea por el reto que fueron o por los resultados obtenidos.
       </p>
-      <div class="row g-4 stagger">
+      <div class="row g-4 stagger" appReveal revealDirection="up">
         @for (item of profile.profileData.projects; track item) {
           <div class="col-sm-6 col-lg-3 stagger-item">
             <article class="project-card card-hover"

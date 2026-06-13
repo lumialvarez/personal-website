@@ -286,14 +286,16 @@ a:hover {
   width: 220px;
 }
 
-/* Animated progress bar: width animates from 0 to target */
+/* Animated progress bar: width animates from 0 to target when its
+   ancestor .stagger container is revealed (no need to add appReveal
+   to each bar). */
 .progress-animated .progress-bar {
   width: 0 !important;
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
   position: relative;
   overflow: hidden;
 }
-.progress-animated.revealed .progress-bar {
+.stagger.revealed .progress-animated .progress-bar {
   width: var(--progress-target, 0%) !important;
 }
 .progress-animated .progress-bar::after {

@@ -34,6 +34,10 @@ Personal Web Page
 - Dead code: `String.prototype.escapeSpecialChars` global prototype pollution
 - Production polyfill: `import 'zone.js/testing'`
 
+### Fixed
+- Section content (About, Conocimientos, Proyectos, Dashboard metric cards) was invisible because `.stagger` containers were missing `appReveal`, so child items never received the `.revealed` class and stayed at `opacity: 0`
+- Progress bars in `Conocimientos` and Dashboard now animate from 0 to target when the ancestor `.stagger` reveals (no longer requires `appReveal` on each bar)
+
 ## [2.2.2] - 27/07/2025
 ### Fixed
 - nginx config
