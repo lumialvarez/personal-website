@@ -15,6 +15,7 @@ export class PortalComponent implements OnInit {
   toggleSidebar = false;
   user: User;
   notificationsCount = 0;
+  userInitial = '?';
 
   private readonly destroyRef = inject(DestroyRef);
 
@@ -26,6 +27,7 @@ export class PortalComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.tokenService.getUser();
+    this.userInitial = (this.user?.name || '?').charAt(0).toUpperCase();
     this.processNotificationCount();
   }
 

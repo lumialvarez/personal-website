@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -10,38 +10,34 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    window.scroll(0, 1);
-    window.scroll(0, 0);
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    });
   }
 
-  moveToTag(nombreTag): void {
-    let intentos = 0;
-    setTimeout(function intento(): void {
-      const elementoContenido = document.getElementById(nombreTag);
-      if (typeof (elementoContenido) !== 'undefined' && elementoContenido != null) {
-        elementoContenido.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-      } else {
-        if (intentos < 50) {
-          intentos++;
-          setTimeout(intento, 20);
-        }
-      }
-    }, 20);
+  @HostListener('window:scroll')
+  onScroll(): void {
+    const navbar = document.getElementById('navbarElement');
+    if (!navbar) {
+      return;
+    }
+    navbar.classList.toggle('is-scrolled', window.scrollY > 60);
+  }
+
+  moveToTag(nombreTag: string): void {
+    const target = document.getElementById(nombreTag);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   ejecutarMenu(): void {
     const elemento = document.getElementsByClassName('navbar-toggler');
-    let estilo = '';
-    if (elemento){
-      if (elemento[0].classList.contains('collapsed')){
-        estilo = 'background-color: transparent !important;';
-        window.scroll(window.pageXOffset, window.pageYOffset + 1);
-        window.scroll(window.pageXOffset, window.pageYOffset - 1);
-      } else {
-        estilo = 'background-color: var(--color-primary) !important;';
+    if (elemento && elemento.length) {
+      if (elemento[0].classList.contains('collapsed')) {
+        window.scrollBy(0, 1);
+        window.scrollBy(0, -1);
       }
-      document.getElementById('navbarElement').setAttribute('style', estilo);
     }
-
   }
 }

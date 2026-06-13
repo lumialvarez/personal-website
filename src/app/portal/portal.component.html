@@ -1,86 +1,120 @@
 <div id="wrapper" class="d-flex" [ngClass]="toggleSidebar ? 'toggled' : ''">
-  <!-- Sidebar-->
-  <div class="border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">PANEL DE CONTROL</div>
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <div class="sidebar-heading">
+      <i class="fas fa-tachometer-alt me-2" aria-hidden="true"></i>
+      PANEL DE CONTROL
+    </div>
     <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action" routerLink="./" skipLocationChange>INICIO</a>
-      <a class="list-group-item list-group-item-action" routerLink="./admin-perfil" skipLocationChange>PERFIL</a>
-      <a class="list-group-item list-group-item-action" routerLink="./admin-usuarios"
-      skipLocationChange>USUARIOS</a>
-      <a class="list-group-item list-group-item-action" routerLink="./herramientas"
-      skipLocationChange>HERRAMIENTAS</a>
+      <a class="list-group-item list-group-item-action"
+         routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+         skipLocationChange>
+        <i class="fas fa-home me-2" aria-hidden="true"></i>Inicio
+      </a>
+      <a class="list-group-item list-group-item-action"
+         routerLink="./admin-perfil" routerLinkActive="active"
+         skipLocationChange>
+        <i class="fas fa-user-edit me-2" aria-hidden="true"></i>Perfil
+      </a>
+      <a class="list-group-item list-group-item-action"
+         routerLink="./admin-usuarios" routerLinkActive="active"
+         skipLocationChange>
+        <i class="fas fa-users me-2" aria-hidden="true"></i>Usuarios
+      </a>
+      <a class="list-group-item list-group-item-action"
+         routerLink="./herramientas" routerLinkActive="active"
+         skipLocationChange>
+        <i class="fas fa-tools me-2" aria-hidden="true"></i>Herramientas
+      </a>
     </div>
   </div>
-  <!-- Page Content-->
+
+  <!-- Page Content -->
   <div id="page-content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <button class="btn" id="portal-menu-toggle" (click)="toggleSidebarEvent()">
-        <i class="fas fa-angle-left"></i>
-        <i class="fas fa-angle-right"></i>
+    <nav class="navbar navbar-expand-lg navbar-dark portal-navbar">
+      <button class="btn portal-menu-toggle" id="portal-menu-toggle" (click)="toggleSidebarEvent()" aria-label="Toggle sidebar">
+        <i class="fas" [class.fa-angle-left]="!toggleSidebar" [class.fa-angle-right]="toggleSidebar" aria-hidden="true"></i>
       </button>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#portalNavbarSupportedContent"
-        aria-controls="portalNavbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-      class="navbar-toggler-icon"></span></button>
+        aria-controls="portalNavbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="portalNavbarSupportedContent">
-        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" [routerLink]="" data-bs-toggle="modal" data-bs-target="#notificacionModal">
-              <i class="fas fa-bell"></i> {{notificationsCount}}
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link portal-bell" [routerLink]=""
+               data-bs-toggle="modal" data-bs-target="#notificacionModal"
+               [class.portal-bell--has-unread]="notificationsCount > 0">
+              <i class="fas fa-bell" aria-hidden="true"></i>
+              @if (notificationsCount > 0) {
+                <span class="portal-bell-badge">{{ notificationsCount }}</span>
+              }
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="portalNavbarDropdown" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="far fa-user"></i> {{user.name}}
+            <a class="nav-link dropdown-toggle portal-user" id="portalNavbarDropdown" href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="portal-user-avatar" aria-hidden="true">{{ userInitial }}</span>
+              <span class="portal-user-name">{{ user.name }}</span>
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" [routerLink]="" (click)="refreshUser()" skipLocationChange><i class="fas fa-sync"></i> Actualizar</a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" [routerLink]="" (click)="refreshUser()" skipLocationChange>
+                <i class="fas fa-sync me-2" aria-hidden="true"></i>Actualizar
+              </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" [routerLink]="" (click)="logout()" skipLocationChange>
-                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Cerrar Sesión
               </a>
             </div>
           </li>
         </ul>
       </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid portal-content">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Notificaciones -->
 <div class="modal fade" id="notificacionModal" tabindex="-1" aria-labelledby="notificacionModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="notificacionModalLabel">Notificaciones</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-        </button>
+        <h5 class="modal-title" id="notificacionModalLabel">
+          <i class="fas fa-bell me-2" aria-hidden="true"></i>Notificaciones
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
           @for (notification of user.notifications; track notification; let i = $index) {
             @if (!notification.read) {
-              <div>
-                <div class="row">
-                  <div class="col-10"><strong>{{i + 1}} - {{notification.title}} ({{notification.date}})</strong></div>
-                  <div class="col-2"><a (click)="setReadNotification(notification.id)"><i
-                  class="fas fa-eye-slash"></i></a></div>
-                  <div class="col-12">{{notification.detail}}</div>
+              <div class="notification-item">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <strong>{{ i + 1 }} - {{ notification.title }}</strong>
+                    <small class="text-muted ms-2">{{ notification.date }}</small>
+                  </div>
+                  <button class="btn btn-sm btn-link" (click)="setReadNotification(notification.id)" title="Marcar como leída">
+                    <i class="fas fa-eye-slash" aria-hidden="true"></i>
+                  </button>
                 </div>
-                <hr>
-                </div>
-              }
+                <p class="mb-0 mt-1">{{ notification.detail }}</p>
+              </div>
+              <hr>
             }
-          </div>
+          } @empty {
+            <p class="text-center text-muted mb-0">Sin notificaciones</p>
+          }
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
+</div>

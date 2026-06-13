@@ -2,6 +2,8 @@ import {Component, DestroyRef, HostListener, OnInit, inject} from '@angular/core
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DetalleProyectoComponent} from './detalle-proyecto/detalle-proyecto.component';
+import {RevealDirective} from '../_directives/reveal.directive';
+import {ScrollTopComponent} from '../shared/scroll-top/scroll-top.component';
 
 import {Knowledge, Profile, Project} from '../_models/main/Profile';
 import {ProfileService} from '../_services/http/profile/perfil.service';
@@ -20,6 +22,7 @@ export class MainComponent implements OnInit {
   public profile: Profile = null;
 
   public version;
+  public currentYear = new Date().getFullYear();
   public knowledgeLanguages: Knowledge[] = [];
   public knowledgeFrameworks: Knowledge[] = [];
   public knowledgeTools: Knowledge[] = [];

@@ -1,46 +1,53 @@
-<div class="container-fluid p-4">
+<div class="container-fluid p-4 dashboard">
   @if (user) {
-    <div class="row mb-4">
-      <div class="col-12">
-        <h2 class="mb-1">Bienvenido, {{ user.name }}</h2>
-        <p class="text-muted mb-0">Panel de control del sitio personal</p>
+    <header class="dashboard-header">
+      <div>
+        <p class="dashboard-greeting">Hola,</p>
+        <h1 class="dashboard-name">{{ user.name }}</h1>
       </div>
-    </div>
+      <div class="dashboard-date">
+        {{ today }}
+      </div>
+    </header>
 
-    <div class="row g-3 mb-4">
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="text-muted text-uppercase small">Proyectos</h6>
-            <p class="display-6 mb-0">{{ projectsCount }}</p>
-            <a routerLink="./admin-perfil" class="small text-decoration-none">Administrar &rarr;</a>
+    <div class="row g-3 mb-4 stagger">
+      <div class="col-12 col-sm-6 col-lg-3 stagger-item">
+        <div class="metric-card metric-card--primary">
+          <div class="metric-card-icon"><i class="fas fa-folder-open" aria-hidden="true"></i></div>
+          <div class="metric-card-body">
+            <p class="metric-card-label">Proyectos</p>
+            <p class="metric-card-value">{{ projectsCount }}</p>
+            <a routerLink="./admin-perfil" class="metric-card-link">Administrar &rarr;</a>
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="text-muted text-uppercase small">Conocimientos</h6>
-            <p class="display-6 mb-0">{{ knowledgesCount }}</p>
-            <a routerLink="./admin-perfil" class="small text-decoration-none">Administrar &rarr;</a>
+      <div class="col-12 col-sm-6 col-lg-3 stagger-item">
+        <div class="metric-card metric-card--secondary">
+          <div class="metric-card-icon"><i class="fas fa-cogs" aria-hidden="true"></i></div>
+          <div class="metric-card-body">
+            <p class="metric-card-label">Conocimientos</p>
+            <p class="metric-card-value">{{ knowledgesCount }}</p>
+            <a routerLink="./admin-perfil" class="metric-card-link">Administrar &rarr;</a>
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="text-muted text-uppercase small">Notificaciones</h6>
-            <p class="display-6 mb-0">{{ unreadNotifications.length }}</p>
-            <span class="small text-muted">sin leer</span>
+      <div class="col-12 col-sm-6 col-lg-3 stagger-item">
+        <div class="metric-card metric-card--accent">
+          <div class="metric-card-icon"><i class="fas fa-bell" aria-hidden="true"></i></div>
+          <div class="metric-card-body">
+            <p class="metric-card-label">Notificaciones</p>
+            <p class="metric-card-value">{{ unreadNotifications.length }}</p>
+            <span class="metric-card-sub">sin leer</span>
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6 class="text-muted text-uppercase small">Rol</h6>
-            <p class="display-6 mb-0 text-capitalize">{{ user.role }}</p>
-            <a routerLink="./admin-usuarios" class="small text-decoration-none">Usuarios &rarr;</a>
+      <div class="col-12 col-sm-6 col-lg-3 stagger-item">
+        <div class="metric-card metric-card--muted">
+          <div class="metric-card-icon"><i class="fas fa-user-shield" aria-hidden="true"></i></div>
+          <div class="metric-card-body">
+            <p class="metric-card-label">Rol</p>
+            <p class="metric-card-value text-capitalize">{{ user.role }}</p>
+            <a routerLink="./admin-usuarios" class="metric-card-link">Usuarios &rarr;</a>
           </div>
         </div>
       </div>
@@ -48,50 +55,50 @@
 
     <div class="row g-3">
       <div class="col-12 col-lg-7">
-        <div class="card h-100">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Top conocimientos</span>
-            <a routerLink="./admin-perfil" class="small text-decoration-none">Ver todos</a>
+        <div class="panel">
+          <div class="panel-header">
+            <h5 class="panel-title">Top conocimientos</h5>
+            <a routerLink="./admin-perfil" class="panel-link">Ver todos</a>
           </div>
-          <ul class="list-group list-group-flush">
+          <ul class="skill-list">
             @for (k of topKnowledges; track k) {
-              <li class="list-group-item">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <strong>{{ k.name }}</strong>
-                    <span class="badge bg-secondary text-uppercase ms-2">{{ k.type }}</span>
-                  </div>
-                  <div class="progress" style="width: 40%; min-width: 120px;">
+              <li class="skill-list-item">
+                <div class="skill-list-info">
+                  <strong class="skill-list-name">{{ k.name }}</strong>
+                  <span class="badge skill-list-badge">{{ k.type }}</span>
+                </div>
+                <div class="skill-list-progress">
+                  <div class="progress progress-thin progress-animated"
+                       [style.--progress-target]="k.level + '%'">
                     <div class="progress-bar" role="progressbar"
-                         [style.width.%]="k.level"
-                         [attr.aria-valuenow]="k.level"
-                         aria-valuemin="0" aria-valuemax="100">
-                      {{ k.level }}%
-                    </div>
+                         [attr.aria-valuenow]="k.level" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
+                  <span class="skill-list-value">{{ k.level }}%</span>
                 </div>
               </li>
             } @empty {
-              <li class="list-group-item text-muted">No hay conocimientos cargados</li>
+              <li class="skill-list-empty">No hay conocimientos cargados</li>
             }
           </ul>
         </div>
       </div>
 
       <div class="col-12 col-lg-5">
-        <div class="card h-100">
-          <div class="card-header">Notificaciones recientes</div>
-          <ul class="list-group list-group-flush">
+        <div class="panel">
+          <div class="panel-header">
+            <h5 class="panel-title">Notificaciones recientes</h5>
+          </div>
+          <ul class="notification-list">
             @for (n of recentNotifications; track n) {
-              <li class="list-group-item">
-                <div class="d-flex justify-content-between">
-                  <strong class="small">{{ n.title }}</strong>
-                  <small class="text-muted">{{ n.date }}</small>
+              <li class="notification-list-item">
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <strong class="notification-list-title">{{ n.title }}</strong>
+                  <small class="notification-list-date">{{ n.date }}</small>
                 </div>
-                <p class="small mb-0 text-muted">{{ n.detail }}</p>
+                <p class="notification-list-detail">{{ n.detail }}</p>
               </li>
             } @empty {
-              <li class="list-group-item text-muted">Sin notificaciones</li>
+              <li class="notification-list-empty">Sin notificaciones</li>
             }
           </ul>
         </div>
@@ -100,18 +107,19 @@
 
     <div class="row g-3 mt-1">
       <div class="col-12">
-        <div class="card">
-          <div class="card-body d-flex flex-wrap gap-2">
-            <a routerLink="./admin-perfil" class="btn btn-outline-primary">
-              <i class="fas fa-user-edit me-1"></i> Editar perfil
-            </a>
-            <a routerLink="./admin-usuarios" class="btn btn-outline-primary">
-              <i class="fas fa-users me-1"></i> Usuarios
-            </a>
-            <a routerLink="./herramientas" class="btn btn-outline-primary">
-              <i class="fas fa-tools me-1"></i> Herramientas
-            </a>
-          </div>
+        <div class="quick-actions">
+          <a routerLink="./admin-perfil" class="quick-action">
+            <i class="fas fa-user-edit" aria-hidden="true"></i>
+            <span>Editar perfil</span>
+          </a>
+          <a routerLink="./admin-usuarios" class="quick-action">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <span>Usuarios</span>
+          </a>
+          <a routerLink="./herramientas" class="quick-action">
+            <i class="fas fa-tools" aria-hidden="true"></i>
+            <span>Herramientas</span>
+          </a>
         </div>
       </div>
     </div>

@@ -7,6 +7,10 @@ Personal Web Page
 - Meta tags for SEO and social sharing (description, Open Graph, Twitter Card, theme-color, preconnect to external resources)
 - CSS custom properties in `:root` for colors, transitions and shadows
 - Support for `prefers-reduced-motion` to disable animations
+- Typography system with Inter web font (preloaded, fluid scale via `clamp()`) and consistent heading hierarchy
+- Reveal-on-scroll directive (`appReveal`) using `IntersectionObserver` with direction and delay inputs
+- Scroll-to-top floating button with `OnPush` and `requestAnimationFrame` throttling
+- Animated section title underlines and project card image zoom on hover
 ### Fixed
 - Filter by category in "Conocimientos" section not working (invalid `on-click` attribute replaced with Angular `(click)`)
 - Language selector in admin profile not working (same root cause)
@@ -15,11 +19,17 @@ Personal Web Page
 - Wrong types: `Int32Array` replaced with `number` for `User.id`, `Profile.profileId`, `LoginResponse.userId` and notification `SetReadNotification(id)`
 - Login flow now validates token expiration via `isAuthenticated()` instead of only checking presence
 - Debug `console.log` statements removed from menu and admin components
+- Footer year hardcoded as 2022 now uses `new Date().getFullYear()`
 ### Changed
 - All HTTP subscriptions now use `takeUntilDestroyed(destroyRef)` for automatic cleanup
 - Color values centralized in CSS variables and applied across main, menu, portal and login styles
 - Hardcoded `rgba(12, 36, 97, ...)` replaced with `var(--color-primary)` and `rgba(var(--color-primary-rgb), ...)`
 - `admin-usuarios` modal handling refactored: `openUserModal(user)` private method shared by create and update flows
+- Visual redesign: hero with staggered fade-up, glass-morphism login, gradient sidebar, animated nav underline, metric cards with colored side accent, project cards with image zoom and elevation
+- Components use unified design tokens (spacing, radius, shadow, motion) from `:root`
+- Scrollbar styled cross-browser; selection color uses brand primary
+- Navbar adds `is-scrolled` class with backdrop-blur, shadow and padding shrink; polling `setTimeout` retries replaced with native `scrollIntoView`
+- Login rebuilt with glassmorphism card, input icons, focus ring, gradient submit and floating background orbs
 ### Removed
 - Dead code: `String.prototype.escapeSpecialChars` global prototype pollution
 - Production polyfill: `import 'zone.js/testing'`
