@@ -1,7 +1,7 @@
 # Changelog
 Personal Web Page
 
-## [Unreleased]
+## [2.3.0] - 13/06/2026
 ### Added
 - Dashboard with profile metrics (projects, knowledges, notifications), top skills and recent notifications
 - Meta tags for SEO and social sharing (description, Open Graph, Twitter Card, theme-color, preconnect to external resources)
@@ -11,6 +11,10 @@ Personal Web Page
 - Reveal-on-scroll directive (`appReveal`) using `IntersectionObserver` with direction and delay inputs
 - Scroll-to-top floating button with `OnPush` and `requestAnimationFrame` throttling
 - Animated section title underlines and project card image zoom on hover
+- Loading and error states with retry in MainComponent hero
+- `APP_VERSION` `InjectionToken` reading version from `package.json` (replaces fragile `require()`)
+- `timeout` fallback in `appReveal` so content is revealed even if `IntersectionObserver` never fires
+- SVG icon sprite for `@kolkov/angular-editor@3` (the package switched from font to SVG icons)
 ### Fixed
 - Filter by category in "Conocimientos" section not working (invalid `on-click` attribute replaced with Angular `(click)`)
 - Language selector in admin profile not working (same root cause)
@@ -20,6 +24,11 @@ Personal Web Page
 - Login flow now validates token expiration via `isAuthenticated()` instead of only checking presence
 - Debug `console.log` statements removed from menu and admin components
 - Footer year hardcoded as 2022 now uses `new Date().getFullYear()`
+- Section content (About, Conocimientos, Proyectos, Dashboard metric cards) was invisible because `.stagger` containers were missing `appReveal`, so child items never received the `.revealed` class and stayed at `opacity: 0`
+- Progress bars in `Conocimientos` and Dashboard now animate from 0 to target when the ancestor `.stagger` reveals (no longer requires `appReveal` on each bar)
+- HTTP responses in Dashboard, Admin Perfil, Admin Usuarios and Portal components were not updating the view; added `ChangeDetectorRef.markForCheck()` after each subscription. The "Actualizar" button worked because clicks force a `Zone.js` change detection pass on the whole tree
+- Main page stuck on "Cargando perfil..." because `loading` flag was only set in the `next` callback (which threw on malformed data) and the `error` handler did not always fire
+- Toolbar buttons of `@kolkov/angular-editor` rendered as empty squares because v3 switched from font icons to SVG sprite and the sprite file was never copied to `src/assets/ae-icons/icons.svg`
 ### Changed
 - All HTTP subscriptions now use `takeUntilDestroyed(destroyRef)` for automatic cleanup
 - Color values centralized in CSS variables and applied across main, menu, portal and login styles
@@ -30,16 +39,19 @@ Personal Web Page
 - Scrollbar styled cross-browser; selection color uses brand primary
 - Navbar adds `is-scrolled` class with backdrop-blur, shadow and padding shrink; polling `setTimeout` retries replaced with native `scrollIntoView`
 - Login rebuilt with glassmorphism card, input icons, focus ring, gradient submit and floating background orbs
+- **Upgraded to Angular 21.2.17** (from 17.3.10). Bumped `@angular/cli`, `@angular-devkit/build-angular`, `@ng-bootstrap/ng-bootstrap` (20.0.0), `ngx-spinner` (21.1.0), `ngx-page-scroll-core` (16.0.0), `@kolkov/angular-editor` (3.0.5), `bootstrap` (5.3.8), `rxjs` (7.8.2), `tslib` (2.8.1), `typescript` (5.9.3), `zone.js` (0.16.2)
+- `tsconfig.json`: `moduleResolution` switched from `"node"` to `"bundler"` and `module`/`target` bumped to `ES2022` to support new subpath exports
+- Added `standalone: false` to all `@Component` and the `RevealDirective` (Angular 19+ default is `standalone: true`, which is incompatible with the current `NgModule` architecture)
+- `tsconfig.spec.json`, `tslint.json`, `e2e/` directory and the `lint`/`e2e` scripts and architect targets removed
 ### Removed
 - Dead code: `String.prototype.escapeSpecialChars` global prototype pollution
 - Production polyfill: `import 'zone.js/testing'`
-
-### Fixed
-- Section content (About, Conocimientos, Proyectos, Dashboard metric cards) was invisible because `.stagger` containers were missing `appReveal`, so child items never received the `.revealed` class and stayed at `opacity: 0`
-- Progress bars in `Conocimientos` and Dashboard now animate from 0 to target when the ancestor `.stagger` reveals (no longer requires `appReveal` on each bar)
-
-### Removed
 - "Top conocimientos" panel from dashboard (now only metric cards, recent notifications and quick actions); related `topKnowledges` state and `.skill-list*` CSS
+- Deprecated dev dependencies: `tslint`, `codelyzer`, `protractor` (and its transitive `webdriver-manager`, `selenium-webdriver`, etc.)
+
+## [Unreleased]
+- Contact form
+- Chatbot
 
 ## [2.2.2] - 27/07/2025
 ### Fixed

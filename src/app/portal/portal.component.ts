@@ -1,4 +1,4 @@
-import {Component, DestroyRef, OnInit, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, OnInit, inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Router} from '@angular/router';
 import {LoginService} from '../_services/http/login/login.service';
@@ -8,6 +8,7 @@ import {NotificationService} from '../_services/http/notification/notification.s
 
 @Component({
   selector: 'app-portal',
+  standalone: false,
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.css']
 })
@@ -18,6 +19,7 @@ export class PortalComponent implements OnInit {
   userInitial = '?';
 
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   constructor(private tokenService: TokenService,
               private loginService: LoginService,
@@ -52,6 +54,7 @@ export class PortalComponent implements OnInit {
           this.user = dataUser;
           this.tokenService.setUser(dataUser);
           this.processNotificationCount();
+          this.cdr.markForCheck();
         },
         error: (err) => console.error(err)
       });

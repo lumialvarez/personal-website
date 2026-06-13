@@ -1,4 +1,4 @@
-import {Component, DestroyRef, OnInit, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, OnInit, inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -10,6 +10,7 @@ import {ToastService} from '../../_services/toast.service';
 
 @Component({
   selector: 'app-admin-perfil',
+  standalone: false,
   templateUrl: './admin-perfil.component.html',
   styleUrls: ['./admin-perfil.component.css']
 })
@@ -19,6 +20,7 @@ export class AdminPerfilComponent implements OnInit {
   }
 
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   public profileList: Profile[];
   public selectedProfile: Profile = null;
@@ -75,8 +77,12 @@ export class AdminPerfilComponent implements OnInit {
             this.selectedProfile = this.profileList[0];
             this.processSelectedProfile();
           }
+          this.cdr.markForCheck();
         },
-        error: (err) => console.error(err)
+        error: (err) => {
+          console.error(err);
+          this.cdr.markForCheck();
+        }
       });
   }
 
@@ -93,11 +99,13 @@ export class AdminPerfilComponent implements OnInit {
         next: (data) => {
           this.toastService.showSuccess('Perfil Actualizado');
           this.selectedProfile = data.profile;
+          this.cdr.markForCheck();
         },
         error: (err) => {
           (err?.error?.details || []).forEach((detail: string) => {
             this.toastService.showDanger(detail);
           });
+          this.cdr.markForCheck();
         }
       });
   }
@@ -146,6 +154,7 @@ export class AdminPerfilComponent implements OnInit {
             this.selectedProfile.profileData.knowledges.push(knowledgeModified);
           }
         }
+        this.cdr.markForCheck();
       });
   }
 
@@ -171,6 +180,7 @@ export class AdminPerfilComponent implements OnInit {
             this.selectedProfile.profileData.projects.push(projectModified);
           }
         }
+        this.cdr.markForCheck();
       });
   }
 

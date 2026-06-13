@@ -76,6 +76,49 @@
   margin-top: var(--space-5);
 }
 
+.hero-loading,
+.hero-error {
+  text-align: center;
+  color: var(--color-text-light);
+  padding: var(--space-4);
+}
+
+.hero-spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto var(--space-3);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--color-secondary);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hero-loading-text {
+  font-size: var(--fs-200);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0.85;
+}
+
+.hero-error i {
+  font-size: 2.5rem;
+  color: #ffb84d;
+  margin-bottom: var(--space-3);
+  display: block;
+}
+
+.hero-error-text {
+  font-size: var(--fs-300);
+  max-width: 480px;
+  margin: 0 auto var(--space-4);
+  opacity: 0.9;
+}
+
 .btn-hero {
   display: inline-flex;
   align-items: center;

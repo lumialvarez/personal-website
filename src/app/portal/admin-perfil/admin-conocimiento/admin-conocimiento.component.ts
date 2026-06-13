@@ -5,6 +5,7 @@ import {ToastService} from '../../../_services/toast.service';
 
 @Component({
   selector: 'app-admin-conocimiento',
+  standalone: false,
   templateUrl: './admin-conocimiento.component.html',
   styleUrls: ['./admin-conocimiento.component.css']
 })

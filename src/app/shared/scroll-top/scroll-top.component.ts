@@ -8,6 +8,7 @@ import {
 
 @Component({
   selector: 'app-scroll-top',
+  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button

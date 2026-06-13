@@ -1,4 +1,4 @@
-import {Component, DestroyRef, OnInit, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, OnInit, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {TokenService} from '../../_services/token.service';
 import {User, UserNotification} from '../../_models/user';
@@ -7,6 +7,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-dashboard',
+  standalone: false,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   user: User;
   unreadNotifications: UserNotification[] = [];
@@ -51,12 +53,17 @@ export class DashboardComponent implements OnInit {
         next: (data) => {
           const active = data.profiles.find((p) => p.status) || data.profiles[0];
           if (!active) {
+            this.cdr.markForCheck();
             return;
           }
           this.projectsCount = active.profileData.projects.length;
           this.knowledgesCount = active.profileData.knowledges.length;
+          this.cdr.markForCheck();
         },
-        error: (err) => console.error('Error cargando estadísticas del perfil', err)
+        error: (err) => {
+          console.error('Error cargando estadísticas del perfil', err);
+          this.cdr.markForCheck();
+        }
       });
   }
 }

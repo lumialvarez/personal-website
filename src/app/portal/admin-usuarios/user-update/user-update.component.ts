@@ -10,6 +10,7 @@ import {CommonError} from '../../../_services/http/Error';
 
 @Component({
     selector: 'app-user-update',
+    standalone: false,
     templateUrl: './user-update.component.html',
     styleUrls: ['./user-update.component.css']
 })

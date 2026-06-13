@@ -4,6 +4,7 @@ import {ToastService} from '../../_services/toast.service';
 
 @Component({
   selector: 'app-herramientas',
+  standalone: false,
   templateUrl: './herramientas.component.html',
   styleUrls: ['./herramientas.component.css']
 })

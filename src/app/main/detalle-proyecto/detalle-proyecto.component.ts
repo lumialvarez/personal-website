@@ -5,6 +5,7 @@ import {Project} from '../../_models/main/Profile';
 
 @Component({
   selector: 'app-detalle-proyecto',
+  standalone: false,
   templateUrl: './detalle-proyecto.component.html',
   styleUrls: ['./detalle-proyecto.component.css']
 })

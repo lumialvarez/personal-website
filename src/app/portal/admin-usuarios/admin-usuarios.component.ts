@@ -1,4 +1,4 @@
-import {Component, DestroyRef, OnInit, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, OnInit, inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {UserService} from '../../_services/http/user/user.service';
 import {User} from '../../_models/user';
@@ -7,6 +7,7 @@ import {UserUpdateComponent} from './user-update/user-update.component';
 
 @Component({
     selector: 'app-admin-usuarios',
+    standalone: false,
     templateUrl: './admin-usuarios.component.html',
     styleUrls: ['./admin-usuarios.component.css']
 })
@@ -15,6 +16,7 @@ export class AdminUsuariosComponent implements OnInit {
     public users: User[];
 
     private readonly destroyRef = inject(DestroyRef);
+    private readonly cdr = inject(ChangeDetectorRef);
 
     constructor(private modalService: NgbModal, private userService: UserService) {
     }
@@ -29,8 +31,12 @@ export class AdminUsuariosComponent implements OnInit {
             .subscribe({
                 next: (userListResponse) => {
                     this.users = userListResponse.users;
+                    this.cdr.markForCheck();
                 },
-                error: (err) => console.error(err)
+                error: (err) => {
+                    console.error(err);
+                    this.cdr.markForCheck();
+                }
             });
     }
 
@@ -43,6 +49,7 @@ export class AdminUsuariosComponent implements OnInit {
                 if (data !== 'closed') {
                     this.loadUserData();
                 }
+                this.cdr.markForCheck();
             });
     }
 
