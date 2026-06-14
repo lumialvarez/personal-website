@@ -17,6 +17,7 @@ Personal Web Page
 - Replaced deprecated `karma-coverage-istanbul-reporter` (~3.0.3) with the standard `karma-coverage` (~2.2.1) required by `@angular-devkit/build-angular` v21; migrated the config from `coverageIstanbulReporter` to `coverageReporter` producing `html`, `text-summary` and `lcovonly` reports
 ### Fixed
 - `src/test.ts` import updated from `'zone.js/dist/zone-testing'` to `'zone.js/testing'`, which is the correct subpath export for `zone.js` 0.16+
+- `unit-tests.yml` `pull-requests: write` permission removed: a `pull_request`-triggered caller (`pr-build.yml`) inherits a read-only GITHUB_TOKEN that doesn't allow `pull-requests: write`, which made the `workflow_call` fail validation. Tests/coverage/artifacts don't need PR write access
 
 ## [2.3.0] - 13/06/2026
 ### Added
