@@ -18,6 +18,7 @@ Personal Web Page
 ### Fixed
 - `src/test.ts` import updated from `'zone.js/dist/zone-testing'` to `'zone.js/testing'`, which is the correct subpath export for `zone.js` 0.16+
 - `unit-tests.yml` `pull-requests: write` permission removed: a `pull_request`-triggered caller (`pr-build.yml`) inherits a read-only GITHUB_TOKEN that doesn't allow `pull-requests: write`, which made the `workflow_call` fail validation. Tests/coverage/artifacts don't need PR write access
+- `unit-tests.yml` `actions: read` permission removed: a reusable workflow called via `workflow_call` from a `pull_request` context only has `actions: none`, so requesting `actions: read` failed validation. Steps that need the Actions API (`actions/cache`, `actions/upload-artifact`) are now marked `continue-on-error: true` so they degrade gracefully (cold `npm ci` and no downloadable artifact) instead of failing the whole run
 
 ## [2.3.0] - 13/06/2026
 ### Added
