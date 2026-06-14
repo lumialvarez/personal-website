@@ -1,0 +1,81 @@
+name: Unit tests
+
+on:
+  push:
+    branches:
+      - main
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Unit tests with coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Cache npm dependencies
+        # `actions/cache` writes through the GitHub Actions cache API which
+        # needs `actions: read/write`; the PR-scoped GITHUB_TOKEN only has
+        # `actions: none`. Mark as continue-on-error so a missing/unwritable
+        # cache just means a cold `npm ci` instead of failing the job.
+        continue-on-error: true
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests with coverage
+        run: npx ng test --no-watch --browsers=ChromeHeadlessCI --code-coverage
+
+      - name: Check coverage summary
+        run: |
+          if [ -f coverage/personal-website/lcov.info ]; then
+            echo "Coverage report generated successfully."
+            echo "---"
+            cat coverage/personal-website/coverage-summary.txt || true
+          else
+            echo "::error::Coverage report was not generated."
+            exit 1
+          fi
+
+      - name: Upload coverage artifact
+        if: always()
+        # `actions/upload-artifact@v4` requires `actions: write`, which the
+        # GITHUB_TOKEN does NOT grant in `pull_request` context. Mark the step
+        # as continue-on-error so the workflow still passes when the upload is
+        # rejected; the coverage summary is still visible in the job logs.
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/personal-website
+          retention-days: 14
+
+      - name: Upload coverage to Codecov
+        # Skip when called from a PR context: only push to main should publish coverage
+        if: always() && env.CODECOV_TOKEN != '' && github.event.pull_request == null
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/personal-website/lcov.info
+          flags: unit
+          fail_ci_if_error: false
+          verbose: true
+
+
