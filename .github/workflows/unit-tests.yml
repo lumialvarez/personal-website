@@ -1,10 +1,7 @@
-name: Tests
+name: Unit tests
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
   workflow_call:
@@ -62,7 +59,7 @@ jobs:
           retention-days: 14
 
       - name: Upload coverage to Codecov
-        # Skip on pull_request: only push to main (or a workflow_call from main) should publish coverage
+        # Skip when called from a PR context: only push to main should publish coverage
         if: always() && env.CODECOV_TOKEN != '' && github.event.pull_request == null
         uses: codecov/codecov-action@v4
         with:
@@ -71,4 +68,5 @@ jobs:
           flags: unit
           fail_ci_if_error: false
           verbose: true
+
 

@@ -1,26 +1,26 @@
-name: Build and push Test version
+name: Release
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
-permissions:
-  contents: read
-
 jobs:
-  test:
-    name: Unit tests with coverage
-    uses: ./.github/workflows/test.yml
-    secrets: inherit
-
   build:
-    name: Build and push Docker image
-    needs: test
+    name: Build and push release Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set env
+        run: echo "APP_VERSION=$(grep -m 1 -Po '[0-9]+[.][0-9]+[.][0-9]+' CHANGELOG.md)" >> $GITHUB_ENV
+
+      - name: Show version
+        run: echo ${{ env.APP_VERSION }}
+
+      - name: Replace secrets
+        run: python replace-variables.py ./src/app/app.module.ts GOOGLE_ID_TRACKING=${{ secrets.GOOGLE_ID_TRACKING }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -39,4 +39,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: lmalvarez/personal-website:test
+          tags: lmalvarez/personal-website:${{ env.APP_VERSION }},lmalvarez/personal-website:latest
+
