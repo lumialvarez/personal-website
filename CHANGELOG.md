@@ -1,6 +1,18 @@
 # Changelog
 Personal Web Page
 
+## [2.4.0] - 13/06/2026
+### Added
+- Comprehensive unit test suite: 87 tests covering all HTTP services (login, profile, notification, user, CommonError), auth helpers (TokenService, AuthGuardGuard, BasicAuthInterceptor), the `RevealDirective` (with mocked `IntersectionObserver` and `fakeAsync/tick` fallback), the `ToastsContainerComponent`, `AppComponent` and the `User`/`Profile`/`Project`/`Knowledge`/`UserNotification`/`ProfileData` models
+- Reusable GitHub Actions workflow (`.github/workflows/test.yml`) running unit tests with coverage on every push to `main` and callable via `workflow_call`; uploads the HTML/lcov report as an artifact and (if `CODECOV_TOKEN` is configured) to Codecov
+- Test command in CI runs `ng test --no-watch --browsers=ChromeHeadlessCI --code-coverage`; the karma config auto-switches to headless when `CI=true`
+### Changed
+- `build-and-push-test.yml` now calls the reusable test workflow and the Docker build has `needs: test`, so the image is only pushed when all tests pass
+- `karma.conf.js` now detects `CI` env var to switch the launcher and disable watch mode; added a `ChromeHeadlessCI` launcher with `--no-sandbox`, `--disable-gpu`, `--disable-dev-shm-usage` and `--headless=new` flags
+- Replaced deprecated `karma-coverage-istanbul-reporter` (~3.0.3) with the standard `karma-coverage` (~2.2.1) required by `@angular-devkit/build-angular` v21; migrated the config from `coverageIstanbulReporter` to `coverageReporter` producing `html`, `text-summary` and `lcovonly` reports
+### Fixed
+- `src/test.ts` import updated from `'zone.js/dist/zone-testing'` to `'zone.js/testing'`, which is the correct subpath export for `zone.js` 0.16+
+
 ## [2.3.0] - 13/06/2026
 ### Added
 - Dashboard with profile metrics (projects, knowledges, notifications), top skills and recent notifications

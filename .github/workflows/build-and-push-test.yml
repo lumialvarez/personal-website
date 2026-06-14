@@ -5,8 +5,18 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
+  test:
+    name: Unit tests with coverage
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+
   build:
+    name: Build and push Docker image
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
